@@ -69,15 +69,11 @@ of different players.
 
 Yuqi & Fabiola :: Did the todo.txt
 
-Dawei :: Uploaded project proposal
-==============================================================
-
-2017-01-10
---------------------------------------------------------------
-Dawei :: Added more tasks to the todolist
+Dawei :: Uploaded project proposal. Added more tasks to the todolist
 ==============================================================
 
 2017-01-11
 --------------------------------------------------------------
 Yuqi :: Added devlog1
+Dawei :: copied git.ignore to the root of git repo
 ==============================================================
