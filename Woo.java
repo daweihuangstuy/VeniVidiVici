@@ -6,20 +6,21 @@ import java.util.Scanner;
 import cs1.Keyboard;
 
 public class Woo {
-	
-	//project colors
-	public static final String ANSI_RESET = "\u001B[0m";
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
+    //class variables
+    static int numPlayer = 0;
+
+    //project colors
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void main(String args[]) throws FileNotFoundException {
-	System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
 	startGraphic();
     }  
 
@@ -39,6 +40,22 @@ public class Woo {
 	if (!startText.equals("start")){
 		System.out.println("Wrong input. Program has been terminated. Please try again.");
 		System.exit(0);
+	}
+	
+	//Enter Game Information
+	System.out.println("\n\nEnter Game Information");
+	System.out.println("\nType in the number of players:");
+	
+	while (numPlayer = 0){
+	    try {
+		int playerNum = Integer.parseInt( cs1.Keyboard.readWord() );
+	    }
+	    catch (Exception e) {
+		System.out.println("You had entered an invalid quantity or range. Please try again.");
+	    }
+	    if (playerNum > 0 && playerNum <= 6){
+		numPlayer = playerNum;
+	    }
 	}
 	
 	// print world map in terminal
