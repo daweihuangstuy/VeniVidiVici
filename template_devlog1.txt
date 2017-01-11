@@ -49,17 +49,35 @@ Dawei :: Created the repo
 
 2017-01-09
 --------------------------------------------------------------
-Dawei :: Added map and anitial test program
+Dawei :: -Created a cover for the game
+		 -Created a world map for the game.
+		 Labeled the 42 territories in the game.
+		 -Created a grid connecting territories to adjacent 
+		 territories.
+		 -Created Woo.java driver file. Added a startUp method
+		 that would first print the game cover to introduce the
+		 game.
+		 -Created input feature that requires users to type "start"
+		 in order to begin playing the game.
+		 -Added method that would print the game map to the terminal.
 ==============================================================
 
 2017-01-10
 --------------------------------------------------------------
-Dawei :: Added color to the map
+Dawei :: Added color to the map in order to indicate the territories
+of different players.
+
 Yuqi & Fabiola :: Did the todo.txt
+
 Dawei :: Uploaded project proposal
 ==============================================================
 
 2017-01-10
 --------------------------------------------------------------
-Dawei :: Added todolist
+Dawei :: Added more tasks to the todolist
+==============================================================
+
+2017-01-11
+--------------------------------------------------------------
+Yuqi :: Added devlog1
 ==============================================================
