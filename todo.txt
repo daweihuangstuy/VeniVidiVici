@@ -1,1 +1,22 @@
-
+1. Add a feature that will print out the cover and map of the game
+2. Introduction - describe what “risk” is and how you play
+3. Initialization - players begin to occupy all the available territories
+4. Create superclass "Army"
+5. Extend Army superclass to the player subclasses
+6. Create variable “Troops number” - player owns certain amount of troops
+7. Create variable “Occupied territory” - player owns certain amount of territories
+8. Create superclass “Territory”
+9. Extend territory superclass to individual territory subclasses
+10. Create variable “Troop Number” - the amount of troops occupying this territory
+11.  Display troops - this will be a table that shows the player where is the troops located, later on we will try to display it on the map
+12. Vision - player can see the number of troops in enemy’s territories through table (map)
+13. Attack feature - player can only attack nearby enemy’s territories
+14. Move - player can move their troops to wherever they want in the territories that they occupy 
+15. Breed - different continents can breed different amount of troops every turn
+16. Winning + Cheers!
+17. Add more Players and Continents
+18. Create “bridge” between continents because this is the only way players can attack cross-continent 
+19. Create restriction for “Move” that they cannot move troops from one territory to a territory that cannot be reached by land (or continent bridges)
+20. Optional winning expectation (75% of the territories conquered)
+21. AI - JARVIS
+22. Saving feature
