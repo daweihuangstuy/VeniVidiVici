@@ -1,27 +1,10 @@
-<Team Name>
-<Member 0 Name>
-<Member 1 Name>
-<Member 2 Name>
-pd <pd#>
+VeniVidiVici
+Yu Qi Wu
+Dawei Huang
+Fabiola Radosav
+pd 4
 ---------------------
 <Project>
-
-
-Suggested usage: 
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
@@ -59,9 +42,24 @@ tales of wisdom gained...
 ==============================================================
 
 
-yyyy-mm-dd
+2016-12-27
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+Dawei :: Created the repo
+==============================================================
+
+2017-01-09
+--------------------------------------------------------------
+Dawei :: Added map and anitial test program
+==============================================================
+
+2017-01-10
+--------------------------------------------------------------
+Dawei :: Added color to the map
+Yuqi & Fabiola :: Did the todo.txt
+Dawei :: Uploaded project proposal
+==============================================================
+
+2017-01-10
+--------------------------------------------------------------
+Dawei :: Added todolist
 ==============================================================
