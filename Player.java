@@ -1,14 +1,22 @@
+/* VeniVidiVici
+   Yu Qi Wu, Dawei Huang, Fabiola Radosav
+   pd 4
+*/
+
+
 public class Player{
 
     protected String name;
     protected int numTroop; //indicated size of troops
     protected int occuTerr; //int represents percent of overall territory occupied by the player
+    protected ArrayList<String> occuTerr;
 
     /* Constructor */
 
     public Player(){
 	numTroop = 40;
-	occuTerr = 100/42;
+	occuTerr = 0;
+	occuTerr = new ArrayList<String>();
     }
 
     public int getNumTroop(){
@@ -21,20 +29,25 @@ public class Player{
       random num generator 6 - 10 indicates failed attack
      */
 
-    public void attack(name Player, int Territory){
+    public void attack(int attTroops, String Territory){
 	int attStat; //status of attack, win or fail
-	if ( numTroop <= 40 ){
-	    attStat = (int) (Math.random() * 5 + 5);
+	if ( attTroops > 3 ){
+	    System.out.println("Sorry, you can only have a maximum number of 3 troops");
+	    // attack(attTroops, Territory);
 	}
-	if ( numTroop > 40 && numTroop <= 65 ){
-	    attStat = (int) (Math.random() + 5 + 3);
+	for (int ctr = 0; ctr < attTroops; ctr++){
+	    attStat = (int) (Math.random() * 6);
+	    if (attStat > 3){
+		// ClassTerritory.win(); defense lose 1 troops
+	    }
+	    else{
+		// ClassTerritory.lose(); offense lose 1 troops
+	    }
 	}
-	if (numTroop > 65 ){
-	    attStat = (int) (Math.random() * 5 + 1);
-	}
-	if (attStat <= 5){
-	    numTroops += name.getNumTroop();
-	}
+    }
+
+    public void move(name Player, int Territory){
+	
     }
 
     /*
