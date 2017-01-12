@@ -46,17 +46,23 @@ public class Woo {
 	System.out.println("\n\nEnter Game Information");
 	System.out.println("\nType in the number of players:");
 	
-	while (numPlayer = 0){
+	//Enter Player Information
+	int playerNum = 0;
+	while (numPlayer == 0){
 	    try {
-		int playerNum = Integer.parseInt( cs1.Keyboard.readWord() );
+		playerNum = Integer.parseInt( cs1.Keyboard.readWord() );
 	    }
 	    catch (Exception e) {
-		System.out.println("You had entered an invalid quantity or range. Please try again.");
+		System.out.println("You had entered an invalid quantity. Please try again.");
 	    }
-	    if (playerNum > 0 && playerNum <= 6){
+	    if (playerNum > 1 && playerNum <= 6){
 		numPlayer = playerNum;
 	    }
+	    else{
+		System.out.println("You had entered an invalid range. Please try again.");
+	    }
 	}
+	System.out.println(playerNum);
 	
 	// print world map in terminal
 	File text2 = new File("WorldMap.txt");
@@ -65,12 +71,22 @@ public class Woo {
 	    String line2 = scanner2.nextLine();
 		
 		//Color Map
+	    if (numPlayer >= 2){
 		line2 = line2.replace("(BLUE)",ANSI_BLUE + "(BLUE)" + ANSI_RESET); //PLAYER 1
 		line2 = line2.replace("(GREEN)",ANSI_GREEN + "(GREEN)" + ANSI_RESET); //PLAYER 2
+	    }
+	    if (numPlayer >= 3){
 		line2 = line2.replace("(RED)",ANSI_RED + "(RED)" + ANSI_RESET); //PLAYER 3
+	    }
+	    if (numPlayer >= 4){
 		line2 = line2.replace("(YELLOW)",ANSI_YELLOW + "(YELLOW)" + ANSI_RESET); //PLAYER 4
+	    }
+	    if (numPlayer >= 5){
 		line2 = line2.replace("(PURPLE)",ANSI_PURPLE + "(PURPLE)" + ANSI_RESET); //PLAYER 5
+	    }
+	    if (numPlayer == 6){
 		line2 = line2.replace("(CYAN)",ANSI_CYAN + "(CYAN)" + ANSI_RESET); //PLAYER 6
+	    }
 		
 	    System.out.println(line2);
 	}
