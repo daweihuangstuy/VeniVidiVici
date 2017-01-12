@@ -76,4 +76,5 @@ Dawei :: Uploaded project proposal. Added more tasks to the todolist
 --------------------------------------------------------------
 Yuqi :: Added devlog1
 Dawei :: copied git.ignore to the root of git repo
+Fabiola :: Worked on Player class
 ==============================================================
