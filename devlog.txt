@@ -78,3 +78,10 @@ Yuqi :: Added devlog1
 Dawei :: copied git.ignore to the root of git repo
 Fabiola :: Worked on Player class
 ==============================================================
+
+2017-01-12
+--------------------------------------------------------------
+Yuqi :: Worked on Territory class and subclasses
+Dawei :: Worked on Woo.java, Player 1 and Player 2 class
+Fabiola :: Worked on Player class and finalized UML diagram
+==============================================================
