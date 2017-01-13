@@ -382,4 +382,13 @@ public class territoryGraph{
 	    targetObj = F14;
 	}
     }
+
+    public boolean isIn(String target){
+	for (String x : Territories){
+	    if (x == target){
+		return true;
+	    }
+	}
+	return false;
+    }
 }
