@@ -16,6 +16,18 @@ public class territoryGraph{
     public static ArrayList<ArrayList<String>> teriGraph = new ArrayList<ArrayList<String>>();
     
     //initialize each territory
+    public static String[] Territories = new String[]{"A11","A14","A16","A18",
+						      "A12","A15","A17","A19",
+						      "A13","A04",
+						      "B11","B12","B13",
+						      "C11","C13","C15","C17",
+						      "C12","C14","C16",
+						      "D11","D13","D15",
+						      "D12","D14","D16",
+						      "E11","E14","E17","E21",
+						      "E12","E15","E18","E22",
+						      "E13","E16","E19","E23",
+						      "F11","F12","F13","F14",};
     public static ArrayList<String> A11 = new ArrayList<String>();
     public static ArrayList<String> A12 = new ArrayList<String>();
     public static ArrayList<String> A13 = new ArrayList<String>();
