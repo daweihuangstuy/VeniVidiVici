@@ -1,12 +1,13 @@
-public class Territory{
+public class A12{
     protected int curTroops; // current amount of troops on it
     protected String occupier; // current player occupying this territory
 
-    public Territory(){
+    
+    public A12(){
 	curTroops = 0;
 	occupier = "null";
     }
-
+    
     public int getCurTroops(){
 	return curTroops;
     }
