@@ -8,10 +8,12 @@ import cs1.Keyboard;
 public class Woo {
     //class variables
     static int numPlayer = 0;
+	static String playerTurn;
 
 	//instantialize players
 	Player1 player1 = new Player1();
 	Player2 player2 = new Player2();
+	A11 game = new A11();
 	
     //project colors
     public static final String ANSI_RESET = "\u001B[0m";
@@ -27,8 +29,12 @@ public class Woo {
     public static void main(String args[]) throws FileNotFoundException {
 		startGame();
 		renderMap();
+		//player 1 placement
+		playerTurn = "player1";
+		
     }  
-
+	
+//*******************************************************************************
     public static void startGame() throws FileNotFoundException {	
 		//print game cover in terminal
 		File text1 = new File("Cover.txt");
@@ -92,8 +98,13 @@ public class Woo {
 			if (numPlayer == 6){
 			line2 = line2.replace("(CYAN)",ANSI_CYAN + "(CYAN)" + ANSI_RESET); //PLAYER 6
 			}
-			
 			System.out.println(line2);
 		}
 	}
+//*******************************************************************************
+	// public static void placement(String player, String territory){
+		// System.out.println("Select a territory to place one troop");	
+		// String placementSelect = cs1.Keyboard.readString();
+		// territoryGraph.allTerritory
+	// }
 }

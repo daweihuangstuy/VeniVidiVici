@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Player{
 
     protected String name;
+	protected int intialTroops;
     protected int numTroop; //indicated size of troops
     protected int occuTerr; //int represents percent of overall territory occupied by the player
     protected ArrayList<String> territory;
@@ -24,6 +25,7 @@ public class Player{
     public Player(){
 	numTroop = 40;
 	occuTerr = 0;
+	intialTroops = 40;
     }
 
     public int getNumTroop(){

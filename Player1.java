@@ -9,7 +9,8 @@ public class Player1 extends Player{
     /* Constructor */
 
     public Player1(){
-	numTroop = 40;
+	numTroop = 20;
+	intialTroops = 20;
 	occuTerr = 0;
     }
 
