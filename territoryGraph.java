@@ -19,6 +19,45 @@ public class territoryGraph{
     public static ArrayList<String> A11 = new ArrayList<String>();
     public static ArrayList<String> A12 = new ArrayList<String>();
     public static ArrayList<String> A13 = new ArrayList<String>();
+    public static ArrayList<String> A14 = new ArrayList<String>();
+    public static ArrayList<String> A15 = new ArrayList<String>();
+    public static ArrayList<String> A16 = new ArrayList<String>();
+    public static ArrayList<String> A17 = new ArrayList<String>();
+    public static ArrayList<String> A18 = new ArrayList<String>();
+    public static ArrayList<String> A19 = new ArrayList<String>();
+    public static ArrayList<String> B11 = new ArrayList<String>();
+    public static ArrayList<String> B12 = new ArrayList<String>();
+    public static ArrayList<String> B13 = new ArrayList<String>();
+    public static ArrayList<String> A04 = new ArrayList<String>();
+    public static ArrayList<String> C11 = new ArrayList<String>();
+    public static ArrayList<String> C12 = new ArrayList<String>();
+    public static ArrayList<String> C13 = new ArrayList<String>();
+    public static ArrayList<String> C14 = new ArrayList<String>();
+    public static ArrayList<String> C15 = new ArrayList<String>();
+    public static ArrayList<String> C16 = new ArrayList<String>();
+    public static ArrayList<String> C17 = new ArrayList<String>();
+    public static ArrayList<String> D11 = new ArrayList<String>();
+    public static ArrayList<String> D12 = new ArrayList<String>();
+    public static ArrayList<String> D13 = new ArrayList<String>();
+    public static ArrayList<String> D14 = new ArrayList<String>();
+    public static ArrayList<String> D15 = new ArrayList<String>();
+    public static ArrayList<String> D16 = new ArrayList<String>();
+    public static ArrayList<String> E11 = new ArrayList<String>();
+    public static ArrayList<String> E12 = new ArrayList<String>();
+    public static ArrayList<String> E13 = new ArrayList<String>();
+    public static ArrayList<String> E14 = new ArrayList<String>();
+    public static ArrayList<String> E15 = new ArrayList<String>();
+    public static ArrayList<String> E16 = new ArrayList<String>();
+    public static ArrayList<String> E17 = new ArrayList<String>();
+    public static ArrayList<String> E18 = new ArrayList<String>();
+    public static ArrayList<String> E19 = new ArrayList<String>();
+    public static ArrayList<String> E21 = new ArrayList<String>();
+    public static ArrayList<String> E22 = new ArrayList<String>();
+    public static ArrayList<String> E23 = new ArrayList<String>();
+    public static ArrayList<String> F11 = new ArrayList<String>();
+    public static ArrayList<String> F12 = new ArrayList<String>();
+    public static ArrayList<String> F13 = new ArrayList<String>();
+    public static ArrayList<String> F14 = new ArrayList<String>();
     //add more etc*****************************************************
     
     public static void main(String args[]){
@@ -52,7 +91,7 @@ public class territoryGraph{
 	teriGraph.add(A17);
 
 	//add territories adjacent to A18
-	A18.add("A15"); A18.add("A17"); A18.add("A19"); A18.ad("A16");
+	A18.add("A15"); A18.add("A17"); A18.add("A19"); A18.add("A16");
 	teriGraph.add(A18);
 
 	//add territories adjacent to A19
@@ -239,9 +278,6 @@ public class territoryGraph{
 	}
 	if (obj.equals("B13")){
 	    targetObj = B13;
-	}
-	if (obj.equals("B14")){
-	    targetObj = B14;
 	}
 	if (obj.equals("A04")){
 	    targetObj = A04;
