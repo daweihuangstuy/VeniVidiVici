@@ -102,9 +102,54 @@ public class Woo {
 		}
 	}
 //*******************************************************************************
-	// public static void placement(String player, String territory){
-		// System.out.println("Select a territory to place one troop");	
-		// String placementSelect = cs1.Keyboard.readString();
-		// territoryGraph.allTerritory
-	// }
+	public static void placement(String player, String territory){
+		System.out.println("Select a territory to place one troop");	
+		String placementSelect = cs1.Keyboard.readString();
+		territoryGraph.allTerritory
+	}
+	
+//*******************************************************************************
+	// instantialize territories
+		A11 gameA11 = new A11();
+		A12 gameA12 = new A12();
+		A13 gameA13 = new A13();
+		A14 gameA14 = new A14();
+		A15 gameA15 = new A15();
+		A16 gameA16 = new A16();
+		A17 gameA17 = new A17();
+		A18 gameA18 = new A18();
+		A19 gameA19 = new A19();
+		A04 gameA04 = new A04();
+		B11 gameB11 = new B11();
+		B12 gameB12 = new B12();
+		B13 gameB13 = new B13();
+		C11 gameC11 = new C11();
+		C12 gameC12 = new C12();
+		C13 gameC13 = new C13();
+		C14 gameC14 = new C14();
+		C15 gameC15 = new C15();
+		C16 gameC16 = new C16();
+		C17 gameC17 = new C17();
+		D11 gameD11 = new D11();
+		D12 gameD12 = new D12();
+		D13 gameD13 = new D13();
+		D14 gameD14 = new D14();
+		D15 gameD15 = new D15();
+		D16 gameD16 = new D16();
+		E11 gameE11 = new E11();
+		E12 gameE12 = new E12();
+		E13 gameE13 = new E13();
+		E14 gameE14 = new E14();
+		E15 gameE15 = new E15();
+		E16 gameE16 = new E16();
+		E17 gameE17 = new E17();
+		E18 gameE18 = new E18();
+		E19 gameE19 = new E19();
+		E21 gameE21 = new E21();
+		E22 gameE22 = new E22();
+		E23 gameE23 = new E23();
+		F11 gameF11 = new F11();
+		F12 gameF12 = new F12();
+		F13 gameF13 = new F13();
+		F14 gameF14 = new F14();
 }
