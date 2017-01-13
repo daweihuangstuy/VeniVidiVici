@@ -1,4 +1,4 @@
-public class C17{
+public class C17 extends Territory{
     protected int curTroops; // current amount of troops on it
     protected String occupier; // current player occupying this territory
 
