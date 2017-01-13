@@ -3,20 +3,27 @@
    pd 4
 */
 
+import java.lang.*;
+import java.lang.Object;
+import java.io.*;
+import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Player{
 
     protected String name;
     protected int numTroop; //indicated size of troops
     protected int occuTerr; //int represents percent of overall territory occupied by the player
-    protected ArrayList<String> occuTerr;
+    protected ArrayList<String> territory;
 
     /* Constructor */
 
     public Player(){
 	numTroop = 40;
 	occuTerr = 0;
-	occuTerr = new ArrayList<String>();
     }
 
     public int getNumTroop(){
@@ -45,18 +52,4 @@ public class Player{
 	    }
 	}
     }
-
-    public void move(name Player, int Territory){
-	
-    }
-
-    /*
-      vision - allows player to see how many troops are in enemy's territory
-    */
-    
-    public int vision(name Player, String Continent){
-	name.getNumTroop();
-
-    }
-
 }
