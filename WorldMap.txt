@@ -50,7 +50,7 @@ Europe---------3 troops        (Player x5)            . BAC     /  `.``         
 Australia---------2 troops     (Player x6)           ``  |     /  -                                 `.        `.     ``                                   `.    FAC\________F14  .`                     
                                                      -   |    /  .`                                  `.      `.                                            `.               FAD  .`                     
 Player Troops             Player Territories         -   |   / `.                                     .. ```.`                                              -  ``.`````.        `.                      
-Player 1: XX1             Player 1: YY1             ``  A04_/`.`                                       ``                                                    ``        `.``    `.           `.``        
+Player 1: XX1             Player 1: YY1             ``  B14_/`.`                                       ``                                                    ``        `.``    `.           `.``        
 Player 2: XX2             Player 2: YY2             -   BAD`.`                                                                                                            ``..-`           `. ``        
 Player 3: XX3             Player 3: YY3            ``     .`                                                                                                                 ..`          .` ..         
 Player 4: XX4             Player 4: YY4            .    `.                                                                                                                              `. `.           

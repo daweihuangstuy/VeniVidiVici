@@ -1,19 +1,21 @@
+import java.util.ArrayList;
+
 public class Territory{
     public String[][] territory = new String[42][3];
     public Territory(){	
-	territory[0][0] = "A04"; territory[0][1] = "0"; territory[0][2] = "no";
-	territory[1][0] = "A11"; territory[1][1] = "0"; territory[1][2] = "no";
-	territory[2][0] = "A12"; territory[2][1] = "0"; territory[2][2] = "no";
-	territory[3][0] = "A13"; territory[3][1] = "0"; territory[3][2] = "no";
-	territory[4][0] = "A14"; territory[4][1] = "0"; territory[4][2] = "no";
-	territory[5][0] = "A15"; territory[5][1] = "0"; territory[5][2] = "no";
-	territory[6][0] = "A16"; territory[6][1] = "0"; territory[6][2] = "no";
-	territory[7][0] = "A17"; territory[7][1] = "0"; territory[7][2] = "no";
-	territory[8][0] = "A18"; territory[8][1] = "0"; territory[8][2] = "no";
-	territory[9][0] = "A19"; territory[9][1] = "0"; territory[9][2] = "no";
-	territory[10][0] = "B11";territory[10][1] = "0";territory[10][2] = "no";
-	territory[11][0] = "B12";territory[11][1] = "0";territory[11][2] = "no";
-	territory[12][0] = "B13";territory[12][1] = "0";territory[12][2] = "no";
+	territory[0][0] = "A11"; territory[0][1] = "0"; territory[0][2] = "no";
+	territory[1][0] = "A12"; territory[1][1] = "0"; territory[1][2] = "no";
+	territory[2][0] = "A13"; territory[2][1] = "0"; territory[2][2] = "no";
+	territory[3][0] = "A14"; territory[3][1] = "0"; territory[3][2] = "no";
+	territory[4][0] = "A15"; territory[4][1] = "0"; territory[4][2] = "no";
+	territory[5][0] = "A16"; territory[5][1] = "0"; territory[5][2] = "no";
+	territory[6][0] = "A17"; territory[6][1] = "0"; territory[6][2] = "no";
+	territory[7][0] = "A18"; territory[7][1] = "0"; territory[7][2] = "no";
+	territory[8][0] = "A19"; territory[8][1] = "0"; territory[8][2] = "no";
+	territory[9][0] = "B11";territory[9][1] = "0";territory[9][2] = "no";
+	territory[10][0] = "B12";territory[10][1] = "0";territory[10][2] = "no";
+	territory[11][0] = "B13";territory[11][1] = "0";territory[11][2] = "no";
+	territory[12][0] = "B14"; territory[12][1] = "0"; territory[12][2] = "no";
 	territory[13][0] = "C11";territory[13][1] = "0";territory[13][2] = "no";
 	territory[14][0] = "C12";territory[14][1] = "0";territory[14][2] = "no";
 	territory[15][0] = "C13";territory[15][1] = "0";territory[15][2] = "no";
@@ -44,6 +46,29 @@ public class Territory{
 	territory[40][0] = "F13";territory[40][1] = "0";territory[40][2] = "no";
 	territory[41][0] = "F14";territory[41][1] = "0";territory[41][2] = "no";
     }
+	
+	public String[][] getTerritoryInfo(){
+		return territory;
+	}
+	
+	public int findLocation(String location){
+		for (int i = 0; i < territory.length; i++){
+			if (territory[i][0].equals(location)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public ArrayList<Integer> troopPresent (){
+		ArrayList<Integer> arr1 = new ArrayList<Integer>();
+		for (int i = 0; i < territory.length; i++){
+			if (Integer.parseInt(territory[i][1]) > 0){
+				arr1.add(i);
+			}
+		}
+		return arr1;
+	}
     
 }
     

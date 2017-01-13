@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,11 +10,8 @@ public class Woo {
     //class variables
     static int numPlayer = 0;
 	static String playerTurn;
-
-	//instantialize players
-	Player1 player1 = new Player1();
-	Player2 player2 = new Player2();
-	A11 game = new A11();
+	static ArrayList<Integer> troopPresent = new ArrayList<Integer>();
+	static String[][] terriInfo;
 	
     //project colors
     public static final String ANSI_RESET = "\u001B[0m";
@@ -27,11 +25,41 @@ public class Woo {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void main(String args[]) throws FileNotFoundException {
+		//instantialize players
+		Territory game = new Territory();
+		Player1 player1 = new Player1();
+		Player2 player2 = new Player2();
 		startGame();
 		renderMap();
 		//player 1 placement
 		playerTurn = "player1";
 		
+		int i = 0;
+		while (i < 20){
+		System.out.println("Type the territory to place troops");	
+		String initTerritory = cs1.Keyboard.readString();
+		while(territoryGraph.validTerritory(initTerritory) == false && 
+		(game.territory[game.findLocation(initTerritory)][2] != "no" &&
+		game.territory[game.findLocation(initTerritory)][2] != playerTurn)){
+			System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
+			initTerritory = cs1.Keyboard.readString();
+		}
+		if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
+		game.territory[game.findLocation(initTerritory)][2] == playerTurn){
+			int locat = game.findLocation(initTerritory);
+			game.territory[locat][1] = Integer.toString(Integer.parseInt(game.territory[locat][1]) + 1);
+			game.territory[locat][2] = playerTurn;
+			System.out.println(game.territory[locat][1]);
+			System.out.println("You have placed one troop on territory: " + initTerritory);
+			System.out.println(game.territory[locat][1]);
+		}
+		terriInfo = game.getTerritoryInfo();
+		troopPresent = game.troopPresent();
+		System.out.println(troopPresent.toString());
+		
+		renderMap();
+		i+=1;
+		}
     }  
 	
 //*******************************************************************************
@@ -76,6 +104,7 @@ public class Woo {
     }
 	public static void renderMap() throws FileNotFoundException {
 		// print world map in terminal
+		
 		File text2 = new File("WorldMap.txt");
 		Scanner scanner2 = new Scanner(text2);
 		while (scanner2.hasNextLine()){
@@ -97,59 +126,39 @@ public class Woo {
 			}
 			if (numPlayer == 6){
 			line2 = line2.replace("(CYAN)",ANSI_CYAN + "(CYAN)" + ANSI_RESET); //PLAYER 6
+			}	
+			for (int i = 0; i < troopPresent.size(); i++){
+				String troops = terriInfo[troopPresent.get(i)][1];
+				if (troops.length() == 1){
+					troops = "00" + troops;
+				}
+				if (troops.length() == 2){
+					troops = "0" + troops;
+				}
+				line2 = line2.replace(territoryGraph.TerritoryCode[troopPresent.get(i)], troops);
 			}
 			System.out.println(line2);
 		}
 	}
 //*******************************************************************************
-	public static void placement(String player, String territory){
-		System.out.println("Select a territory to place one troop");	
-		String placementSelect = cs1.Keyboard.readString();
-		territoryGraph.allTerritory
-	}
-	
-//*******************************************************************************
-	// instantialize territories
-		A11 gameA11 = new A11();
-		A12 gameA12 = new A12();
-		A13 gameA13 = new A13();
-		A14 gameA14 = new A14();
-		A15 gameA15 = new A15();
-		A16 gameA16 = new A16();
-		A17 gameA17 = new A17();
-		A18 gameA18 = new A18();
-		A19 gameA19 = new A19();
-		A04 gameA04 = new A04();
-		B11 gameB11 = new B11();
-		B12 gameB12 = new B12();
-		B13 gameB13 = new B13();
-		C11 gameC11 = new C11();
-		C12 gameC12 = new C12();
-		C13 gameC13 = new C13();
-		C14 gameC14 = new C14();
-		C15 gameC15 = new C15();
-		C16 gameC16 = new C16();
-		C17 gameC17 = new C17();
-		D11 gameD11 = new D11();
-		D12 gameD12 = new D12();
-		D13 gameD13 = new D13();
-		D14 gameD14 = new D14();
-		D15 gameD15 = new D15();
-		D16 gameD16 = new D16();
-		E11 gameE11 = new E11();
-		E12 gameE12 = new E12();
-		E13 gameE13 = new E13();
-		E14 gameE14 = new E14();
-		E15 gameE15 = new E15();
-		E16 gameE16 = new E16();
-		E17 gameE17 = new E17();
-		E18 gameE18 = new E18();
-		E19 gameE19 = new E19();
-		E21 gameE21 = new E21();
-		E22 gameE22 = new E22();
-		E23 gameE23 = new E23();
-		F11 gameF11 = new F11();
-		F12 gameF12 = new F12();
-		F13 gameF13 = new F13();
-		F14 gameF14 = new F14();
+	// public void initialPlacement(String Player){
+		// System.out.println("Type the territory to place troops");	
+		// String initTerritory = cs1.Keyboard.readString();
+		// String[][] game.territory = game.getgame.territory();
+		// while(territoryGraph.validTerritory(initTerritory) == false || 
+		// (game.territory[game.findLocation(initTerritory)][2] != "no" &&
+		// game.territory[game.findLocation(initTerritory)][2] != Player)){
+			// System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
+			// initTerritory = cs1.Keyboard.readString();
+		// }
+		// if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
+		// game.territory[game.findLocation(initTerritory)][2] == Player){
+			// System.out.println("You have placed one troop on territory: " + initTerritory);
+			// int locat = game.findLocation(initTerritory);
+			// game.territory[locat][1] = Integer.toString(Integer.parseInt(game.territory[locat][1]) + 1);
+			// game.territory[locat][2] = Player;
+			// System.out.println(game.territory[locat][1]);
+		// }
+		
+	// }
 }
