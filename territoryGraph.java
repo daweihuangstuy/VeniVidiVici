@@ -81,7 +81,7 @@ public class territoryGraph{
 
 	//add territories adjacent to C12
 	C12.add("C11"); C12.add("C15"); C12.add("C13"); C12.add("14");
-	teriGraph.add("C12");
+	teriGraph.add(C12);
 
 	//add territories adjacent to C13
 	C13.add("C11"); C13.add("C12"); C13.add("C14"); C13.add("C16");
