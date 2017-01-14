@@ -9,6 +9,7 @@ import cs1.Keyboard;
 public class Woo {
     //class variables
     static int numPlayer = 0;
+	static ArrayList<String> playerOrder = new ArrayList<String>();
 	static String playerTurn;
 	static ArrayList<Integer> troopPresent = new ArrayList<Integer>();
 	static String[][] terriInfo;
@@ -31,7 +32,11 @@ public class Woo {
 		Player2 player2 = new Player2();
 		startGame();
 		renderMap();
+		System.out.println("Order of Player: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1) + "\n");
 		//player 1 placement
+		
+		
+		
 		playerTurn = "player1";
 		
 		int i = 0;
@@ -100,7 +105,14 @@ public class Woo {
 			System.out.println("You had entered an invalid range. Please try again.");
 			}
 		}
-		System.out.println(playerNum);
+		
+		// create player order
+		int uppCount = 1;
+		while (uppCount <= numPlayer ){
+			playerOrder.add("player" + uppCount);
+			uppCount += 1;
+		}
+		playerOrder = Helper.randomize(playerOrder);
     }
 	public static void renderMap() throws FileNotFoundException {
 		// print world map in terminal
@@ -113,19 +125,25 @@ public class Woo {
 			//Color Map
 			if (numPlayer >= 2){
 			line2 = line2.replace("(BLUE)",ANSI_BLUE + "(BLUE)" + ANSI_RESET); //PLAYER 1
+			line2 = line2.replace("Player 1:",ANSI_BLUE + "Player 1" + ANSI_RESET + ":"); //PLAYER 1
 			line2 = line2.replace("(GREEN)",ANSI_GREEN + "(GREEN)" + ANSI_RESET); //PLAYER 2
+			line2 = line2.replace("Player 2:",ANSI_GREEN + "Player 2" + ANSI_RESET + ":"); //PLAYER 2
 			}
 			if (numPlayer >= 3){
 			line2 = line2.replace("(RED)",ANSI_RED + "(RED)" + ANSI_RESET); //PLAYER 3
+			line2 = line2.replace("Player 3:",ANSI_RED + "Player 3" + ANSI_RESET + ":"); //PLAYER 3
 			}
 			if (numPlayer >= 4){
 			line2 = line2.replace("(YELLOW)",ANSI_YELLOW + "(YELLOW)" + ANSI_RESET); //PLAYER 4
+			line2 = line2.replace("Player 4:",ANSI_YELLOW + "Player 4" + ANSI_RESET + ":"); //PLAYER 4
 			}
 			if (numPlayer >= 5){
 			line2 = line2.replace("(PURPLE)",ANSI_PURPLE + "(PURPLE)" + ANSI_RESET); //PLAYER 5
+			line2 = line2.replace("Player 5:",ANSI_PURPLE + "Player 5" + ANSI_RESET + ":"); //PLAYER 5
 			}
 			if (numPlayer == 6){
 			line2 = line2.replace("(CYAN)",ANSI_CYAN + "(CYAN)" + ANSI_RESET); //PLAYER 6
+			line2 = line2.replace("Player 6:",ANSI_CYAN + "Player 6" + ANSI_RESET + ":"); //PLAYER 6
 			}	
 			for (int i = 0; i < troopPresent.size(); i++){
 				String troops = terriInfo[troopPresent.get(i)][1];
@@ -141,19 +159,6 @@ public class Woo {
 		}
 	}
 //*******************************************************************************
-    public static ArrayList<Object> randomize(ArrayList<Object> arr){
-	ArrayList<Object> tempArr = arr;
-	int shuffleCounter = 50;
-	while (shuffleCounter >= 0){
-	    int x = (int)(Math.random() * tempArr.size());
-	    tempArr.add(tempArr.get(x));
-	    tempArr.remove(x);
-	    shuffleCounter -= 1;
-	}
-	return tempArr;
-    } 
-
-
 
 	// public void initialPlacement(String Player){
 		// System.out.println("Type the territory to place troops");	
