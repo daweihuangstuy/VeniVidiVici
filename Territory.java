@@ -69,6 +69,16 @@ public class Territory{
 		}
 		return arr1;
 	}
+	
+	public ArrayList<String> terriOccupier (String occupier){
+		ArrayList<String> arr2 = new ArrayList<String>();
+		for (int i = 0; i < territory.length; i++){
+			if (territory[i][2].equals(occupier)){
+				arr2.add(territory[i][0]);
+			}
+		}
+		return arr2;
+	}
     
 }
     

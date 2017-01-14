@@ -36,7 +36,7 @@ public class territoryGraph{
 	public static boolean validTerritory(String inputTeri){
 		boolean booleanFlag = false;
 		for (String x : Territories){
-			if (x == inputTeri){
+			if (x.equals(inputTeri)){
 				booleanFlag = true;
 			}
 		}

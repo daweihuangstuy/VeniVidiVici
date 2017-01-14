@@ -18,4 +18,23 @@ public class Helper{
 		}
 		return tempArr;
     }
+	
+	public static int setInitialTroops(int numberPlayer){
+		if (Woo.numPlayer == 2){
+			return 40;
+		}
+		if (Woo.numPlayer == 3){
+			return 35;
+		}
+		if (Woo.numPlayer == 4){
+			return 30;
+		}
+		if (Woo.numPlayer == 5){
+			return 25;
+		}
+		if (Woo.numPlayer == 6){
+			return 20;
+		}
+		return -1;
+	}
 }

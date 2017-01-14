@@ -8,10 +8,27 @@ import cs1.Keyboard;
 
 public class Woo {
     //class variables
-    static int numPlayer = 0;
+    public static int numPlayer = 0;
 	static ArrayList<String> playerOrder = new ArrayList<String>();
 	static String playerTurn;
 	static ArrayList<Integer> troopPresent = new ArrayList<Integer>();
+	
+	//initial Territories for placement of players
+	public static int player1InitialTerr = -1;
+	public static int player2InitialTerr = -1;
+	public static int player3InitialTerr = -1;
+	public static int player4InitialTerr = -1;
+	public static int player5InitialTerr = -1;
+	public static int player6InitialTerr = -1;
+	
+	//player occupied territories
+	static ArrayList<String> player1Occupied = new ArrayList<String>();
+	static ArrayList<String> player2Occupied = new ArrayList<String>();
+	static ArrayList<String> player3Occupied = new ArrayList<String>();
+	static ArrayList<String> player4Occupied = new ArrayList<String>();
+	static ArrayList<String> player5Occupied = new ArrayList<String>();
+	static ArrayList<String> player6Occupied = new ArrayList<String>();
+	
 	static String[][] terriInfo;
 	
     //project colors
@@ -33,39 +50,66 @@ public class Woo {
 		startGame();
 		renderMap();
 		System.out.println("Order of Player: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1) + "\n");
-		//player 1 placement
 		
-		
-		
+		//initial placement of troops
+		int initialRounds = 0;
 		playerTurn = "player1";
 		
-		int i = 0;
-		while (i < 20){
-		System.out.println("Type the territory to place troops");	
-		String initTerritory = cs1.Keyboard.readString();
-		while(territoryGraph.validTerritory(initTerritory) == false && 
-		(game.territory[game.findLocation(initTerritory)][2] != "no" &&
-		game.territory[game.findLocation(initTerritory)][2] != playerTurn)){
-			System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
-			initTerritory = cs1.Keyboard.readString();
-		}
-		if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
-		game.territory[game.findLocation(initTerritory)][2] == playerTurn){
-			int locat = game.findLocation(initTerritory);
-			game.territory[locat][1] = Integer.toString(Integer.parseInt(game.territory[locat][1]) + 1);
-			game.territory[locat][2] = playerTurn;
-			System.out.println(game.territory[locat][1]);
-			System.out.println("You have placed one troop on territory: " + initTerritory);
-			System.out.println(game.territory[locat][1]);
-		}
-		terriInfo = game.getTerritoryInfo();
-		troopPresent = game.troopPresent();
-		System.out.println(troopPresent.toString());
 		
-		renderMap();
-		i+=1;
+		while (playerOrder.get(initialRounds % playerOrder.size()) != ""){
+			if (player1InitialTerr == 0 || player2InitialTerr == 0 || player3InitialTerr == 0 || player4InitialTerr == 0 || 
+			player5InitialTerr == 0 || player6InitialTerr == 0){
+				break;
+			} 
+			playerTurn = playerOrder.get(initialRounds % playerOrder.size());
+			System.out.println("Type the territory to place troops:");	
+			String initTerritory = cs1.Keyboard.readString();
+			System.out.println(territoryGraph.validTerritory(initTerritory));
+			while (territoryGraph.validTerritory(initTerritory) == false){
+				System.out.println("The territory that you entered is incorrect and does not exist. Please try again.");
+				initTerritory = cs1.Keyboard.readString();
+			}
+			while(!(game.territory[game.findLocation(initTerritory)][2].equals("no")) &&
+			!(game.territory[game.findLocation(initTerritory)][2].equals(playerTurn))){
+				System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
+				initTerritory = cs1.Keyboard.readString();
+			}
+			if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
+			game.territory[game.findLocation(initTerritory)][2] == playerTurn){
+				int locat = game.findLocation(initTerritory);
+				game.territory[locat][1] = Integer.toString(Integer.parseInt(game.territory[locat][1]) + 1);
+				game.territory[locat][2] = playerTurn;
+				System.out.println(game.territory[locat][1]);
+				System.out.println("You have placed one troop on territory: " + initTerritory);
+				System.out.println(game.territory[locat][1]);
+			}
+			terriInfo = game.getTerritoryInfo();
+			troopPresent = game.troopPresent();
+			//update territories
+			if (playerTurn.equals("player1")){
+				player1Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player2")){
+				player2Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player3")){
+				player3Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player4")){
+				player4Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player5")){
+				player5Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player6")){
+				player6Occupied = game.terriOccupier(playerTurn);
+			}		
+			
+			renderMap();
+			initialRounds+=1;
+			System.out.println(playerTurn);
 		}
-    }  
+	}
 	
 //*******************************************************************************
     public static void startGame() throws FileNotFoundException {	
@@ -105,6 +149,13 @@ public class Woo {
 			System.out.println("You had entered an invalid range. Please try again.");
 			}
 		}
+		//set initial troops for placement for each player
+		player1InitialTerr = Helper.setInitialTroops(numPlayer);
+		player2InitialTerr = Helper.setInitialTroops(numPlayer);
+		player3InitialTerr = Helper.setInitialTroops(numPlayer);
+		player4InitialTerr = Helper.setInitialTroops(numPlayer);
+		player5InitialTerr = Helper.setInitialTroops(numPlayer);
+		player6InitialTerr = Helper.setInitialTroops(numPlayer);
 		
 		// create player order
 		int uppCount = 1;
@@ -155,6 +206,28 @@ public class Woo {
 				}
 				line2 = line2.replace(territoryGraph.TerritoryCode[troopPresent.get(i)], troops);
 			}
+			
+			//update player territories by color
+			for (int i = 0; i < player1Occupied.size(); i++){
+				line2 = line2.replace(player1Occupied.get(i), ANSI_BLUE + player1Occupied.get(i) + ANSI_RESET);
+			}
+			for (int i = 0; i < player2Occupied.size(); i++){
+				line2 = line2.replace(player2Occupied.get(i), ANSI_GREEN + player2Occupied.get(i) + ANSI_RESET);
+			}
+			for (int i = 0; i < player3Occupied.size(); i++){
+				line2 = line2.replace(player3Occupied.get(i), ANSI_RED + player3Occupied.get(i) + ANSI_RESET);
+			}
+			for (int i = 0; i < player4Occupied.size(); i++){
+				line2 = line2.replace(player4Occupied.get(i), ANSI_YELLOW + player4Occupied.get(i) + ANSI_RESET);
+			}
+			for (int i = 0; i < player5Occupied.size(); i++){
+				line2 = line2.replace(player5Occupied.get(i), ANSI_PURPLE + player5Occupied.get(i) + ANSI_RESET);
+			}
+			for (int i = 0; i < player6Occupied.size(); i++){
+				line2 = line2.replace(player6Occupied.get(i), ANSI_CYAN + player6Occupied.get(i) + ANSI_RESET);
+			}
+			
+			//print map
 			System.out.println(line2);
 		}
 	}
