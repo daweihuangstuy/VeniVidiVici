@@ -38,20 +38,20 @@ public class Player{
       random num generator 4 - 6 indicates failed attack
      */
 
-    public void attack(int attTroops, String Territory){
-	int attStat; //status of attack, win or fail
-	if ( attTroops > 3 ){
-	    System.out.println("Sorry, you can only have a maximum number of 3 troops");
-	    this.attack(attTroops, Territory);
-	}
-	for (int ctr = 0; ctr < attTroops; ctr++){
-	    attStat = (int) (Math.random() * 6);
-	    if (attStat > 3){
-		// ClassTerritory.win(); defense lose 1 troops
-	    }
-	    else{
-		numTroops -= 1;
-	    }
-	}
-    }
+    // public void attack(int attTroops, String Territory){
+    //	int attStat; //status of attack, win or fail
+    //	if ( attTroops > 3 ){
+    //	    System.out.println("Sorry, you can only have a maximum number of 3 troops");
+    //	    this.attack(attTroops, Territory);
+    //	}
+    //	for (int ctr = 0; ctr < attTroops; ctr++){
+    //	    attStat = (int) (Math.random() * 6);
+    //	    if (attStat > 3){
+    //		// ClassTerritory.win(); defense lose 1 troops
+    //	    }
+    //	    else{
+    //		numTroops -= 1;
+    //	    }
+    //	}
+    // }
 }

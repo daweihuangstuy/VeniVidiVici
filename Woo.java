@@ -141,6 +141,20 @@ public class Woo {
 		}
 	}
 //*******************************************************************************
+    public static ArrayList<Object> randomize(ArrayList<Object> arr){
+	ArrayList<Object> tempArr = arr;
+	int shuffleCounter = 50;
+	while (shuffleCounter >= 0){
+	    int x = (int)(Math.random() * tempArr.size());
+	    tempArr.add(tempArr.get(x));
+	    tempArr.remove(x);
+	    shuffleCounter -= 1;
+	}
+	return tempArr;
+    } 
+
+
+
 	// public void initialPlacement(String Player){
 		// System.out.println("Type the territory to place troops");	
 		// String initTerritory = cs1.Keyboard.readString();
