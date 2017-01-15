@@ -103,7 +103,13 @@ public class Territory{
     public static void subtract(String target){
 	int loc = findLocation(target);
 	int troops = Integer.parseInt(territory[loc][1]);
+	System.out.println("Before attack..." +
+			   "\nTroops: " + troops +
+			   "\nPosition: " + loc);
 	territory[loc][1] = (troops - 1) + "";
+	System.out.println("Before attack..." +
+			   "\nTroops: " + territory[loc][1] +
+			   "\nPosition: " + loc);
 	
     }
 

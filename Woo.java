@@ -511,9 +511,11 @@ public class Woo {
     	for (int ctr = 0; ctr < attTroops; ctr++){
     	    attStat = (int) (Math.random() * 6);
     	    if (attStat > 3){
-		Territory.subtract(territory); // defense lose 1 troops		
+		System.out.println("Offension win");
+		Territory.subtract(territory); // defense lose 1 troops
     	    }
     	    else{
+		System.out.println("Defense win");
     	        Territory.subtract(location); // offense lose 1 troops
 	    }
 	}	    
