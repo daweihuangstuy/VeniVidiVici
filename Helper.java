@@ -21,7 +21,7 @@ public class Helper{
 	
 	public static int setInitialTroops(int numberPlayer){
 		if (Woo.numPlayer == 2){
-			return 5;
+			return 2;
 		}
 		if (Woo.numPlayer == 3){
 			return 35;
