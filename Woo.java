@@ -70,11 +70,11 @@ public class Woo {
 	System.out.println("Each player must initially alternately place " + player1InitialTroop + " troops each\n");
 	
 	//initial placement of troops
-	int initialRounds = 0;
+	int rounds = 0;
 	playerTurn = "player1";
 	
-	while (playerOrder.get(initialRounds % playerOrder.size()) != ""){
-	    playerTurn = playerOrder.get(initialRounds % playerOrder.size());
+	while (playerOrder.get(rounds % playerOrder.size()) != ""){
+	    playerTurn = playerOrder.get(rounds % playerOrder.size());
 	    System.out.println("Order of Play: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1));
 	    System.out.println("\nIt is " + playerTurn + "'s turn");
 	    System.out.println(playerTurn + " has " + findTroopNum(playerTurn) + " troops left to place\n");
@@ -136,7 +136,7 @@ public class Woo {
 	    player6TerritoryNum = game.territoryNumber("player6");
 	    
 	    renderMap();
-	    initialRounds+=1;
+	    rounds+=1;
 	    if (player1InitialTroop == 0 || player2InitialTroop == 0 || player3InitialTroop == 0 || player4InitialTroop == 0 || 
 		player5InitialTroop == 0 || player6InitialTroop == 0){
 		    break;
@@ -144,6 +144,82 @@ public class Woo {
 	    subtractTroops(playerTurn);
 	}
 	
+	//game loop until victory
+	while ((int)(victoryMargin * 42) > game.territoryNumber(playerOrder.get(rounds % playerOrder.size()))){
+		//placement feature
+		playerTurn = playerOrder.get(rounds % playerOrder.size());
+		int additionalTroops = Territory.calcAddTroops(playerTurn);
+		while (additionalTroops > 0){
+			System.out.println(playerTurn + " may place " + additionalTroops + " more additional troops.");
+			System.out.println("Type the territory to place troops:");	
+			String placeTerritory = cs1.Keyboard.readString();
+			while (territoryGraph.validTerritory(placeTerritory) == false){
+			System.out.println("The territory that you entered is incorrect and does not exist. Please try again.");
+			placeTerritory = cs1.Keyboard.readString();
+			}
+			while(territoryGraph.validTerritory(placeTerritory) == false ||
+				(!(game.territory[game.findLocation(placeTerritory)][2].equals("no")) &&
+				 !(game.territory[game.findLocation(placeTerritory)][2].equals(playerTurn)))){
+					System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
+					placeTerritory = cs1.Keyboard.readString();
+			}
+			if (game.territory[game.findLocation(placeTerritory)][2].equals("no")){
+				game.territory[game.findLocation(placeTerritory)][2] = playerTurn;
+				System.out.println(game.territory[game.findLocation(placeTerritory)][2]);
+				int initTroopNum = Integer.parseInt(game.territory[game.findLocation(placeTerritory)][1]);
+				game.territory[game.findLocation(placeTerritory)][1] = Integer.toString(initTroopNum + 1);
+				additionalTroops -= 1;
+			}
+			else{
+				int initTroopNum = Integer.parseInt(game.territory[game.findLocation(placeTerritory)][1]);
+				game.territory[game.findLocation(placeTerritory)][1] = Integer.toString(initTroopNum + 1);
+				additionalTroops -= 1;
+			}		
+			
+			terriInfo = game.getTerritoryInfo();
+			troopPresent = game.troopPresent();
+			//update territories
+			if (playerTurn.equals("player1")){
+			player1Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player2")){
+			player2Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player3")){
+			player3Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player4")){
+			player4Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player5")){
+			player5Occupied = game.terriOccupier(playerTurn);
+			}
+			if (playerTurn.equals("player6")){
+			player6Occupied = game.terriOccupier(playerTurn);
+			}
+			
+			// update troopNumbers
+			player1TroopNum = game.troopNumber("player1");
+			player2TroopNum = game.troopNumber("player2");
+			player3TroopNum = game.troopNumber("player3");
+			player4TroopNum = game.troopNumber("player4");
+			player5TroopNum = game.troopNumber("player5");
+			player6TroopNum = game.troopNumber("player6");
+			// update territoryNumbers
+			player1TerritoryNum = game.territoryNumber("player1");
+			player2TerritoryNum = game.territoryNumber("player2");
+			player3TerritoryNum = game.territoryNumber("player3");
+			player4TerritoryNum = game.territoryNumber("player4");
+			player5TerritoryNum = game.territoryNumber("player5");
+			player6TerritoryNum = game.territoryNumber("player6");
+			renderMap(); //render map
+		}
+		rounds+=1;
+	}
+	
+	
+	
+
 	// attack turn
 	int numPlay = 1;
 	while (numPlay >= 0){

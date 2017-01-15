@@ -127,7 +127,7 @@ public class Territory{
 	}
 	
 	public static int calcAddTroops (String player){
-		int startTroops = 5;
+		int startTroops = 0;
 		boolean NorthAmerica = true; //A
 		boolean SouthAmerica = true; //B
 		boolean Europe = true; //C
