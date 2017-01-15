@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Territory{
-    public String[][] territory = new String[42][3];
+    public static String[][] territory = new String[42][3];
     public Territory(){	
 	territory[0][0] = "A11"; territory[0][1] = "0"; territory[0][2] = "no";
 	territory[1][0] = "A12"; territory[1][1] = "0"; territory[1][2] = "no";
@@ -15,7 +15,7 @@ public class Territory{
 	territory[9][0] = "B11";territory[9][1] = "0";territory[9][2] = "no";
 	territory[10][0] = "B12";territory[10][1] = "0";territory[10][2] = "no";
 	territory[11][0] = "B13";territory[11][1] = "0";territory[11][2] = "no";
-	territory[12][0] = "B14"; territory[12][1] = "0"; territory[12][2] = "no";
+	territory[12][0] = "B14";territory[12][1] = "0";territory[12][2] = "no";
 	territory[13][0] = "C11";territory[13][1] = "0";territory[13][2] = "no";
 	territory[14][0] = "C12";territory[14][1] = "0";territory[14][2] = "no";
 	territory[15][0] = "C13";territory[15][1] = "0";territory[15][2] = "no";
@@ -46,59 +46,73 @@ public class Territory{
 	territory[40][0] = "F13";territory[40][1] = "0";territory[40][2] = "no";
 	territory[41][0] = "F14";territory[41][1] = "0";territory[41][2] = "no";
     }
-	
-	public String[][] getTerritoryInfo(){
-		return territory;
+    
+    public String[][] getTerritoryInfo(){
+	return territory;
+    }
+    
+    public static int findLocation(String location){
+	for (int i = 0; i < territory.length; i++){
+	    if (territory[i][0].equals(location)){
+		return i;
+	    }
 	}
-	
-	public int findLocation(String location){
-		for (int i = 0; i < territory.length; i++){
-			if (territory[i][0].equals(location)){
-				return i;
+	return -1;
+    }
+    
+    public ArrayList<Integer> troopPresent (){
+	ArrayList<Integer> arr1 = new ArrayList<Integer>();
+	for (int i = 0; i < territory.length; i++){
+	    if (Integer.parseInt(territory[i][1]) > 0){
+		arr1.add(i);
+	    }
+	}
+	return arr1;
+    }
+    
+    public ArrayList<String> terriOccupier (String occupier){
+	ArrayList<String> arr2 = new ArrayList<String>();
+	for (int i = 0; i < territory.length; i++){
+	    if (territory[i][2].equals(occupier)){
+		arr2.add(territory[i][0]);
+	    }
+	}
+	return arr2;
+    }
+    
+    public static int troopNumber(String player){
+	int troopNum = 0;
+	for (int i = 0; i < territory.length; i++){
+	    if (territory[i][2].equals(player)){
+		troopNum += Integer.parseInt(territory[i][1]);
+	    }
+	}
+	return troopNum;
+    }
+    
+    public static int territoryNumber(String player){
+	int territoryNum = 0;
+	for (int i = 0; i < territory.length; i++){
+	    if (territory[i][2].equals(player)){
+		territoryNum += 1;
 			}
-		}
-		return -1;
 	}
+	return territoryNum;
+    }
+    
+    public static void subtract(String target){
+	int loc = findLocation(target);
+	int troops = Integer.parseInt(territory[loc][1]);
+	territory[loc][1] = (troops - 1) + "";
 	
-	public ArrayList<Integer> troopPresent (){
-		ArrayList<Integer> arr1 = new ArrayList<Integer>();
-		for (int i = 0; i < territory.length; i++){
-			if (Integer.parseInt(territory[i][1]) > 0){
-				arr1.add(i);
-			}
-		}
-		return arr1;
+    }
+
+    public static void updateStat(String target, String offense){
+	int loc = findLocation(target);
+	if (territory[loc][1].equals(0)){
+	    territory[loc][1] = offense;
 	}
-	
-	public ArrayList<String> terriOccupier (String occupier){
-		ArrayList<String> arr2 = new ArrayList<String>();
-		for (int i = 0; i < territory.length; i++){
-			if (territory[i][2].equals(occupier)){
-				arr2.add(territory[i][0]);
-			}
-		}
-		return arr2;
-	}
-	
-	public int troopNumber(String player){
-		int troopNum = 0;
-		for (int i = 0; i < territory.length; i++){
-			if (territory[i][2].equals(player)){
-				troopNum += Integer.parseInt(territory[i][1]);
-			}
-		}
-		return troopNum;
-	}
-	
-	public int territoryNumber(String player){
-		int territoryNum = 0;
-		for (int i = 0; i < territory.length; i++){
-			if (territory[i][2].equals(player)){
-				territoryNum += 1;
-			}
-		}
-		return territoryNum;
-	}
+    }
     
 }
     
