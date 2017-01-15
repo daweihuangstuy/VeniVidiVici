@@ -79,6 +79,26 @@ public class Territory{
 		}
 		return arr2;
 	}
+	
+	public int troopNumber(String player){
+		int troopNum = 0;
+		for (int i = 0; i < territory.length; i++){
+			if (territory[i][2].equals(player)){
+				troopNum += Integer.parseInt(territory[i][1]);
+			}
+		}
+		return troopNum;
+	}
+	
+	public int territoryNumber(String player){
+		int territoryNum = 0;
+		for (int i = 0; i < territory.length; i++){
+			if (territory[i][2].equals(player)){
+				territoryNum += 1;
+			}
+		}
+		return territoryNum;
+	}
     
 }
     

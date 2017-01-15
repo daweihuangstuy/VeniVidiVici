@@ -13,14 +13,15 @@ public class Woo {
 	static String playerTurn;
 	static ArrayList<Integer> troopPresent = new ArrayList<Integer>();
 	
-	//initial Territories for placement of players
-	public static int player1InitialTerr = -1;
-	public static int player2InitialTerr = -1;
-	public static int player3InitialTerr = -1;
-	public static int player4InitialTerr = -1;
-	public static int player5InitialTerr = -1;
-	public static int player6InitialTerr = -1;
+	//initial toops for placement
+	public static int player1InitialTroop = -1;
+	public static int player2InitialTroop = -1;
+	public static int player3InitialTroop = -1;
+	public static int player4InitialTroop = -1;
+	public static int player5InitialTroop = -1;
+	public static int player6InitialTroop = -1;
 	
+	//player variables
 	//player occupied territories
 	static ArrayList<String> player1Occupied = new ArrayList<String>();
 	static ArrayList<String> player2Occupied = new ArrayList<String>();
@@ -28,6 +29,20 @@ public class Woo {
 	static ArrayList<String> player4Occupied = new ArrayList<String>();
 	static ArrayList<String> player5Occupied = new ArrayList<String>();
 	static ArrayList<String> player6Occupied = new ArrayList<String>();
+	//player troopNumbers
+	static int player1TroopNum = -1;
+	static int player2TroopNum = -1;
+	static int player3TroopNum = -1;
+	static int player4TroopNum = -1;
+	static int player5TroopNum = -1;
+	static int player6TroopNum = -1;
+	//player territoryNumbers
+	static int player1TerritoryNum = -1;
+	static int player2TerritoryNum = -1;
+	static int player3TerritoryNum = -1;
+	static int player4TerritoryNum = -1;
+	static int player5TerritoryNum = -1;
+	static int player6TerritoryNum = -1;
 	
 	static String[][] terriInfo;
 	
@@ -49,28 +64,26 @@ public class Woo {
 		Player2 player2 = new Player2();
 		startGame();
 		renderMap();
-		System.out.println("Order of Player: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1) + "\n");
+		System.out.println("Each player must initially alternately place " + player1InitialTroop + " troops each\n");
 		
 		//initial placement of troops
 		int initialRounds = 0;
 		playerTurn = "player1";
 		
-		
 		while (playerOrder.get(initialRounds % playerOrder.size()) != ""){
-			if (player1InitialTerr == 0 || player2InitialTerr == 0 || player3InitialTerr == 0 || player4InitialTerr == 0 || 
-			player5InitialTerr == 0 || player6InitialTerr == 0){
-				break;
-			} 
 			playerTurn = playerOrder.get(initialRounds % playerOrder.size());
+			System.out.println("Order of Play: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1));
+			System.out.println("\nIt is " + playerTurn + "'s turn");
+			System.out.println(playerTurn + " has " + findTroopNum(playerTurn) + " troops left to place\n");
 			System.out.println("Type the territory to place troops:");	
 			String initTerritory = cs1.Keyboard.readString();
-			System.out.println(territoryGraph.validTerritory(initTerritory));
 			while (territoryGraph.validTerritory(initTerritory) == false){
 				System.out.println("The territory that you entered is incorrect and does not exist. Please try again.");
 				initTerritory = cs1.Keyboard.readString();
 			}
-			while(!(game.territory[game.findLocation(initTerritory)][2].equals("no")) &&
-			!(game.territory[game.findLocation(initTerritory)][2].equals(playerTurn))){
+			while(territoryGraph.validTerritory(initTerritory) == false ||
+			(!(game.territory[game.findLocation(initTerritory)][2].equals("no")) &&
+			!(game.territory[game.findLocation(initTerritory)][2].equals(playerTurn)))){
 				System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
 				initTerritory = cs1.Keyboard.readString();
 			}
@@ -104,10 +117,28 @@ public class Woo {
 			if (playerTurn.equals("player6")){
 				player6Occupied = game.terriOccupier(playerTurn);
 			}		
+			// update troopNumbers
+			player1TroopNum = game.troopNumber("player1");
+			player2TroopNum = game.troopNumber("player2");
+			player3TroopNum = game.troopNumber("player3");
+			player4TroopNum = game.troopNumber("player4");
+			player5TroopNum = game.troopNumber("player5");
+			player6TroopNum = game.troopNumber("player6");
+			// update territoryNumbers
+			player1TerritoryNum = game.territoryNumber("player1");
+			player2TerritoryNum = game.territoryNumber("player2");
+			player3TerritoryNum = game.territoryNumber("player3");
+			player4TerritoryNum = game.territoryNumber("player4");
+			player5TerritoryNum = game.territoryNumber("player5");
+			player6TerritoryNum = game.territoryNumber("player6");
 			
 			renderMap();
 			initialRounds+=1;
-			System.out.println(playerTurn);
+			if (player1InitialTroop == 0 || player2InitialTroop == 0 || player3InitialTroop == 0 || player4InitialTroop == 0 || 
+			player5InitialTroop == 0 || player6InitialTroop == 0){
+				break;
+			} 
+			subtractTroops(playerTurn);
 		}
 	}
 	
@@ -150,12 +181,12 @@ public class Woo {
 			}
 		}
 		//set initial troops for placement for each player
-		player1InitialTerr = Helper.setInitialTroops(numPlayer);
-		player2InitialTerr = Helper.setInitialTroops(numPlayer);
-		player3InitialTerr = Helper.setInitialTroops(numPlayer);
-		player4InitialTerr = Helper.setInitialTroops(numPlayer);
-		player5InitialTerr = Helper.setInitialTroops(numPlayer);
-		player6InitialTerr = Helper.setInitialTroops(numPlayer);
+		player1InitialTroop = Helper.setInitialTroops(numPlayer);
+		player2InitialTroop = Helper.setInitialTroops(numPlayer);
+		player3InitialTroop = Helper.setInitialTroops(numPlayer);
+		player4InitialTroop = Helper.setInitialTroops(numPlayer);
+		player5InitialTroop = Helper.setInitialTroops(numPlayer);
+		player6InitialTroop = Helper.setInitialTroops(numPlayer);
 		
 		// create player order
 		int uppCount = 1;
@@ -227,30 +258,90 @@ public class Woo {
 				line2 = line2.replace(player6Occupied.get(i), ANSI_CYAN + player6Occupied.get(i) + ANSI_RESET);
 			}
 			
-			//print map
+			//update troopNumber Display
+			if (player1TroopNum > 0){				
+				line2 = line2.replace("XX1", Helper.troopToString(player1TroopNum));
+			}
+			if (player2TroopNum > 0){				
+				line2 = line2.replace("XX2", Helper.troopToString(player2TroopNum));
+			}
+			if (player3TroopNum > 0){				
+				line2 = line2.replace("XX3", Helper.troopToString(player3TroopNum));
+			}
+			if (player4TroopNum > 0){				
+				line2 = line2.replace("XX4", Helper.troopToString(player4TroopNum));
+			}
+			if (player5TroopNum > 0){				
+				line2 = line2.replace("XX5", Helper.troopToString(player5TroopNum));
+			}
+			if (player6TroopNum > 0){				
+				line2 = line2.replace("XX6", Helper.troopToString(player6TroopNum));
+			}
+			
+			//update territoryNumber Display
+			if (player1TerritoryNum > 0){				
+				line2 = line2.replace("YY1", Helper.territoryToString(player1TerritoryNum));
+			}
+			if (player2TerritoryNum > 0){				
+				line2 = line2.replace("YY2", Helper.territoryToString(player2TerritoryNum));
+			}
+			if (player3TerritoryNum > 0){				
+				line2 = line2.replace("YY3", Helper.territoryToString(player3TerritoryNum));
+			}
+			if (player4TerritoryNum > 0){				
+				line2 = line2.replace("YY4", Helper.territoryToString(player4TerritoryNum));
+			}
+			if (player5TerritoryNum > 0){				
+				line2 = line2.replace("YY5", Helper.territoryToString(player5TerritoryNum));
+			}
+			if (player6TerritoryNum > 0){				
+				line2 = line2.replace("YY6", Helper.territoryToString(player6TerritoryNum));
+			}
+			//print map line (final procedure)
 			System.out.println(line2);
 		}
 	}
 //*******************************************************************************
-
-	// public void initialPlacement(String Player){
-		// System.out.println("Type the territory to place troops");	
-		// String initTerritory = cs1.Keyboard.readString();
-		// String[][] game.territory = game.getgame.territory();
-		// while(territoryGraph.validTerritory(initTerritory) == false || 
-		// (game.territory[game.findLocation(initTerritory)][2] != "no" &&
-		// game.territory[game.findLocation(initTerritory)][2] != Player)){
-			// System.out.println("You had entered an invalid territory or that territory has already been taken. Please try again.");
-			// initTerritory = cs1.Keyboard.readString();
-		// }
-		// if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
-		// game.territory[game.findLocation(initTerritory)][2] == Player){
-			// System.out.println("You have placed one troop on territory: " + initTerritory);
-			// int locat = game.findLocation(initTerritory);
-			// game.territory[locat][1] = Integer.toString(Integer.parseInt(game.territory[locat][1]) + 1);
-			// game.territory[locat][2] = Player;
-			// System.out.println(game.territory[locat][1]);
-		// }
-		
-	// }
+	//helpful methods
+	public static int findTroopNum(String player){
+		if (player.equals("player1")){
+			return player1InitialTroop;
+		}
+		if (player.equals("player2")){
+			return player2InitialTroop;
+		}
+		if (player.equals("player3")){
+			return player3InitialTroop;
+		}
+		if (player.equals("player4")){
+			return player4InitialTroop;
+		}
+		if (player.equals("player5")){
+			return player5InitialTroop;
+		}
+		if (player.equals("player6")){
+			return player6InitialTroop;
+		}
+		return -1;
+	} 
+	public static void subtractTroops(String player){
+		if (player.equals("player1")){
+			player1InitialTroop -= 1;
+		}
+		if (player.equals("player2")){
+			player2InitialTroop -= 1;
+		}
+		if (player.equals("player3")){
+			player3InitialTroop -= 1;
+		}
+		if (player.equals("player4")){
+			player4InitialTroop -= 1;
+		}
+		if (player.equals("player5")){
+			player5InitialTroop -= 1;
+		}
+		if (player.equals("player6")){
+			player6InitialTroop -= 1;
+		}
+	} 
 }

@@ -21,7 +21,7 @@ public class Helper{
 	
 	public static int setInitialTroops(int numberPlayer){
 		if (Woo.numPlayer == 2){
-			return 40;
+			return 3;
 		}
 		if (Woo.numPlayer == 3){
 			return 35;
@@ -36,5 +36,36 @@ public class Helper{
 			return 20;
 		}
 		return -1;
+	}
+	
+	public static String troopToString(int troops){
+		String troopNumber = Integer.toString(troops);
+		if (troopNumber.length() == 1){
+			troopNumber = "00" + troopNumber;
+			return troopNumber;
+		}
+		if (troopNumber.length() == 2){
+			troopNumber = "0" + troopNumber;
+			return troopNumber;
+		}
+		if (troopNumber.length() == 3){
+			return troopNumber;
+		}
+		return "error";
+	}
+	public static String territoryToString(int territorys){
+		String territoryNumber = Integer.toString(territorys);
+		if (territoryNumber.length() == 1){
+			territoryNumber = "00" + territoryNumber;
+			return territoryNumber;
+		}
+		if (territoryNumber.length() == 2){
+			territoryNumber = "0" + territoryNumber;
+			return territoryNumber;
+		}
+		if (territoryNumber.length() == 3){
+			return territoryNumber;
+		}
+		return "error";
 	}
 }
