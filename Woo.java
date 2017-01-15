@@ -8,10 +8,11 @@ import cs1.Keyboard;
 
 public class Woo {
     //class variables
-    public static int numPlayer = 0;
+    static int numPlayer = 0;
     static ArrayList<String> playerOrder = new ArrayList<String>();
     static String playerTurn;
     static ArrayList<Integer> troopPresent = new ArrayList<Integer>();
+	static double victoryMargin;
     
     //initial toops for placement
     public static int player1InitialTroop = -1;
@@ -223,9 +224,9 @@ public class Woo {
 	
 	//Enter Game Information
 	System.out.println("\n\nEnter Game Information");
-	System.out.println("\nType in the number of players:");
 	
 	//Enter Player Information
+	System.out.println("\nType in the number of players:");
 	int playerNum = 0;
 	while (numPlayer == 0){
 	    try {
@@ -236,6 +237,24 @@ public class Woo {
 	    }
 	    if (playerNum > 1 && playerNum <= 6){
 		numPlayer = playerNum;
+	    }
+	    else{
+		System.out.println("You had entered an invalid range. Please try again.");
+	    }
+	}
+	
+	System.out.println("\nType in the percentage of territory occupied needed for a player to win:");
+	System.out.println("It must be greater than 0.6666. Enter as a decimal like '0.75432'");
+	double victory = 0.00;
+	while (victory < 0.6666 || victory > 1.000){
+		try {
+		victoryMargin = Double.parseDouble( cs1.Keyboard.readWord() );
+	    }
+	    catch (Exception e) {
+		System.out.println("You had entered an invalid quantity. Please try again.");
+	    }
+	    if (victoryMargin > 0.6666 && victoryMargin < 1.000){
+		victory = victoryMargin;
 	    }
 	    else{
 		System.out.println("You had entered an invalid range. Please try again.");

@@ -112,7 +112,104 @@ public class Territory{
 	if (territory[loc][1].equals(0)){
 	    territory[loc][1] = offense;
 	}
-    }
-    
+	}
+	
+	public static boolean isVictory (String player, double winMargin){
+		if (territoryNumber(player) > (int)(winMargin * 42)){
+			return true;
+		}
+		else {
+			return false;
+		}
+    }    
+	public static String occupier(String terr){
+		return territory[findLocation(terr)][2];
+	}
+	
+	public static int calcAddTroops (String player){
+		int startTroops = 5;
+		boolean NorthAmerica = true; //A
+		boolean SouthAmerica = true; //B
+		boolean Europe = true; //C
+		boolean Africa = true; //D
+		boolean Asia = true; //E
+		boolean Australia = true; //F
+		//check to see if player has a monopoly on any continents
+		//check North America
+		int index = 0;
+		for (int i = index ; i <= 8; i++){
+			NorthAmerica = occupier((territoryGraph.Territories[i])).equals(player);
+			if (NorthAmerica == false){
+				break;
+			} 
+		}
+		//check South America
+		index = 9;
+		for (int i = index ; i <= 12; i++){
+			SouthAmerica = occupier((territoryGraph.Territories[i])).equals(player);
+			if (SouthAmerica == false){
+				break;
+			} 
+		}
+		//check Europe
+		index = 13;
+		for (int i = index ; i <= 19; i++){
+			Europe = occupier((territoryGraph.Territories[i])).equals(player);
+			if (Europe == false){
+				break;
+			} 
+		}
+		//check Africa
+		index = 20;
+		for (int i = index ; i <= 25; i++){
+			Africa = occupier((territoryGraph.Territories[i])).equals(player);
+			if (Africa == false){
+				break;
+			} 
+		}
+		//check Asia
+		index = 26;
+		for (int i = index ; i <= 37; i++){
+			Asia = occupier((territoryGraph.Territories[i])).equals(player);
+			if (Asia == false){
+				break;
+			} 
+		}
+		//check Australia
+		index = 38;
+		for (int i = index ; i <= 41; i++){
+			Australia = occupier((territoryGraph.Territories[i])).equals(player);
+			if (Australia == false){
+				break;
+			} 
+		}
+		
+		if (NorthAmerica == true){
+			startTroops += 5;
+		}
+		if (SouthAmerica == true){
+			startTroops += 2;
+		}
+		if (Europe == true){
+			startTroops += 3;
+		}
+		if (Africa == true){
+			startTroops += 3;
+		}
+		if (Asia == true){
+			startTroops += 7;
+		}
+		if (Australia == true){
+			startTroops += 2;
+		}
+		
+		int terrBonus = (int)((double)(territoryNumber(player)) / 3);
+		if (terrBonus <= 3){
+			startTroops += 3;
+		}
+		else {
+			startTroops += terrBonus;
+		}
+		return startTroops;
+	}
 }
-    
