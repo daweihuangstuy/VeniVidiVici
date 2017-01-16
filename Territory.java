@@ -113,12 +113,14 @@ public class Territory{
 	
     }
 
-    public static void updateStat(String target, String offense){
+    public static void updateStat(String target, String offense,int numWin){
 	int loc = findLocation(target);
 	if (territory[loc][1].equals("0")){
-	    territory[loc][1] = offense;
+	    territory[loc][2] = offense;
+	    territory[loc][1] = numWin + "";
+	    //Woo.update(
 	}
-	}
+    }
 	
 	public static boolean isVictory (String player, double winMargin){
 		if (territoryNumber(player) > (int)(winMargin * 42)){

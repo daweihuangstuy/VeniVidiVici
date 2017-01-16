@@ -215,123 +215,64 @@ public class Woo {
 			// player5TerritoryNum = game.territoryNumber("player5");
 			// player6TerritoryNum = game.territoryNumber("player6");
 			// renderMap(); //render map
-		// }
-		
-		//attack feature
-		int numPlay = 1;
-	while (numPlay >= 0){
-	    System.out.println("\nIt is " + playerTurn + "'s turn");
-	    System.out.println("\nType the territory to send troops from");
-	    String location = cs1.Keyboard.readString();
-	    while (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
-		System.out.println("\nSorry, this location is invalid, please try again");
-		location = cs1.Keyboard.readString();
-	    }
-	    System.out.println("\nType the territory that you want to attack");
-	    String target = cs1.Keyboard.readString();
-	    while (Territory.findLocation(target) == -1){ // need another feature : this territory is yours
-		System.out.println("\nSorry, this location is invalid, please try again");
-		target = cs1.Keyboard.readString();
-	    }
-	    System.out.println("\nType the number of troops to use, you can use a maximum of 3");
-	    int attTroops = cs1.Keyboard.readInt();
-	    while (attTroops > 3){
-		System.out.println("Sorry, you can only have a maximum number of 3, please try again");
-		attTroops = cs1.Keyboard.readInt();
-	    }
-	    while (attTroops < 1){
-		System.out.println("Sorry, you need at least a minimum number of 1, please try again");
-		attTroops = cs1.Keyboard.readInt();
-	    }
-	    if (playerTurn.equals("player1")){
-		attack(attTroops,target,location);
-	    }
-	    if (playerTurn.equals("player2")){
-		attack(attTroops,target,location);
-	    }
-	    if (playerTurn.equals("player3")){
-		attack(attTroops,target,location);
-	    }
-	    if (playerTurn.equals("player4")){
-		attack(attTroops,target,location);
-	    }
-	    if (playerTurn.equals("player5")){
-		attack(attTroops,target,location);
-	    }
-	    if (playerTurn.equals("player6")){
-		attack(attTroops,target,location);
-	    }
-	    // updates
-	    Territory.updateStat(target, playerTurn);
-	    update(playerTurn);
-	    renderMap();
+	    // }
 	    
-	    numPlay -= 1;
-	}
+	    //attack feature
+	    int numPlay = 1;
+	    while (numPlay >= 0){
+		System.out.println("\nIt is " + playerTurn + "'s turn");
+		System.out.println("\nType the territory to send troops from");
+		String location = cs1.Keyboard.readString();
+		while (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
+		    System.out.println("\nSorry, this location is invalid, please try again");
+		    location = cs1.Keyboard.readString();
+		}
+		System.out.println("\nType the territory that you want to attack");
+		String target = cs1.Keyboard.readString();
+		while (Territory.findLocation(target) == -1){ // need another feature : this territory is yours
+		    System.out.println("\nSorry, this location is invalid, please try again");
+		    target = cs1.Keyboard.readString();
+		}
+		System.out.println("\nType the number of troops to use, you can use a maximum of 3");
+		int attTroops = cs1.Keyboard.readInt();
+		while (attTroops > 3){
+		    System.out.println("Sorry, you can only have a maximum number of 3, please try again");
+		    attTroops = cs1.Keyboard.readInt();
+		}
+		while (attTroops < 1){
+		    System.out.println("Sorry, you need at least a minimum number of 1, please try again");
+		    attTroops = cs1.Keyboard.readInt();
+		}
+		int numWin = 0;
+		if (playerTurn.equals("player1")){
+		    numWin = attack(attTroops,target,location);
+		}
+		if (playerTurn.equals("player2")){
+		    numWin = attack(attTroops,target,location);
+		}
+		if (playerTurn.equals("player3")){
+		    numWin = attack(attTroops,target,location);
+		}
+		if (playerTurn.equals("player4")){
+		    numWin = attack(attTroops,target,location);
+		}
+		if (playerTurn.equals("player5")){
+		    numWin = attack(attTroops,target,location);
+		}
+		if (playerTurn.equals("player6")){
+		    numWin = attack(attTroops,target,location);
+		}
+		// updates
+		Territory.updateStat(target, playerTurn, numWin);
+		//update(playerTurn);
+		renderMap();
 		
-		rounds+=1;
-	}
-	
-	
-	
-
-	// attack turn
-	int numPlay = 1;
-	while (numPlay >= 0){
-	    System.out.println("\nIt is " + playerTurn + "'s turn");
-	    System.out.println("\nType the territory to sent troops from");
-	    String location = cs1.Keyboard.readString();
-	    while (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
-		System.out.println("\nSorry, this location is invalid, please try again");
-		location = cs1.Keyboard.readString();
+		numPlay -= 1;
 	    }
-	    System.out.println("\nType the territory that you want to attack");
-	    String target = cs1.Keyboard.readString();
-	    while (Territory.findLocation(target) == -1){ // need another feature : this territory is yours
-		System.out.println("\nSorry, this location is invalid, please try again");
-		target = cs1.Keyboard.readString();
-	    }
-	    System.out.println("\nType the number of troops to use, you can type a maximum of 3");
-	    int attTroops = cs1.Keyboard.readInt();
-	    while (attTroops > 3){
-		System.out.println("Sorry, you can only have a maximum number of 3, please try again");
-		attTroops = cs1.Keyboard.readInt();
-	    }
-	    while (attTroops < 1){
-		System.out.println("Sorry, you need at least a minimum number of 1, please try again");
-		attTroops = cs1.Keyboard.readInt();
-	    }
-	    if (playerTurn.equals("player1")){
-		attack(attTroops,target,location);
-		playerTurn = "player2";
-	    }
-	    if (playerTurn.equals("player2")){
-		attack(attTroops,target,location);
-		playerTurn = "player3";
-	    }
-	    if (playerTurn.equals("player3")){
-		attack(attTroops,target,location);
-		playerTurn = "player4";
-	    }
-	    if (playerTurn.equals("player4")){
-		attack(attTroops,target,location);
-		playerTurn = "player5";
-	    }
-	    if (playerTurn.equals("player5")){
-		attack(attTroops,target,location);
-		playerTurn = "player6";
-	    }
-	    if (playerTurn.equals("player6")){
-		attack(attTroops,target,location);
-		playerTurn = "player1";
-	    }
-	    // updates
-	    Territory.updateStat(target, playerTurn);
-	    update(playerTurn);
-	    renderMap();
 	    
-	    numPlay -= 1;
+	    rounds+=1;
 	}
+	
 	
     
     }
@@ -512,7 +453,7 @@ public class Woo {
 	    //print map line (final procedure)
 	    System.out.println(line2);
 	}
-
+	/*
 	//for move feature
 
 		//move feature
@@ -534,7 +475,7 @@ public class Woo {
     if (playerTurn.equals("player6")){
 	occupied = player6Occupied;
     }
-
+	*/
     }
     //*******************************************************************************
     //helpful methods
@@ -585,22 +526,25 @@ public class Woo {
       random num generator 4 - 6 indicates failed attack
      */
 
-    public static void attack(int attTroops, String territory, String location){
+    public static int attack(int attTroops, String territory, String location){
     	int attStat; //status of attack, win or fail
+	int numWin = 0;
     	for (int ctr = 0; ctr < attTroops; ctr++){
     	    attStat = (int) (Math.random() * 6);
     	    if (attStat > 3){
 		System.out.println("Offension win");
 		Territory.subtract(territory); // defense lose 1 troops
+		numWin++;
     	    }
     	    else{
 		System.out.println("Defense win");
     	        Territory.subtract(location); // offense lose 1 troops
 	    }
-	}	    
+	}
+	return numWin;
     }
 
-
+    /*
     public static void move(ArrayList<String> occupied, int numTroops, String origin, String destination){
 	for ( String terr : occupied ){
 	    if (origin != terr){
@@ -622,21 +566,27 @@ public class Woo {
 	    System.out.println("Sorry, you do not have enough troops to move to the destination. Please try moving troops from a different territory.");
 
     }
-    
-    public static void update(String player){
-	//player troopNumbers
-	player1TroopNum = Territory.territoryNumber(player);
-        player2TroopNum = Territory.territoryNumber(player);
-	player3TroopNum = Territory.territoryNumber(player);
-	player4TroopNum = Territory.territoryNumber(player);
-	player5TroopNum = Territory.territoryNumber(player);
-	player6TroopNum = Territory.territoryNumber(player);
-	//player territoryNumbers
-	player1TerritoryNum = Territory.territoryNumber(player);
-        player2TerritoryNum = Territory.territoryNumber(player);
-	player3TerritoryNum = Territory.territoryNumber(player);
-        player4TerritoryNum = Territory.territoryNumber(player);
-	player5TerritoryNum = Territory.territoryNumber(player);
-        player6TerritoryNum = Territory.territoryNumber(player);
+    */
+    /*
+    public static void update(String offense, String defense){
+	if (player.equals("player1")){
+	    player1Occupied = game.terriOccupier(playerTurn);
+	}
+	if (player.equals("player2")){
+	    player2Occupied = game.terriOccupier(playerTurn);
+	}
+	if (player.equals("player3")){
+	    player3Occupied = game.terriOccupier(playerTurn);
+	}
+	if (player.equals("player4")){
+	    player4Occupied = game.terriOccupier(playerTurn);
+	}
+	if (player.equals("player5")){
+	    player5Occupied = game.terriOccupier(playerTurn);
+	}
+	if (player.equals("player6")){
+	    player6Occupied = game.terriOccupier(playerTurn);
+	}
     }
+    */
 }
