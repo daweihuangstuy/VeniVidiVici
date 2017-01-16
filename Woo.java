@@ -221,7 +221,7 @@ public class Woo {
 		int numPlay = 1;
 	while (numPlay >= 0){
 	    System.out.println("\nIt is " + playerTurn + "'s turn");
-	    System.out.println("\nType the territory to sent troops from");
+	    System.out.println("\nType the territory to send troops from");
 	    String location = cs1.Keyboard.readString();
 	    while (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
 		System.out.println("\nSorry, this location is invalid, please try again");
@@ -233,14 +233,14 @@ public class Woo {
 		System.out.println("\nSorry, this location is invalid, please try again");
 		target = cs1.Keyboard.readString();
 	    }
-	    System.out.println("\nType the number of troops to use, you can type maximum of 3");
+	    System.out.println("\nType the number of troops to use, you can use a maximum of 3");
 	    int attTroops = cs1.Keyboard.readInt();
 	    while (attTroops > 3){
-		System.out.println("Sorry, you can only have maximum number of 3, please try again");
+		System.out.println("Sorry, you can only have a maximum number of 3, please try again");
 		attTroops = cs1.Keyboard.readInt();
 	    }
 	    while (attTroops < 1){
-		System.out.println("Sorry, you need at least miniimum number of 1, please try again");
+		System.out.println("Sorry, you need at least a minimum number of 1, please try again");
 		attTroops = cs1.Keyboard.readInt();
 	    }
 	    if (playerTurn.equals("player1")){
@@ -297,14 +297,14 @@ public class Woo {
 		System.out.println("\nSorry, this location is invalid, please try again");
 		target = cs1.Keyboard.readString();
 	    }
-	    System.out.println("\nType the number of troops to use, you can type maximum of 3");
+	    System.out.println("\nType the number of troops to use, you can type a maximum of 3");
 	    int attTroops = cs1.Keyboard.readInt();
 	    while (attTroops > 3){
-		System.out.println("Sorry, you can only have maximum number of 3, please try again");
+		System.out.println("Sorry, you can only have a maximum number of 3, please try again");
 		attTroops = cs1.Keyboard.readInt();
 	    }
 	    while (attTroops < 1){
-		System.out.println("Sorry, you need at least miniimum number of 1, please try again");
+		System.out.println("Sorry, you need at least a minimum number of 1, please try again");
 		attTroops = cs1.Keyboard.readInt();
 	    }
 	    if (playerTurn.equals("player1")){
