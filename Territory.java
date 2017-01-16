@@ -103,19 +103,19 @@ public class Territory{
     public static void subtract(String target){
 	int loc = findLocation(target);
 	int troops = Integer.parseInt(territory[loc][1]);
-	System.out.println("Before attack..." +
+	System.out.println("\nBefore attack..." +
 			   "\nTroops: " + troops +
-			   "\nPosition: " + loc);
+			   "\nPosition: " + target);
 	territory[loc][1] = (troops - 1) + "";
-	System.out.println("Before attack..." +
+	System.out.println("\nAfter attack..." +
 			   "\nTroops: " + territory[loc][1] +
-			   "\nPosition: " + loc);
+			   "\nPosition: " + target);
 	
     }
 
     public static void updateStat(String target, String offense){
 	int loc = findLocation(target);
-	if (territory[loc][1].equals(0)){
+	if (territory[loc][1].equals("0")){
 	    territory[loc][1] = offense;
 	}
 	}

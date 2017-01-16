@@ -245,27 +245,21 @@ public class Woo {
 	    }
 	    if (playerTurn.equals("player1")){
 		attack(attTroops,target,location);
-		playerTurn = "player2";
 	    }
 	    if (playerTurn.equals("player2")){
 		attack(attTroops,target,location);
-		playerTurn = "player3";
 	    }
 	    if (playerTurn.equals("player3")){
 		attack(attTroops,target,location);
-		playerTurn = "player4";
 	    }
 	    if (playerTurn.equals("player4")){
 		attack(attTroops,target,location);
-		playerTurn = "player5";
 	    }
 	    if (playerTurn.equals("player5")){
 		attack(attTroops,target,location);
-		playerTurn = "player6";
 	    }
 	    if (playerTurn.equals("player6")){
 		attack(attTroops,target,location);
-		playerTurn = "player1";
 	    }
 	    // updates
 	    Territory.updateStat(target, playerTurn);
