@@ -99,6 +99,15 @@ public class Territory{
 	}
 	return territoryNum;
     }
+
+    public static String findOwner(String target){
+	for (int i = 0; i < territory.length; i++){
+	    if (territory[i][0].equals(target)){
+		return territory[i][0];
+	    }
+	}
+	return "";
+    }
     
     public static void subtract(String target){
 	int loc = findLocation(target);
@@ -113,13 +122,19 @@ public class Territory{
 	
     }
 
-    public static void updateStat(String target, String offense,int numWin){
+    public static boolean updateStat(String target, String offense, int numWin){
 	int loc = findLocation(target);
+	String defense = occupier(target);
 	if (territory[loc][1].equals("0")){
 	    territory[loc][2] = offense;
 	    territory[loc][1] = numWin + "";
 	    //Woo.update(
+	    Woo.removeTerritory(target, defense);
+	    Woo.subtractTerritory(defense);
+	    Woo.addTerritory(target, offense);
+	    return true;
 	}
+	return false;
     }
 	
 	public static boolean isVictory (String player, double winMargin){

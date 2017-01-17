@@ -244,26 +244,31 @@ public class Woo {
 		    attTroops = cs1.Keyboard.readInt();
 		}
 		int numWin = 0;
+		String defense = Territory.findOwner(target);
 		if (playerTurn.equals("player1")){
-		    numWin = attack(attTroops,target,location);
+		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		if (playerTurn.equals("player2")){
-		    numWin = attack(attTroops,target,location);
+		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		if (playerTurn.equals("player3")){
-		    numWin = attack(attTroops,target,location);
+		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		if (playerTurn.equals("player4")){
-		    numWin = attack(attTroops,target,location);
+		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		if (playerTurn.equals("player5")){
-		    numWin = attack(attTroops,target,location);
+		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		if (playerTurn.equals("player6")){
-		    numWin = attack(attTroops,target,location);
+		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		// updates
-		Territory.updateStat(target, playerTurn, numWin);
+		boolean conquer;
+		conquer = Territory.updateStat(target, playerTurn, numWin);
+		if (conquer){
+		    game.territory[game.findLocation(target)][2] = playerTurn;
+		}
 		//update(playerTurn);
 		renderMap();
 		
@@ -526,19 +531,21 @@ public class Woo {
       random num generator 4 - 6 indicates failed attack
      */
 
-    public static int attack(int attTroops, String territory, String location){
+    public static int attack(int attTroops, String territory, String location, String offense, String defense){
     	int attStat; //status of attack, win or fail
 	int numWin = 0;
     	for (int ctr = 0; ctr < attTroops; ctr++){
     	    attStat = (int) (Math.random() * 6);
     	    if (attStat > 3){
 		System.out.println("Offension win");
-		Territory.subtract(territory); // defense lose 1 troops
+		Territory.subtract(territory); // defense lose 1 troop (variable in Territory)
+		updateTroops(defense); // defense lose 1 troop (variable in Woo)
 		numWin++;
     	    }
     	    else{
 		System.out.println("Defense win");
-    	        Territory.subtract(location); // offense lose 1 troops
+    	        Territory.subtract(location); // offense lose 1 troop (variable in Territory)
+		updateTroops(offense); // offense lose 1 troop (variable in Woo)
 	    }
 	}
 	return numWin;
@@ -567,26 +574,108 @@ public class Woo {
 
     }
     */
-    /*
-    public static void update(String offense, String defense){
+    
+    public static void updateTroops(String player){
 	if (player.equals("player1")){
-	    player1Occupied = game.terriOccupier(playerTurn);
+	    player1TroopNum -= 1;
 	}
 	if (player.equals("player2")){
-	    player2Occupied = game.terriOccupier(playerTurn);
+	    player2TroopNum -= 1;
 	}
 	if (player.equals("player3")){
-	    player3Occupied = game.terriOccupier(playerTurn);
+	    player3TroopNum -= 1;
 	}
 	if (player.equals("player4")){
-	    player4Occupied = game.terriOccupier(playerTurn);
+	    player4TroopNum -= 1;
 	}
 	if (player.equals("player5")){
-	    player5Occupied = game.terriOccupier(playerTurn);
+	    player5TroopNum -= 1;
 	}
 	if (player.equals("player6")){
-	    player6Occupied = game.terriOccupier(playerTurn);
+	    player6TroopNum -= 1;
+	}
+    }
+    public static void subtractTerritory(String player){
+	if (player.equals("player1")){
+	    player1TerritoryNum -= 1;
+	}
+	if (player.equals("player2")){
+	    player2TerritoryNum -= 1;
+	}
+	if (player.equals("player3")){
+	    player3TerritoryNum -= 1;
+	}
+	if (player.equals("player4")){
+	    player4TerritoryNum -= 1;
+	}
+	if (player.equals("player5")){
+	    player5TerritoryNum -= 1;
+	}
+	if (player.equals("player6")){
+	    player6TerritoryNum -= 1;
+	}
+    }
+    /*
+    public static void updateTerritory(String winner, String loser, String territory){
+	if (player.equals("player1")){
+	    player1TerritoryNum -= 1;
+	}
+	if (player.equals("player2")){
+	    player2TerritoryNum -= 1;
+	}
+	if (player.equals("player3")){
+	    player3TerritoryNum -= 1;
+	}
+	if (player.equals("player4")){
+	    player4TerritoryNum -= 1;
+	}
+	if (player.equals("player5")){
+	    player5TerritoryNum -= 1;
+	}
+	if (player.equals("player6")){
+	    player6TerritoryNum -= 1;
 	}
     }
     */
+    public static void removeTerritory(String player, String territory){
+	if (player.equals("player1")){
+	    player1Occupied.remove(territory);
+	}
+	if (player.equals("player2")){
+	    player2Occupied.remove(territory);
+	}
+	if (player.equals("player3")){
+	    player3Occupied.remove(territory);
+	}
+	if (player.equals("player4")){
+	    player4Occupied.remove(territory);
+	}
+	if (player.equals("player5")){
+	    player5Occupied.remove(territory);
+	}
+	if (player.equals("player6")){
+	    player6Occupied.remove(territory);
+	}
+    }
+    public static void addTerritory(String player, String territory){
+	if (player.equals("player1")){
+	    player1Occupied.add(territory);
+	}
+	if (player.equals("player2")){
+	    player2Occupied.add(territory);
+	}
+	if (player.equals("player3")){
+	    player3Occupied.add(territory);
+	}
+	if (player.equals("player4")){
+	    player4Occupied.add(territory);
+	}
+	if (player.equals("player5")){
+	    player5Occupied.add(territory);
+	}
+	if (player.equals("player6")){
+	    player6Occupied.add(territory);
+	}
+    }
+    
 }
