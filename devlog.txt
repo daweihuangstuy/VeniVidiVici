@@ -85,3 +85,35 @@ Yuqi :: Worked on Territory class and subclasses
 Dawei :: Worked on Woo.java, Player 1 and Player 2 class
 Fabiola :: Worked on Player class and finalized UML diagram
 ==============================================================
+
+2017-01-13
+--------------------------------------------------------------
+Yuqi :: initialized territories and modified attack feature
+Dawei :: Modified Woo.java and created helper class, extended
+initial commit feature 
+==============================================================
+
+2017-01-14
+--------------------------------------------------------------
+Dawei :: finished initial placement feature
+==============================================================
+
+2017-01-15
+--------------------------------------------------------------
+Yuqi :: continued to work on attack feature
+Dawei :: completed placement feature on Woo.java
+==============================================================
+
+2017-01-16
+--------------------------------------------------------------
+Yuqi :: worked on attack feature and updated some features
+Fabiola :: Worked on move feature
+==============================================================
+
+2017-01-17
+--------------------------------------------------------------
+Yuqi :: Worked on Woo.java and map issues
+Dawei :: Worked on Woo.java and map issues
+Fabiola :: continued to work on move feature
+==============================================================
+
