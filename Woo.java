@@ -270,11 +270,49 @@ public class Woo {
 		    game.territory[game.findLocation(target)][2] = playerTurn;
 		}
 		//update(playerTurn);
-		renderMap();
 		
+		// update territories
+		if (playerTurn.equals("player1")){
+		player1Occupied = game.terriOccupier(playerTurn);
+		}
+		if (playerTurn.equals("player2")){
+		player2Occupied = game.terriOccupier(playerTurn);
+		}
+		if (playerTurn.equals("player3")){
+		player3Occupied = game.terriOccupier(playerTurn);
+		}
+		if (playerTurn.equals("player4")){
+		player4Occupied = game.terriOccupier(playerTurn);
+		}
+		if (playerTurn.equals("player5")){
+		player5Occupied = game.terriOccupier(playerTurn);
+		}
+		if (playerTurn.equals("player6")){
+		player6Occupied = game.terriOccupier(playerTurn);
+		}
+		
+		// update troopNumbers
+		player1TroopNum = game.troopNumber("player1");
+		player2TroopNum = game.troopNumber("player2");
+		player3TroopNum = game.troopNumber("player3");	
+		player4TroopNum = game.troopNumber("player4");
+		player5TroopNum = game.troopNumber("player5");
+		player6TroopNum = game.troopNumber("player6");
+		
+		// update territoryNumbers
+		player1TerritoryNum = game.territoryNumber("player1");
+		player2TerritoryNum = game.territoryNumber("player2");
+		player3TerritoryNum = game.territoryNumber("player3");
+		player4TerritoryNum = game.territoryNumber("player4");
+		player5TerritoryNum = game.territoryNumber("player5");
+		player6TerritoryNum = game.territoryNumber("player6");
+		
+		System.out.println(player1Occupied );
+		System.out.println(player2Occupied );
+		renderMap(); //render map here
 		numPlay -= 1;
 	    }
-	    
+		// renderMap();	    
 	    rounds+=1;
 	}
 	
@@ -536,7 +574,7 @@ public class Woo {
 	int numWin = 0;
     	for (int ctr = 0; ctr < attTroops; ctr++){
     	    attStat = (int) (Math.random() * 6);
-    	    if (attStat > 3){
+    	    if (attStat >= 0){ //I (Dawei) changed this to guarentee victory for the attacker. MUST CHANGE IT BACK!!!
 		System.out.println("Offension win");
 		Territory.subtract(territory); // defense lose 1 troop (variable in Territory)
 		updateTroops(defense); // defense lose 1 troop (variable in Woo)
