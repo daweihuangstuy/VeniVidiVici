@@ -227,10 +227,18 @@ public class Woo {
 		    System.out.println("\nSorry, this location is invalid, please try again");
 		    location = cs1.Keyboard.readString();
 		}
+		while (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
+		    System.out.println("\nSorry, this is not your territory, please try again");
+		    location = cs1.Keyboard.readString();
+		}
 		System.out.println("\nType the territory that you want to attack");
 		String target = cs1.Keyboard.readString();
 		while (Territory.findLocation(target) == -1){ // need another feature : this territory is yours
 		    System.out.println("\nSorry, this location is invalid, please try again");
+		    target = cs1.Keyboard.readString();
+		}
+		while (game.territory[game.findLocation(target)][2].equals(playerTurn)){
+		    System.out.println("\nSorry, this is  your territory, please try again");
 		    target = cs1.Keyboard.readString();
 		}
 		System.out.println("\nType the number of troops to use, you can use a maximum of 3");
@@ -241,6 +249,14 @@ public class Woo {
 		}
 		while (attTroops < 1){
 		    System.out.println("Sorry, you need at least a minimum number of 1, please try again");
+		    attTroops = cs1.Keyboard.readInt();
+		}
+		while (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0){
+		    System.out.println("Sorry, you need at least 1 troops to protect you current territory, please try again");
+		    attTroops = cs1.Keyboard.readInt();
+		}
+		while (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){
+		    System.out.println("Sorry, you don't have enough troops in this territory, please try again");
 		    attTroops = cs1.Keyboard.readInt();
 		}
 		int numWin = 0;
@@ -268,6 +284,7 @@ public class Woo {
 		conquer = Territory.updateStat(target, playerTurn, numWin);
 		if (conquer){
 		    game.territory[game.findLocation(target)][2] = playerTurn;
+		    game.territory[game.findLocation(location)][1] = Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops + "";
 		}
 		//update(playerTurn);
 		
