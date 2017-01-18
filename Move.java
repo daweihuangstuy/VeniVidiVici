@@ -1,26 +1,28 @@
 
-public ArrayList occupied = new ArrayList;
-
-if (playerTurn.equals("player1")){
-    occupied = player1Occupied;
-}
-if (playerTurn.equals("player2")){
-    occupied = player2Occupied;
-}
-if (playerTurn.equals("player3")){
-    occupied = player3Occupied;
-}
-if (playerTurn.equals("player4")){
-    occupied = player4Occupied;
-    }
-if (playerTurn.equals("player5")){
-    occupied = player5Occupied;
-}
-if (playerTurn.equals("player6")){
-    occupied = player6Occupied;
-}
 
 public static void move(ArrayList<String> occupied, int numTroops, String origin, String destination){
+    public ArrayList occupied = new ArrayList;
+
+    if (playerTurn.equals("player1")){
+	occupied = player1Occupied;
+    }
+    if (playerTurn.equals("player2")){
+	occupied = player2Occupied;
+    }
+    if (playerTurn.equals("player3")){
+	occupied = player3Occupied;
+    }
+    if (playerTurn.equals("player4")){
+	occupied = player4Occupied;
+    }
+    if (playerTurn.equals("player5")){
+	occupied = player5Occupied;
+    }
+    if (playerTurn.equals("player6")){
+	occupied = player6Occupied;
+    }
+
+
     int ctrO = 0;
     int ctrD = 0;
     for ( String terr : occupied ){
