@@ -223,13 +223,17 @@ public class Woo {
 		System.out.println("\nIt is " + playerTurn + "'s turn");
 		System.out.println("\nType the territory to send troops from");
 		String location = cs1.Keyboard.readString();
-		while (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
-		    System.out.println("\nSorry, this location is invalid, please try again");
-		    location = cs1.Keyboard.readString();
-		}
-		while (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
-		    System.out.println("\nSorry, this is not your territory, please try again");
-		    location = cs1.Keyboard.readString();
+		while (Territory.findLocation(location) == -1 ||
+		       !game.territory[game.findLocation(location)][2].equals(playerTurn)){
+		       
+		       if (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
+			   System.out.println("\nSorry, this location is invalid, please try again");
+			   location = cs1.Keyboard.readString();
+		       }
+		       if (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
+			   System.out.println("\nSorry, this is not your territory, please try again");
+			   location = cs1.Keyboard.readString();
+		       }
 		}
 		System.out.println("\nType the territory that you want to attack");
 		String target = cs1.Keyboard.readString();
