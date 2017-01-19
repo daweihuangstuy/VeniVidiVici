@@ -1,7 +1,6 @@
 
-
+    //public ArrayList occupied = new ArrayList[][];
 public static void move(ArrayList<String> occupied, int numTroops, String origin, String destination){
-    public ArrayList occupied = new ArrayList;
 
     if (playerTurn.equals("player1")){
 	occupied = player1Occupied;
@@ -27,8 +26,8 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
     int ctrD = 0;
     for ( String terr : occupied ){
 	if (origin == terr){
-	    ctrO = indexOf(origin);
-	    troopPresent[ctrO] -= numTroops;
+	    ctrO = indexOf(origin); //indexOf(string)
+	    troopPresent[ctrO] -= numTroops; //array --> array list
 	    System.out.println("Moving troops from " + origin);
 	}
 	System.out.println("Sorry, you do not occupy " + origin + ". Please choose another territory to move your troops from.");	
@@ -51,10 +50,7 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
     //troops @ origin -= numToops;
     //troops @destination += numTroops;
     
-}
-else{
     System.out.println("Sorry, you do not have enough troops to move to the destination. Please try moving troops from a different territory.");
-
 }
 
 
