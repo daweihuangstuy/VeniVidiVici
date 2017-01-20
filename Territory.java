@@ -2,7 +2,9 @@ import java.util.ArrayList;
 
 public class Territory{
     public static String[][] territory = new String[42][3];
+    public static String[][] connect = new String[42][6];
     public Territory(){	
+	// initialize territory
 	territory[0][0] = "A11"; territory[0][1] = "0"; territory[0][2] = "no";
 	territory[1][0] = "A12"; territory[1][1] = "0"; territory[1][2] = "no";
 	territory[2][0] = "A13"; territory[2][1] = "0"; territory[2][2] = "no";
@@ -45,6 +47,50 @@ public class Territory{
 	territory[39][0] = "F12";territory[39][1] = "0";territory[39][2] = "no";
 	territory[40][0] = "F13";territory[40][1] = "0";territory[40][2] = "no";
 	territory[41][0] = "F14";territory[41][1] = "0";territory[41][2] = "no";
+
+	// initialize connect
+	connect[0][0] = "A11"; connect[0][1] = "0"; connect[0][2] = "no";
+	connect[1][0] = "A12"; connect[1][1] = "0"; connect[1][2] = "no";
+	connect[2][0] = "A13"; connect[2][1] = "0"; connect[2][2] = "no";
+	connect[3][0] = "A14"; connect[3][1] = "0"; connect[3][2] = "no";
+	connect[4][0] = "A15"; connect[4][1] = "0"; connect[4][2] = "no";
+	connect[5][0] = "A16"; connect[5][1] = "0"; connect[5][2] = "no";
+	connect[6][0] = "A17"; connect[6][1] = "0"; connect[6][2] = "no";
+	connect[7][0] = "A18"; connect[7][1] = "0"; connect[7][2] = "no";
+	connect[8][0] = "A19"; connect[8][1] = "0"; connect[8][2] = "no";
+	connect[9][0] = "B11"; connect[9][1] = "0"; connect[9][2] = "no";
+	connect[10][0] = "B12";connect[10][1] = "0";connect[10][2] = "no";
+	connect[11][0] = "B13";connect[11][1] = "0";connect[11][2] = "no";
+	connect[12][0] = "B14";connect[12][1] = "0";connect[12][2] = "no";
+	connect[13][0] = "C11";connect[13][1] = "0";connect[13][2] = "no";
+	connect[14][0] = "C12";connect[14][1] = "0";connect[14][2] = "no";
+	connect[15][0] = "C13";connect[15][1] = "0";connect[15][2] = "no";
+	connect[16][0] = "C14";connect[16][1] = "0";connect[16][2] = "no";
+	connect[17][0] = "C15";connect[17][1] = "0";connect[17][2] = "no";
+	connect[18][0] = "C16";connect[18][1] = "0";connect[18][2] = "no";
+	connect[19][0] = "C17";connect[19][1] = "0";connect[19][2] = "no";
+	connect[20][0] = "D11";connect[20][1] = "0";connect[20][2] = "no";
+	connect[21][0] = "D12";connect[21][1] = "0";connect[21][2] = "no";
+	connect[22][0] = "D13";connect[22][1] = "0";connect[22][2] = "no";
+	connect[23][0] = "D14";connect[23][1] = "0";connect[23][2] = "no";
+	connect[24][0] = "D15";connect[24][1] = "0";connect[24][2] = "no";
+	connect[25][0] = "D16";connect[25][1] = "0";connect[25][2] = "no";
+	connect[26][0] = "E11";connect[26][1] = "0";connect[26][2] = "no";
+	connect[27][0] = "E12";connect[27][1] = "0";connect[27][2] = "no";
+	connect[28][0] = "E13";connect[28][1] = "0";connect[28][2] = "no";
+	connect[29][0] = "E14";connect[29][1] = "0";connect[29][2] = "no";
+	connect[30][0] = "E15";connect[30][1] = "0";connect[30][2] = "no";
+	connect[31][0] = "E16";connect[31][1] = "0";connect[31][2] = "no";
+	connect[32][0] = "E17";connect[32][1] = "0";connect[32][2] = "no";
+	connect[33][0] = "E18";connect[33][1] = "0";connect[33][2] = "no";
+	connect[34][0] = "E19";connect[34][1] = "0";connect[34][2] = "no";
+	connect[35][0] = "E21";connect[35][1] = "0";connect[35][2] = "no";
+	connect[36][0] = "E22";connect[36][1] = "0";connect[36][2] = "no";
+	connect[37][0] = "E23";connect[37][1] = "0";connect[37][2] = "no";
+	connect[38][0] = "F11";connect[38][1] = "0";connect[38][2] = "no";
+	connect[39][0] = "F12";connect[39][1] = "0";connect[39][2] = "no";
+	connect[40][0] = "F13";connect[40][1] = "0";connect[40][2] = "no";
+	connect[41][0] = "F14";connect[41][1] = "0";connect[41][2] = "no";
     }
     
     public String[][] getTerritoryInfo(){
