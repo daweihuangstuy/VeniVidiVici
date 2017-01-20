@@ -132,6 +132,7 @@ public class Territory{
 	    Woo.removeTerritory(target, defense);
 	    Woo.subtractTerritory(defense);
 	    Woo.addTerritory(target, offense);
+	    Woo.removeTerritory(defense, target);
 	    return true;
 	}
 	return false;
