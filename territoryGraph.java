@@ -396,16 +396,16 @@ public class territoryGraph{
 	    targetObj = F14;
 	}
     }
-    /*
-    public boolean isConnect(ArrayList<String> object, String target){
-	for (int i = 0; i < object.length; i++){
-	    if (obj[i].equals(target)){
+    
+    public boolean isConnect(ArrayList<String> obj, String target){
+	for (int i = 0; i < obj.size(); i++){
+	    if (obj.get(i).equals(target)){
 		return true;
 	    }
 	}
 	return false;
     }
-    */
+    
     public boolean isIn(String target){
 	for (String x : Territories){
 	    if (x == target){
