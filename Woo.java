@@ -525,29 +525,7 @@ public class Woo {
 	    //print map line (final procedure)
 	    System.out.println(line2);
 	}
-	/*
-	//for move feature
 
-		//move feature
-    if (playerTurn.equals("player1")){
-	occupied = player1Occupied;
-    }
-    if (playerTurn.equals("player2")){
-	occupied = player2Occupied;
-    }
-    if (playerTurn.equals("player3")){
-	occupied = player3Occupied;
-    }
-    if (playerTurn.equals("player4")){
-	occupied = player4Occupied;
-    }
-    if (playerTurn.equals("player5")){
-	occupied = player5Occupied;
-    }
-    if (playerTurn.equals("player6")){
-	occupied = player6Occupied;
-    }
-	*/
     }
     //*******************************************************************************
     //helpful methods
@@ -619,7 +597,7 @@ public class Woo {
     }
     
     //move
-
+    /*
     //public ArrayList occupied = new ArrayList[][];
 public static void move(ArrayList<String> occupied, int numTroops, String origin, String destination){
 
@@ -647,32 +625,24 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
     int ctrD = 0;
     for ( String terr : occupied ){
 	if (origin == terr){
-	    ctrO = occupied.indexOf(origin); //indexOf(string)
-	    troopPresent[ctrO] -= numTroops; //array --> array list
+	    //ctrO = occupied.indexOf(origin);
+	    // troopPresent[ctrO][]; //array --> array list
 	    System.out.println("Moving troops from " + origin);
 	}
 	System.out.println("Sorry, you do not occupy " + origin + ". Please choose another territory to move your troops from.");	
     }
     for ( String terr : occupied ) {
 	if (destination == terr) {
-	    ctrD = occupied.indexOf(destination);
-	    troopPresent[ctrD] += numTroops;
+	    // ctrD = occupied.indexOf(destination);
+	    //troopPresent[ctrD] += numTroops;
 	    System.out.println("Moving troops to " + destination);
 	}
 	System.out.println("Sorry, you do not occupy " + destination + ". Please choose another territory to move your troops to.");
     }
-
-    //      find index of origin in list of territories aquired
-    //      return index, index in troopPresent + numTroops
-    
- 
-    //	if (numTroops @ origin  > 0){
-    //troops @ origin -= numToops;
-    //troops @destination += numTroops;
     
     System.out.println("Sorry, you do not have enough troops to move to the destination. Please try moving troops from a different territory.");
 }
-
+    */
 
     public static void updateTroops(String player){
 	if (player.equals("player1")){
