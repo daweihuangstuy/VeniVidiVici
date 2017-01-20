@@ -237,3 +237,16 @@ public class Territory{
 		return startTroops;
 	}
 }
+
+public static ArrayList<String> avaliTerritory(String player){
+    ArrayList<String> retArr = new ArrayList<String>();
+    for(int i = 0; i < territory.length; i++){
+	if(territory[i][2].equals("no") || territory[i][2].equals(player)){
+	    retArr.add(territory[i][0];
+		       }
+	}
+    }
+    return retArr;
+}
+
+}
