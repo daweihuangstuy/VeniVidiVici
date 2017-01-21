@@ -237,24 +237,40 @@ public class Woo {
 		}
 		System.out.println("\nType the territory that you want to attack");
 		String target = cs1.Keyboard.readString();
+		territoryGraph.convertStrToObject(location);
+		System.out.println(territoryGraph.targetObj.size());
+		System.out.println(territoryGraph.A11.size());
+		System.out.println(territoryGraph.teriGraph.size());
+		
+		for (int i = 0; i < territoryGraph.targetObj.size(); i++){
+		    System.out.println("check" + territoryGraph.targetObj.get(i));
+		}
+		
+		System.out.println("\n" + location);
 		while (Territory.findLocation(target) == -1 ||
-		       game.territory[game.findLocation(target)][2].equals(playerTurn)){
+		       game.territory[game.findLocation(target)][2].equals(playerTurn) ||
+		       territoryGraph.isConnect(territoryGraph.targetObj , target) == false){ // check is these two territories connected
 		    if (Territory.findLocation(target) == -1){
 			System.out.println("\nSorry, this location is invalid, please try again");
 			target = cs1.Keyboard.readString();
 		    }
 		    if (game.territory[game.findLocation(target)][2].equals(playerTurn)){
-			System.out.println("\nSorry, this is  your territory, please try again");
+			System.out.println("\nSorry, this is your territory, please try again");
+			target = cs1.Keyboard.readString();
+		    }
+		    if (territoryGraph.isConnect(territoryGraph.targetObj , target) == false){ // check is these two territories connected
+			System.out.println("Sorry, these two territories is not connected, please try again");
+			territoryGraph.convertStrToObject(location);
 			target = cs1.Keyboard.readString();
 		    }
 		}
 		System.out.println("\nType the number of troops to use, you can use a maximum of 3");
 		int attTroops = cs1.Keyboard.readInt();
-		while (attTroops > 3 || // you can use  max of 3 troops
-		       attTroops < 1 || // you need at least 1 troop
-		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // you need at least one troop to protect your territory
-		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){ // you dont have enough troops at this territory
-		    if (attTroops > 3){
+		while (attTroops > 3 || // check is the at most 3 troops
+		       attTroops < 1 || // check is there at least 1 troop
+		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // check is there at least one troop to protect your territory
+		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){// check if this territory have enough troops
+			if (attTroops > 3){
 			System.out.println("Sorry, you can only have a maximum number of 3, please try again");
 			attTroops = cs1.Keyboard.readInt();
 		    }

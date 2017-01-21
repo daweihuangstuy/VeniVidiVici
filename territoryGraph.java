@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class territoryGraph{
-    public static ArrayList<String> targetObj; 
+    public static ArrayList<String> targetObj = new ArrayList<String>(); 
     
     //represents the territories adjacent to a given territory
     public static ArrayList<ArrayList<String>> teriGraph = new ArrayList<ArrayList<String>>();
@@ -31,7 +31,7 @@ public class territoryGraph{
 							"EAA","EAB","EAC","EAD",
 							"EAE","EAF","EAG","EAH",
 							"EAI","EBA","EBB","EBC",
-							"FAA","FAB","FAC","FAD",};
+							"FAA","FAB","FAC","FAD"};
     
     public static boolean validTerritory(String inputTeri){
 	boolean booleanFlag = false;
@@ -84,9 +84,8 @@ public class territoryGraph{
     public static ArrayList<String> F12 = new ArrayList<String>();
     public static ArrayList<String> F13 = new ArrayList<String>();
     public static ArrayList<String> F14 = new ArrayList<String>();
-    //add more etc*****************************************************
     
-    public static void main(String args[]){
+    public static void main(String[] args){
 	//add territories adjacent to A11
 	A11.add("A13"); A11.add("A15"); A11.add("A16"); A11.add("C11");
 	teriGraph.add(A11);
@@ -264,8 +263,6 @@ public class territoryGraph{
 	//add territories adjacent to F14
         F14.add("F12"); F14.add("F13");
 	teriGraph.add(F14);
-	
-	//add more etc*****************************************************
     }
     
     public static void convertStrToObject(String obj){
@@ -397,7 +394,8 @@ public class territoryGraph{
 	}
     }
     
-    public boolean isConnect(ArrayList<String> obj, String target){
+    public static boolean isConnect(ArrayList<String> obj, String target){
+	convertStrToObject(target);
 	for (int i = 0; i < obj.size(); i++){
 	    if (obj.get(i).equals(target)){
 		return true;
