@@ -75,6 +75,7 @@ public class Woo {
 	boolean autoPlace = false;
 	
 	while (playerOrder.get(rounds % playerOrder.size()) != ""){
+		endGame();
 	    playerTurn = playerOrder.get(rounds % playerOrder.size());
 	    System.out.println("Order of Play: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1));
 	    System.out.println("\nIt is " + playerTurn + "'s turn");
@@ -103,6 +104,7 @@ public class Woo {
 	    }
 		
 		if (autoPlace == false){
+			endGame();
 			if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
 			   game.territory[game.findLocation(initTerritory)][2] == playerTurn){
 			int locat = game.findLocation(initTerritory);
@@ -154,6 +156,7 @@ public class Woo {
 			if (initPlaceArmNum() == (playerOrder.size())){
 				break;
 			} 
+			endGame();
 		}
 		System.out.println("hawd");
 		if (autoPlace == true){
@@ -163,7 +166,9 @@ public class Woo {
 	
 	//autoPlace feature for initial placement
 	if (autoPlace == true){
+		endGame();
 		 while (!(initPlaceArmNum() == (playerOrder.size()))){
+				endGame();
 				playerTurn = playerOrder.get(rounds % playerOrder.size());
 				int availNumber = (int)(Math.random() * Territory.availTerr(playerTurn).size());
 				int availToTerrNum = Territory.findLocation(Territory.availTerr(playerTurn).get(availNumber));
@@ -209,7 +214,9 @@ public class Woo {
 				
 				subtractTroops(playerTurn);
 				rounds += 1;
+				endGame();
 			}
+			endGame();
 			autoPlace = false;
 			renderMap();
 	}
@@ -218,7 +225,7 @@ public class Woo {
 	while ((int)(victoryMargin * 42) > game.territoryNumber(playerOrder.get(rounds % playerOrder.size()))){
 		//placement feature
 		
-		// uncomment later
+		endGame();
 		playerTurn = playerOrder.get(rounds % playerOrder.size());
 		int additionalTroops = Territory.calcAddTroops(playerTurn);
 		while (additionalTroops > 0){
@@ -246,17 +253,22 @@ public class Woo {
 			}
 			
 			if (autoPlace == false){
+				endGame();
 				if (game.territory[game.findLocation(placeTerritory)][2].equals("no")){
+					endGame();
 					game.territory[game.findLocation(placeTerritory)][2] = playerTurn;
 					System.out.println(game.territory[game.findLocation(placeTerritory)][2]);
 					int initTroopNum = Integer.parseInt(game.territory[game.findLocation(placeTerritory)][1]);
 					game.territory[game.findLocation(placeTerritory)][1] = Integer.toString(initTroopNum + 1);
 					additionalTroops -= 1;
+					endGame();
 				}
 				else{
+					endGame();
 					int initTroopNum = Integer.parseInt(game.territory[game.findLocation(placeTerritory)][1]);
 					game.territory[game.findLocation(placeTerritory)][1] = Integer.toString(initTroopNum + 1);
 					additionalTroops -= 1;
+					endGame();
 				}		
 			}
 			
@@ -304,10 +316,12 @@ public class Woo {
 			player5TerritoryNum = game.territoryNumber("player5");
 			player6TerritoryNum = game.territoryNumber("player6");
 			renderMap(); //render map
-		
+			endGame();
+			
 		//autoPlace feature for round placement
 		if (autoPlace == true){
 			 while (additionalTroops > 0){
+				 endGame();
 					playerTurn = playerOrder.get(rounds % playerOrder.size());
 					int availNumber = (int)(Math.random() * Territory.availTerr(playerTurn).size());
 					int availToTerrNum = Territory.findLocation(Territory.availTerr(playerTurn).get(availNumber));
@@ -352,13 +366,16 @@ public class Woo {
 				player6TerritoryNum = game.territoryNumber("player6");
 				
 					additionalTroops -= 1;
+					endGame();
 				}
+				endGame();
 				autoPlace = false;
 				renderMap();
 		}
 		}
 	    
 	    //attack feature
+		endGame();
 	    int numPlay = 1;
 	    while (numPlay >= 0){
 		System.out.println("\nIt is " + playerTurn + "'s turn");
@@ -491,6 +508,7 @@ public class Woo {
 		numPlay -= 1;
 	    }
 		// renderMap();	    
+		endGame();
 	    rounds+=1;
 	}
 	
@@ -917,6 +935,40 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
 			nullCounter += 1;
 		}
 		return nullCounter;
+	}
+	
+	public static void endGame(){
+		//check to see if any player has won
+		//check player1
+		if ((int)(victoryMargin * 42) < player1TerritoryNum){
+			System.out.println("\n\nplayer 1 has won the game");
+			System.exit(0);
+		}
+		//check player2
+		if ((int)(victoryMargin * 42) < player2TerritoryNum){
+			System.out.println("\n\nplayer 2 has won the game");
+			System.exit(0);
+		}
+		//check player3
+		if ((int)(victoryMargin * 42) < player3TerritoryNum){
+			System.out.println("\n\nplayer 3 has won the game");
+			System.exit(0);
+		}
+		//check player4
+		if ((int)(victoryMargin * 42) < player4TerritoryNum){
+			System.out.println("\n\nplayer 4 has won the game");
+			System.exit(0);
+		}
+		//check player5
+		if ((int)(victoryMargin * 42) < player5TerritoryNum){
+			System.out.println("\n\nplayer 5 has won the game");
+			System.exit(0);
+		}
+		//check player6
+		if ((int)(victoryMargin * 42) < player6TerritoryNum){
+			System.out.println("\n\nplayer 1 has won the game");
+			System.exit(0);
+		}
 	}
     
 }
