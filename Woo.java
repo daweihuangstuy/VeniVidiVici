@@ -237,19 +237,12 @@ public class Woo {
 		}
 		System.out.println("\nType the territory that you want to attack");
 		String target = cs1.Keyboard.readString();
-		territoryGraph.convertStrToObject(location);
-		System.out.println(territoryGraph.targetObj.size());
-		System.out.println(territoryGraph.A11.size());
-		System.out.println(territoryGraph.teriGraph.size());
+
+		territoryGraph.setUp();
 		
-		for (int i = 0; i < territoryGraph.targetObj.size(); i++){
-		    System.out.println("check" + territoryGraph.targetObj.get(i));
-		}
-		
-		System.out.println("\n" + location);
 		while (Territory.findLocation(target) == -1 ||
 		       game.territory[game.findLocation(target)][2].equals(playerTurn) ||
-		       territoryGraph.isConnect(territoryGraph.targetObj , target) == false){ // check is these two territories connected
+		       territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
 		    if (Territory.findLocation(target) == -1){
 			System.out.println("\nSorry, this location is invalid, please try again");
 			target = cs1.Keyboard.readString();
@@ -258,9 +251,8 @@ public class Woo {
 			System.out.println("\nSorry, this is your territory, please try again");
 			target = cs1.Keyboard.readString();
 		    }
-		    if (territoryGraph.isConnect(territoryGraph.targetObj , target) == false){ // check is these two territories connected
+		    if (territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
 			System.out.println("Sorry, these two territories is not connected, please try again");
-			territoryGraph.convertStrToObject(location);
 			target = cs1.Keyboard.readString();
 		    }
 		}

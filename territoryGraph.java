@@ -86,6 +86,16 @@ public class territoryGraph{
     public static ArrayList<String> F14 = new ArrayList<String>();
     
     public static void main(String[] args){
+	setUp();
+	System.out.println(getSize("A11"));
+    }
+
+    public static int getSize(String arr){
+	convertStrToObject(arr);
+	return targetObj.size();
+    }
+
+    public static void setUp(){
 	//add territories adjacent to A11
 	A11.add("A13"); A11.add("A15"); A11.add("A16"); A11.add("C11");
 	teriGraph.add(A11);
@@ -394,10 +404,10 @@ public class territoryGraph{
 	}
     }
     
-    public static boolean isConnect(ArrayList<String> obj, String target){
-	convertStrToObject(target);
-	for (int i = 0; i < obj.size(); i++){
-	    if (obj.get(i).equals(target)){
+    public static boolean isConnect(String location, String target){
+	convertStrToObject(location);
+	for (int i = 0; i < targetObj.size(); i++){
+	    if (targetObj.get(i).equals(target)){
 		return true;
 	    }
 	}
