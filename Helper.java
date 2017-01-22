@@ -68,4 +68,32 @@ public class Helper{
 		}
 		return "error";
 	}
+	
+	public static String terrToString(double percent){
+		if (percent < 0){
+			return "      ";
+		}
+		if (Double.toString(percent).length() == 0){
+			return ("      " + Double.toString(percent));
+		}
+		if (Double.toString(percent).length() == 1){
+			return ("     " + Double.toString(percent));
+		}
+		if (Double.toString(percent).length() == 2){
+			return ("    " + Double.toString(percent));
+		}
+		if (Double.toString(percent).length() == 3){
+			return ("   " + Double.toString(percent));
+		}
+		if (Double.toString(percent).length() == 4){
+			return ("  " + Double.toString(percent));
+		}
+		if (Double.toString(percent).length() == 5){
+			return (" " + Double.toString(percent));
+		}
+		if (Double.toString(percent).length() == 6){
+			return Double.toString(percent);
+		}
+		return "error";
+	}
 }

@@ -23,6 +23,15 @@ public class Woo {
     public static int player6InitialTroop = -1;
     
     //player variables
+	
+	//playerOccupied Continents
+	static String occupiedNorthAmerica = "none";
+	static String occupiedSorthAmerica = "none";
+	static String occupiedAfrica = "none";
+	static String occupiedAsia = "none";
+	static String occupiedEurope = "none";
+	static String occupiedAustralia = "none";
+	
     //player occupied territories
     static ArrayList<String> player1Occupied = new ArrayList<String>();
     static ArrayList<String> player2Occupied = new ArrayList<String>();
@@ -116,6 +125,14 @@ public class Woo {
 			}
 			terriInfo = game.getTerritoryInfo();
 			troopPresent = game.troopPresent();
+			
+			//update continentOccupied
+			occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
+			occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+			occupiedAfrica = game.occupyContinent("Africa");
+			occupiedAsia = game.occupyContinent("Asia");
+			occupiedEurope = game.occupyContinent("Europe");
+			occupiedAustralia = game.occupyContinent("Australia");
 			//update territories
 			if (playerTurn.equals("player1")){
 			player1Occupied = game.terriOccupier(playerTurn);
@@ -178,6 +195,13 @@ public class Woo {
 				
 				terriInfo = game.getTerritoryInfo();
 			troopPresent = game.troopPresent();
+			//update continentOccupied
+			occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
+			occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+			occupiedAfrica = game.occupyContinent("Africa");
+			occupiedAsia = game.occupyContinent("Asia");
+			occupiedEurope = game.occupyContinent("Europe");
+			occupiedAustralia = game.occupyContinent("Australia");
 			//update territories
 			if (playerTurn.equals("player1")){
 			player1Occupied = game.terriOccupier(playerTurn);
@@ -275,6 +299,14 @@ public class Woo {
 			terriInfo = game.getTerritoryInfo();
 			troopPresent = game.troopPresent();
 
+			
+			//update continentOccupied
+			occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
+			occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+			occupiedAfrica = game.occupyContinent("Africa");
+			occupiedAsia = game.occupyContinent("Asia");
+			occupiedEurope = game.occupyContinent("Europe");
+			occupiedAustralia = game.occupyContinent("Australia");
 			//	update territories
 
 			if (playerTurn.equals("player1")){
@@ -350,6 +382,13 @@ public class Woo {
 				if (playerTurn.equals("player6")){
 				player6Occupied = game.terriOccupier(playerTurn);
 				}
+				//update continentOccupied
+				occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
+				occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+				occupiedAfrica = game.occupyContinent("Africa");
+				occupiedAsia = game.occupyContinent("Asia");
+				occupiedEurope = game.occupyContinent("Europe");
+				occupiedAustralia = game.occupyContinent("Australia");
 				// update troopNumbers
 				player1TroopNum = game.troopNumber("player1");
 				player2TroopNum = game.troopNumber("player2");
@@ -466,6 +505,13 @@ public class Woo {
 		}
 		//update(playerTurn);
 		
+		//update continentOccupied
+		occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
+		occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+		occupiedAfrica = game.occupyContinent("Africa");
+		occupiedAsia = game.occupyContinent("Asia");
+		occupiedEurope = game.occupyContinent("Europe");
+		occupiedAustralia = game.occupyContinent("Australia");
 		// update territories
 		if (playerTurn.equals("player1")){
 		player1Occupied = game.terriOccupier(playerTurn);
@@ -556,7 +602,7 @@ public class Woo {
 	}
 	
 	System.out.println("\nType in the percentage of territory occupied needed for a player to win:");
-	System.out.println("It must be greater than 0.6666. Enter as a decimal like '0.75432'");
+	System.out.println("It must be greater than or equal to 0.6666 and less than or equal to 1.0. Enter as a decimal like '0.75432'");
 	double victory = 0.00;
 	while (victory < 0.6666 || victory > 1.000){
 		try {
@@ -565,7 +611,7 @@ public class Woo {
 	    catch (Exception e) {
 		System.out.println("You had entered an invalid quantity. Please try again.");
 	    }
-	    if (victoryMargin > 0.6666 && victoryMargin < 1.000){
+	    if (victoryMargin >= 0.6666 && victoryMargin <= 1.000){
 		victory = victoryMargin;
 	    }
 	    else{
@@ -689,6 +735,152 @@ public class Woo {
 	    if (player6TerritoryNum > 0){				
 		line2 = line2.replace("YY6", Helper.territoryToString(player6TerritoryNum));
 	    }
+		
+		//update continent occupy display
+		//update North America
+		if (!(occupiedNorthAmerica.equals("none"))){
+			if (occupiedNorthAmerica.equals("player1")){
+				line2 = line2.replace("(Player x1)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
+			}
+			if (occupiedNorthAmerica.equals("player2")){
+				line2 = line2.replace("(Player x1)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
+			}
+			if (occupiedNorthAmerica.equals("player3")){
+				line2 = line2.replace("(Player x1)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
+			}
+			if (occupiedNorthAmerica.equals("player4")){
+				line2 = line2.replace("(Player x1)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
+			}
+			if (occupiedNorthAmerica.equals("player5")){
+				line2 = line2.replace("(Player x1)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
+			}
+			if (occupiedNorthAmerica.equals("player6")){
+				line2 = line2.replace("(Player x1)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
+			}
+		}
+		
+		//update South America
+		if (!(occupiedSorthAmerica.equals("none"))){
+			if (occupiedSorthAmerica.equals("player1")){
+				line2 = line2.replace("(Player x2)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
+			}
+			if (occupiedSorthAmerica.equals("player2")){
+				line2 = line2.replace("(Player x2)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
+			}
+			if (occupiedSorthAmerica.equals("player3")){
+				line2 = line2.replace("(Player x2)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
+			}
+			if (occupiedSorthAmerica.equals("player4")){
+				line2 = line2.replace("(Player x2)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
+			}
+			if (occupiedSorthAmerica.equals("player5")){
+				line2 = line2.replace("(Player x2)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
+			}
+			if (occupiedSorthAmerica.equals("player6")){
+				line2 = line2.replace("(Player x2)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
+			}
+		}
+		//update Africa
+		if (!(occupiedAfrica.equals("none"))){
+			if (occupiedAfrica.equals("player1")){
+				line2 = line2.replace("(Player x3)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
+			}
+			if (occupiedAfrica.equals("player2")){
+				line2 = line2.replace("(Player x3)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
+			}
+			if (occupiedAfrica.equals("player3")){
+				line2 = line2.replace("(Player x3)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
+			}
+			if (occupiedAfrica.equals("player4")){
+				line2 = line2.replace("(Player x3)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
+			}
+			if (occupiedAfrica.equals("player5")){
+				line2 = line2.replace("(Player x3)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
+			}
+			if (occupiedAfrica.equals("player6")){
+				line2 = line2.replace("(Player x3)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
+			}
+		}
+		//update Asia
+		if (!(occupiedAsia.equals("none"))){
+			if (occupiedAsia.equals("player1")){
+				line2 = line2.replace("(Player x4)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
+			}
+			if (occupiedAsia.equals("player2")){
+				line2 = line2.replace("(Player x4)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
+			}
+			if (occupiedAsia.equals("player3")){
+				line2 = line2.replace("(Player x4)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
+			}
+			if (occupiedAsia.equals("player4")){
+				line2 = line2.replace("(Player x4)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
+			}
+			if (occupiedAsia.equals("player5")){
+				line2 = line2.replace("(Player x4)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
+			}
+			if (occupiedAsia.equals("player6")){
+				line2 = line2.replace("(Player x4)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
+			}
+		}
+		//update Europe
+		if (!(occupiedEurope.equals("none"))){
+			if (occupiedEurope.equals("player1")){
+				line2 = line2.replace("(Player x5)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
+			}
+			if (occupiedEurope.equals("player2")){
+				line2 = line2.replace("(Player x5)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
+			}
+			if (occupiedEurope.equals("player3")){
+				line2 = line2.replace("(Player x5)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
+			}
+			if (occupiedEurope.equals("player4")){
+				line2 = line2.replace("(Player x5)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
+			}
+			if (occupiedEurope.equals("player5")){
+				line2 = line2.replace("(Player x5)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
+			}
+			if (occupiedEurope.equals("player6")){
+				line2 = line2.replace("(Player x5)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
+			}
+		}
+		//update Australia
+		if (!(occupiedAustralia.equals("none"))){
+			if (occupiedAustralia.equals("player1")){
+				line2 = line2.replace("(Player x6)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
+			}
+			if (occupiedAustralia.equals("player2")){
+				line2 = line2.replace("(Player x6)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
+			}
+			if (occupiedAustralia.equals("player3")){
+				line2 = line2.replace("(Player x6)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
+			}
+			if (occupiedAustralia.equals("player4")){
+				line2 = line2.replace("(Player x6)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
+			}
+			if (occupiedAustralia.equals("player5")){
+				line2 = line2.replace("(Player x6)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
+			}
+			if (occupiedAustralia.equals("player6")){
+				line2 = line2.replace("(Player x6)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
+			}
+		}
+		
+		// update territoryPercentage Display
+		double roundPlayer1 = Math.round((100 * (double)player1TerritoryNum/42)*100)/100; //player1
+		double roundPlayer2 = Math.round((100 * (double)player2TerritoryNum/42)*100)/100; //player2
+		double roundPlayer3 = Math.round((100 * (double)player3TerritoryNum/42)*100)/100; //player3
+		double roundPlayer4 = Math.round((100 * (double)player4TerritoryNum/42)*100)/100; //player4
+		double roundPlayer5 = Math.round((100 * (double)player5TerritoryNum/42)*100)/100; //player5
+		double roundPlayer6 = Math.round((100 * (double)player6TerritoryNum/42)*100)/100; //player6
+		double roundVictoryMargin = (Math.round(victoryMargin * 100)*100)/100; //player6
+		
+		line2 = line2.replace("ZZZZ1", Helper.terrToString(roundPlayer1)); //player1
+		line2 = line2.replace("ZZZZ2", Helper.terrToString(roundPlayer2)); //player2
+		line2 = line2.replace("ZZZZ3", Helper.terrToString(roundPlayer3)); //player3
+		line2 = line2.replace("ZZZZ4", Helper.terrToString(roundPlayer4)); //player4
+		line2 = line2.replace("ZZZZ5", Helper.terrToString(roundPlayer5)); //player5
+		line2 = line2.replace("ZZZZ6", Helper.terrToString(roundPlayer6)); //player6
+		line2 = line2.replace("ZZZZZ", Helper.terrToString(roundVictoryMargin)); //victory percent
 	    //print map line (final procedure)
 	    System.out.println(line2);
 	}

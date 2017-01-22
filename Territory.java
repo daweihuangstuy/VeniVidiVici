@@ -248,4 +248,74 @@ public class Territory{
 	}
 	return tempArr;
 }
+
+	public static String occupyContinent(String continent){
+		String defaultPlayer;
+		//NorthAmerica
+		if (continent.equals("NorthAmerica")){
+			defaultPlayer = occupier((territoryGraph.Territories[0]));
+			for (int i = 0 ; i <= 8; i++){
+				if (!(defaultPlayer.equals(occupier((territoryGraph.Territories[i]))))){
+					return "none";
+				}
+			}
+			return defaultPlayer;
+		}
+		
+		//SouthAmerica
+		if (continent.equals("SouthAmerica")){
+			defaultPlayer = occupier((territoryGraph.Territories[9]));
+			for (int i = 9 ; i <= 12; i++){
+				if (!(defaultPlayer.equals(occupier((territoryGraph.Territories[i]))))){
+					return "none";
+				}
+			}
+			return defaultPlayer;
+		}
+		
+		//Europe
+		if (continent.equals("Europe")){
+			defaultPlayer = occupier((territoryGraph.Territories[13]));
+			for (int i = 13 ; i <= 19; i++){
+				if (!(defaultPlayer.equals(occupier((territoryGraph.Territories[i]))))){
+					return "none";
+				}
+			}
+			return defaultPlayer;
+		}
+		
+		//Africa
+		if (continent.equals("Africa")){
+			defaultPlayer = occupier((territoryGraph.Territories[20]));
+			for (int i = 20 ; i <= 25; i++){
+				if (!(defaultPlayer.equals(occupier((territoryGraph.Territories[i]))))){
+					return "none";
+				}
+			}
+			return defaultPlayer;
+		}
+		
+		//Asia
+		if (continent.equals("Asia")){
+			defaultPlayer = occupier((territoryGraph.Territories[20]));
+			for (int i = 26 ; i <= 37; i++){
+				if (!(defaultPlayer.equals(occupier((territoryGraph.Territories[i]))))){
+					return "none";
+				}
+			}
+			return defaultPlayer;
+		}
+		
+		//Australia
+		if (continent.equals("Australia")){
+			defaultPlayer = occupier((territoryGraph.Territories[38]));
+			for (int i = 38 ; i <= 41; i++){
+				if (!(defaultPlayer.equals(occupier((territoryGraph.Territories[i]))))){
+					return "none";
+				}
+			}
+			return defaultPlayer;
+		}
+		return "playerNull";
+	}
 }

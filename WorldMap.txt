@@ -49,12 +49,13 @@ Asia---------7 troops          (Player x4)           `. B13___/  /    .`        
 Europe---------3 troops        (Player x5)            . BAC     /  `.``                             .           -   .``.                                  `.`  \F13__/       |  .`                      
 Australia---------2 troops     (Player x6)           ``  |     /  -                                 `.        `.     ``                                   `.    FAC\________F14  .`                     
                                                      -   |    /  .`                                  `.      `.                                            `.               FAD  .`                     
-Player Troops             Player Territories         -   |   / `.                                     .. ```.`                                              -  ``.`````.        `.                      
-Player 1: XX1             Player 1: YY1             ``  B14_/`.`                                       ``                                                    ``        `.``    `.           `.``        
-Player 2: XX2             Player 2: YY2             -   BAD`.`                                                                                                            ``..-`           `. ``        
-Player 3: XX3             Player 3: YY3            ``     .`                                                                                                                 ..`          .` ..         
-Player 4: XX4             Player 4: YY4            .    `.                                                                                                                              `. `.           
-Player 5: XX5             Player 5: YY5            .    -                                                                                                                                ```            
-Player 6: XX6             Player 6: YY6            .   .`                                                                                                                                               
+Player Troops          Player Territories            -   |   / `.                                     .. ```.`                                              -  ``.`````.        `.                      
+Player 1: XX1          Player 1: YY1  (ZZZZ1%)      ``  B14_/`.`                                       ``                                                    ``        `.``    `.           `.``        
+Player 2: XX2          Player 2: YY2  (ZZZZ2%)      -   BAD`.`                                                                                                            ``..-`           `. ``        
+Player 3: XX3          Player 3: YY3  (ZZZZ3%)     ``     .`                                                                                                                 ..`          .` ..         
+Player 4: XX4          Player 4: YY4  (ZZZZ4%)     .    `.                                                                                                                              `. `.           
+Player 5: XX5          Player 5: YY5  (ZZZZ5%)     .    -                                                                                                                                ```            
+Player 6: XX6          Player 6: YY6  (ZZZZ6%)     .   .`                                                                                                                                               
                                                    `.` ``                                                                                                                                               
-                                                    ``.`.                                                                                                        													
+                       Victory: ZZZZZ%              ``.`.     
+					   
