@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class territoryGraph{
-    public static Object targetObj; 
+    public static ArrayList<String> targetObj = new ArrayList<String>(); 
     
     //represents the territories adjacent to a given territory
     public static ArrayList<ArrayList<String>> teriGraph = new ArrayList<ArrayList<String>>();
@@ -20,28 +20,28 @@ public class territoryGraph{
 						      "D11","D12","D13","D14","D15","D16",
 						      "E11","E12","E13","E14","E15","E16","E17","E18","E19","E21","E22","E23",
 						      "F11","F12","F13","F14"};
-	public static String[] TerritoryCode = new String[]{"AAA","AAB","AAC","AAD",
-						      "AAE","AAF","AAG","AAH",
-						      "AAI",
-						      "BAA","BAB","BAC","BAD",
-						      "CAA","CAB","CAC","CAD",
-						      "CAE","CAF","CAG",
-						      "DAA","DAB","DAC",
-						      "DAD","DAE","DAF",
-						      "EAA","EAB","EAC","EAD",
-						      "EAE","EAF","EAG","EAH",
-						      "EAI","EBA","EBB","EBC",
-						      "FAA","FAB","FAC","FAD",};
-							  
-	public static boolean validTerritory(String inputTeri){
-		boolean booleanFlag = false;
-		for (String x : Territories){
-			if (x.equals(inputTeri)){
-				booleanFlag = true;
-			}
-		}
-		return booleanFlag;
+    public static String[] TerritoryCode = new String[]{"AAA","AAB","AAC","AAD",
+							"AAE","AAF","AAG","AAH",
+							"AAI",
+							"BAA","BAB","BAC","BAD",
+							"CAA","CAB","CAC","CAD",
+							"CAE","CAF","CAG",
+							"DAA","DAB","DAC",
+							"DAD","DAE","DAF",
+							"EAA","EAB","EAC","EAD",
+							"EAE","EAF","EAG","EAH",
+							"EAI","EBA","EBB","EBC",
+							"FAA","FAB","FAC","FAD"};
+    
+    public static boolean validTerritory(String inputTeri){
+	boolean booleanFlag = false;
+	for (String x : Territories){
+	    if (x.equals(inputTeri)){
+		booleanFlag = true;
+	    }
 	}
+	return booleanFlag;
+    }
     public static ArrayList<String> A11 = new ArrayList<String>();
     public static ArrayList<String> A12 = new ArrayList<String>();
     public static ArrayList<String> A13 = new ArrayList<String>();
@@ -84,9 +84,18 @@ public class territoryGraph{
     public static ArrayList<String> F12 = new ArrayList<String>();
     public static ArrayList<String> F13 = new ArrayList<String>();
     public static ArrayList<String> F14 = new ArrayList<String>();
-    //add more etc*****************************************************
     
-    public static void main(String args[]){
+    public static void main(String[] args){
+	setUp();
+	System.out.println(getSize("A11"));
+    }
+
+    public static int getSize(String arr){
+	convertStrToObject(arr);
+	return targetObj.size();
+    }
+
+    public static void setUp(){
 	//add territories adjacent to A11
 	A11.add("A13"); A11.add("A15"); A11.add("A16"); A11.add("C11");
 	teriGraph.add(A11);
@@ -102,12 +111,12 @@ public class territoryGraph{
 	//add territories adjacent to A14
 	A14.add("A12"); A14.add("A13"); A14.add("A15"); A14.add("A17");
 	teriGraph.add(A14);
-
+	
 	//add territories adjacent to A15
 	A15.add("A13"); A15.add("A14"); A15.add("A18"); A15.add("A16");
 	A15.add("A11");
 	teriGraph.add(A15);
-
+	
 	//add territories adjacent to A16
 	A16.add("A15"); A16.add("A18"); A16.add("A11");
 	teriGraph.add(A16);
@@ -115,11 +124,11 @@ public class territoryGraph{
 	//add territories adjacent to A17
 	A17.add("A14"); A17.add("A18"); A17.add("A19");
 	teriGraph.add(A17);
-
+	
 	//add territories adjacent to A18
 	A18.add("A15"); A18.add("A17"); A18.add("A19"); A18.add("A16");
 	teriGraph.add(A18);
-
+	
 	//add territories adjacent to A19
 	A19.add("A17"); A19.add("A18"); A19.add("B11");
 	teriGraph.add(A19);
@@ -131,27 +140,27 @@ public class territoryGraph{
 	//add territories adjacent to B12
 	B12.add("B11");	B12.add("B13"); B12.add("B14");B12.add("D12");
 	teriGraph.add(B12);
-
+	
 	//add territories adjacent to B13
 	B13.add("B11");	B13.add("B14"); B13.add("B12");
 	teriGraph.add(B13);
-
+	
 	//add territories adjacent to B14
 	B14.add("B13");	B14.add("B12");
 	teriGraph.add(B14);
-
+	
 	//add territories adjacent to C11
 	C11.add("A11"); C11.add("C12"); C11.add("C13");
 	teriGraph.add(C11);
-
+	
 	//add territories adjacent to C12
 	C12.add("C11"); C12.add("C15"); C12.add("C13"); C12.add("14");
 	teriGraph.add(C12);
-
+	
 	//add territories adjacent to C13
 	C13.add("C11"); C13.add("C12"); C13.add("C14"); C13.add("C16");
 	teriGraph.add(C13);
-
+	
 	//add territories adjacent to C14
 	C14.add("C12"); C14.add("C13"); C14.add("C15"); C14.add("C16");
 	C14.add("C17");
@@ -264,8 +273,6 @@ public class territoryGraph{
 	//add territories adjacent to F14
         F14.add("F12"); F14.add("F13");
 	teriGraph.add(F14);
-	
-	//add more etc*****************************************************
     }
     
     public static void convertStrToObject(String obj){
@@ -396,7 +403,17 @@ public class territoryGraph{
 	    targetObj = F14;
 	}
     }
-
+    
+    public static boolean isConnect(String location, String target){
+	convertStrToObject(location);
+	for (int i = 0; i < targetObj.size(); i++){
+	    if (targetObj.get(i).equals(target)){
+		return true;
+	    }
+	}
+	return false;
+    }
+    
     public boolean isIn(String target){
 	for (String x : Territories){
 	    if (x == target){

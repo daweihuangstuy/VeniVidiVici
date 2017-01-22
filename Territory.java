@@ -2,7 +2,9 @@ import java.util.ArrayList;
 
 public class Territory{
     public static String[][] territory = new String[42][3];
+    public static String[][] connect = new String[42][6];
     public Territory(){	
+	// initialize territory
 	territory[0][0] = "A11"; territory[0][1] = "0"; territory[0][2] = "no";
 	territory[1][0] = "A12"; territory[1][1] = "0"; territory[1][2] = "no";
 	territory[2][0] = "A13"; territory[2][1] = "0"; territory[2][2] = "no";
@@ -95,11 +97,11 @@ public class Territory{
 	for (int i = 0; i < territory.length; i++){
 	    if (territory[i][2].equals(player)){
 		territoryNum += 1;
-			}
+	    }
 	}
 	return territoryNum;
     }
-
+    
     public static String findOwner(String target){
 	for (int i = 0; i < territory.length; i++){
 	    if (territory[i][0].equals(target)){
@@ -121,7 +123,7 @@ public class Territory{
 			   "\nPosition: " + target);
 	
     }
-
+    
     public static boolean updateStat(String target, String offense, int numWin){
 	int loc = findLocation(target);
 	String defense = occupier(target);
@@ -132,109 +134,111 @@ public class Territory{
 	    Woo.removeTerritory(target, defense);
 	    Woo.subtractTerritory(defense);
 	    Woo.addTerritory(target, offense);
+	    Woo.removeTerritory(defense, target);
 	    return true;
 	}
 	return false;
     }
 	
-	public static boolean isVictory (String player, double winMargin){
+    public static boolean isVictory (String player, double winMargin){
 		if (territoryNumber(player) > (int)(winMargin * 42)){
-			return true;
+		    return true;
 		}
 		else {
-			return false;
+		    return false;
 		}
     }    
-	public static String occupier(String terr){
-		return territory[findLocation(terr)][2];
+    public static String occupier(String terr){
+	return territory[findLocation(terr)][2];
+    }
+    
+    public static int calcAddTroops (String player){
+	int startTroops = 0;
+	boolean NorthAmerica = true; //A
+	boolean SouthAmerica = true; //B
+	boolean Europe = true; //C
+	boolean Africa = true; //D
+	boolean Asia = true; //E
+	boolean Australia = true; //F
+	//check to see if player has a monopoly on any continents
+	//check North America
+	int index = 0;
+	for (int i = index ; i <= 8; i++){
+	    NorthAmerica = occupier((territoryGraph.Territories[i])).equals(player);
+	    if (NorthAmerica == false){
+		break;
+	    } 
 	}
-	
-	public static int calcAddTroops (String player){
-		int startTroops = 0;
-		boolean NorthAmerica = true; //A
-		boolean SouthAmerica = true; //B
-		boolean Europe = true; //C
-		boolean Africa = true; //D
-		boolean Asia = true; //E
-		boolean Australia = true; //F
-		//check to see if player has a monopoly on any continents
-		//check North America
-		int index = 0;
-		for (int i = index ; i <= 8; i++){
-			NorthAmerica = occupier((territoryGraph.Territories[i])).equals(player);
-			if (NorthAmerica == false){
-				break;
-			} 
-		}
-		//check South America
-		index = 9;
-		for (int i = index ; i <= 12; i++){
+	//check South America
+	index = 9;
+	for (int i = index ; i <= 12; i++){
 			SouthAmerica = occupier((territoryGraph.Territories[i])).equals(player);
 			if (SouthAmerica == false){
-				break;
+			    break;
 			} 
-		}
-		//check Europe
-		index = 13;
-		for (int i = index ; i <= 19; i++){
-			Europe = occupier((territoryGraph.Territories[i])).equals(player);
-			if (Europe == false){
-				break;
-			} 
-		}
-		//check Africa
-		index = 20;
-		for (int i = index ; i <= 25; i++){
+	}
+	//check Europe
+	index = 13;
+	for (int i = index ; i <= 19; i++){
+	    Europe = occupier((territoryGraph.Territories[i])).equals(player);
+	    if (Europe == false){
+		break;
+	    } 
+	}
+	//check Africa
+	index = 20;
+	for (int i = index ; i <= 25; i++){
 			Africa = occupier((territoryGraph.Territories[i])).equals(player);
 			if (Africa == false){
-				break;
+			    break;
 			} 
-		}
-		//check Asia
-		index = 26;
+	}
+	//check Asia
+	index = 26;
 		for (int i = index ; i <= 37; i++){
-			Asia = occupier((territoryGraph.Territories[i])).equals(player);
-			if (Asia == false){
-				break;
-			} 
+		    Asia = occupier((territoryGraph.Territories[i])).equals(player);
+		    if (Asia == false){
+			break;
+		    } 
 		}
 		//check Australia
 		index = 38;
 		for (int i = index ; i <= 41; i++){
-			Australia = occupier((territoryGraph.Territories[i])).equals(player);
-			if (Australia == false){
-				break;
-			} 
+		    Australia = occupier((territoryGraph.Territories[i])).equals(player);
+		    if (Australia == false){
+			break;
+		    } 
 		}
 		
 		if (NorthAmerica == true){
-			startTroops += 5;
+		    startTroops += 5;
 		}
 		if (SouthAmerica == true){
-			startTroops += 2;
+		    startTroops += 2;
 		}
 		if (Europe == true){
-			startTroops += 3;
+		    startTroops += 3;
 		}
 		if (Africa == true){
-			startTroops += 3;
+		    startTroops += 3;
 		}
 		if (Asia == true){
-			startTroops += 7;
+		    startTroops += 7;
 		}
 		if (Australia == true){
-			startTroops += 2;
+		    startTroops += 2;
 		}
 		
 		int terrBonus = (int)((double)(territoryNumber(player)) / 3);
 		if (terrBonus <= 3){
-			startTroops += 3;
+		    startTroops += 3;
 		}
 		else {
-			startTroops += terrBonus;
+		    startTroops += terrBonus;
 		}
 		return startTroops;
-	}
+    }
+
 	public static ArrayList<String> availTerr(String player){
 	ArrayList<String> tempArr = new ArrayList<String>();
 	for (int i = 0; i < territory.length; i++){

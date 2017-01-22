@@ -250,7 +250,11 @@ public class Woo {
 			
 			terriInfo = game.getTerritoryInfo();
 			troopPresent = game.troopPresent();
+
 			// update territories
+
+			//	update territories
+
 			if (playerTurn.equals("player1")){
 			player1Occupied = game.terriOccupier(playerTurn);
 			}
@@ -270,14 +274,19 @@ public class Woo {
 			player6Occupied = game.terriOccupier(playerTurn);
 			}
 			
+
 			// update troopNumbers
 			// player1TroopNum = game.troopNumber("player1");
+
+			//	update troopNumbers
+			player1TroopNum = game.troopNumber("player1");
 			player2TroopNum = game.troopNumber("player2");
 			player3TroopNum = game.troopNumber("player3");
 			player4TroopNum = game.troopNumber("player4");
 			player5TroopNum = game.troopNumber("player5");
 			player6TroopNum = game.troopNumber("player6");
-			// update territoryNumbers
+
+			//	update territoryNumbers
 			player1TerritoryNum = game.territoryNumber("player1");
 			player2TerritoryNum = game.territoryNumber("player2");
 			player3TerritoryNum = game.territoryNumber("player3");
@@ -293,25 +302,61 @@ public class Woo {
 		System.out.println("\nIt is " + playerTurn + "'s turn");
 		System.out.println("\nType the territory to send troops from");
 		String location = cs1.Keyboard.readString();
-		while (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
-		    System.out.println("\nSorry, this location is invalid, please try again");
-		    location = cs1.Keyboard.readString();
+		while (Territory.findLocation(location) == -1 ||
+		       !game.territory[game.findLocation(location)][2].equals(playerTurn)){
+		       
+		       if (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
+			   System.out.println("\nSorry, this location is invalid, please try again");
+			   location = cs1.Keyboard.readString();
+		       }
+		       if (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
+			   System.out.println("\nSorry, this is not your territory, please try again");
+			   location = cs1.Keyboard.readString();
+		       }
 		}
 		System.out.println("\nType the territory that you want to attack");
 		String target = cs1.Keyboard.readString();
-		while (Territory.findLocation(target) == -1){ // need another feature : this territory is yours
-		    System.out.println("\nSorry, this location is invalid, please try again");
-		    target = cs1.Keyboard.readString();
+
+		territoryGraph.setUp();
+		
+		while (Territory.findLocation(target) == -1 ||
+		       game.territory[game.findLocation(target)][2].equals(playerTurn) ||
+		       territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
+		    if (Territory.findLocation(target) == -1){
+			System.out.println("\nSorry, this location is invalid, please try again");
+			target = cs1.Keyboard.readString();
+		    }
+		    if (game.territory[game.findLocation(target)][2].equals(playerTurn)){
+			System.out.println("\nSorry, this is your territory, please try again");
+			target = cs1.Keyboard.readString();
+		    }
+		    if (territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
+			System.out.println("Sorry, these two territories is not connected, please try again");
+			target = cs1.Keyboard.readString();
+		    }
 		}
 		System.out.println("\nType the number of troops to use, you can use a maximum of 3");
 		int attTroops = cs1.Keyboard.readInt();
-		while (attTroops > 3){
-		    System.out.println("Sorry, you can only have a maximum number of 3, please try again");
-		    attTroops = cs1.Keyboard.readInt();
-		}
-		while (attTroops < 1){
-		    System.out.println("Sorry, you need at least a minimum number of 1, please try again");
-		    attTroops = cs1.Keyboard.readInt();
+		while (attTroops > 3 || // check is the at most 3 troops
+		       attTroops < 1 || // check is there at least 1 troop
+		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // check is there at least one troop to protect your territory
+		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){// check if this territory have enough troops
+			if (attTroops > 3){
+			System.out.println("Sorry, you can only have a maximum number of 3, please try again");
+			attTroops = cs1.Keyboard.readInt();
+		    }
+		    if (attTroops < 1){
+			System.out.println("Sorry, you need at least a minimum number of 1, please try again");
+			   attTroops = cs1.Keyboard.readInt();
+		    }
+		    if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0){
+			System.out.println("Sorry, you need at least 1 troops to protect you current territory, please try again");
+			attTroops = cs1.Keyboard.readInt();
+		    }
+		    if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){
+			System.out.println("Sorry, you don't have enough troops in this territory, please try again");
+			attTroops = cs1.Keyboard.readInt();
+		    }
 		}
 		int numWin = 0;
 		String defense = Territory.findOwner(target);
@@ -338,6 +383,7 @@ public class Woo {
 		conquer = Territory.updateStat(target, playerTurn, numWin);
 		if (conquer){
 		    game.territory[game.findLocation(target)][2] = playerTurn;
+		    game.territory[game.findLocation(location)][1] = Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops + "";
 		}
 		//update(playerTurn);
 		
@@ -566,29 +612,7 @@ public class Woo {
 	    //print map line (final procedure)
 	    System.out.println(line2);
 	}
-	/*
-	//for move feature
 
-		//move feature
-    if (playerTurn.equals("player1")){
-	occupied = player1Occupied;
-    }
-    if (playerTurn.equals("player2")){
-	occupied = player2Occupied;
-    }
-    if (playerTurn.equals("player3")){
-	occupied = player3Occupied;
-    }
-    if (playerTurn.equals("player4")){
-	occupied = player4Occupied;
-    }
-    if (playerTurn.equals("player5")){
-	occupied = player5Occupied;
-    }
-    if (playerTurn.equals("player6")){
-	occupied = player6Occupied;
-    }
-	*/
     }
     //*******************************************************************************
     //helpful methods
@@ -658,31 +682,55 @@ public class Woo {
 	}
 	return numWin;
     }
-
+    
+    //move
     /*
-    public static void move(ArrayList<String> occupied, int numTroops, String origin, String destination){
-	for ( String terr : occupied ){
-	    if (origin != terr){
-		System.out.println("Sorry, you do not occupy " + origin + ". Please choose another territory to move your troops from.");
-	    }
-	}
-	
-	for ( String terr : occipied ) {
-	    if (destination != terr) {
-		System.out.println("Sorry, you do not occupy " + destination + ". Please choose another territory to move your troops to.");
-	    }
-	}
-	//	if (numTroops @ origin  > 0){
-	    //troops @ origin -= numToops;
-	    //troops @destination += numTroops;
+    //public ArrayList occupied = new ArrayList[][];
+public static void move(ArrayList<String> occupied, int numTroops, String origin, String destination){
 
-	}
-	else{
-	    System.out.println("Sorry, you do not have enough troops to move to the destination. Please try moving troops from a different territory.");
+    if (playerTurn.equals("player1")){
+	occupied = player1Occupied;
+    }
+    if (playerTurn.equals("player2")){
+	occupied = player2Occupied;
+    }
+    if (playerTurn.equals("player3")){
+	occupied = player3Occupied;
+    }
+    if (playerTurn.equals("player4")){
+	occupied = player4Occupied;
+    }
+    if (playerTurn.equals("player5")){
+	occupied = player5Occupied;
+    }
+    if (playerTurn.equals("player6")){
+	occupied = player6Occupied;
+    }
 
+
+    int ctrO = 0;
+    int ctrD = 0;
+    for ( String terr : occupied ){
+	if (origin == terr){
+	    //ctrO = occupied.indexOf(origin);
+	    // troopPresent[ctrO][]; //array --> array list
+	    System.out.println("Moving troops from " + origin);
+	}
+	System.out.println("Sorry, you do not occupy " + origin + ". Please choose another territory to move your troops from.");	
+    }
+    for ( String terr : occupied ) {
+	if (destination == terr) {
+	    // ctrD = occupied.indexOf(destination);
+	    //troopPresent[ctrD] += numTroops;
+	    System.out.println("Moving troops to " + destination);
+	}
+	System.out.println("Sorry, you do not occupy " + destination + ". Please choose another territory to move your troops to.");
     }
     */
-	
+    
+    // System.out.println("Sorry, you do not have enough troops to move to the destination. Please try moving troops from a different territory.");
+
+
     public static void updateTroops(String player){
 	if (player.equals("player1")){
 	    player1TroopNum -= 1;

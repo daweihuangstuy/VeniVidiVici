@@ -112,8 +112,17 @@ Fabiola :: Worked on move feature
 
 2017-01-17
 --------------------------------------------------------------
-Yuqi :: Worked on Woo.java and map issues
+Yuqi :: Worked on Woo.java and map issues and wrote README
 Dawei :: Worked on Woo.java and map issues
-Fabiola :: continued to work on move feature
+Fabiola :: continued to work on move feature and made changes
+to README file
+==============================================================
+
+2017-01-18
+--------------------------------------------------------------
+Yuqi :: Worked on attack
+Dawei :: Worked on attack
+Fabiola :: finished move feature to be tested with Woo.java
+and updated README with clearer instructions
 ==============================================================
 
