@@ -26,7 +26,7 @@ public class Woo {
 	
 	//playerOccupied Continents
 	static String occupiedNorthAmerica = "none";
-	static String occupiedSorthAmerica = "none";
+	static String occupiedSouthAmerica = "none";
 	static String occupiedAfrica = "none";
 	static String occupiedAsia = "none";
 	static String occupiedEurope = "none";
@@ -86,8 +86,9 @@ public class Woo {
 	while (playerOrder.get(rounds % playerOrder.size()) != ""){
 		endGame();
 	    playerTurn = playerOrder.get(rounds % playerOrder.size());
+		String playColor = playerColor(playerTurn);
 	    System.out.println("Order of Play: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1));
-	    System.out.println("\nIt is " + playerTurn + "'s turn");
+	    System.out.println("\nIt is " + playColor + "'s turn");
 	    System.out.println(playerTurn + " has " + findTroopNum(playerTurn) + " troops left to place\n");
 	    System.out.println("Type the territory to place troops (To automatically place remaining troops, type 'autoPlace'): ");	
 	    String initTerritory = cs1.Keyboard.readString();
@@ -128,7 +129,7 @@ public class Woo {
 			
 			//update continentOccupied
 			occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
-			occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+			occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
 			occupiedAfrica = game.occupyContinent("Africa");
 			occupiedAsia = game.occupyContinent("Asia");
 			occupiedEurope = game.occupyContinent("Europe");
@@ -175,7 +176,6 @@ public class Woo {
 			} 
 			endGame();
 		}
-		System.out.println("hawd");
 		if (autoPlace == true){
 			break;
 		}
@@ -197,7 +197,7 @@ public class Woo {
 			troopPresent = game.troopPresent();
 			//update continentOccupied
 			occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
-			occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+			occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
 			occupiedAfrica = game.occupyContinent("Africa");
 			occupiedAsia = game.occupyContinent("Asia");
 			occupiedEurope = game.occupyContinent("Europe");
@@ -251,9 +251,10 @@ public class Woo {
 		
 		endGame();
 		playerTurn = playerOrder.get(rounds % playerOrder.size());
+		String playColor = playerColor(playerTurn);
 		int additionalTroops = Territory.calcAddTroops(playerTurn);
 		while (additionalTroops > 0){
-			System.out.println(playerTurn + " may place " + additionalTroops + " more additional troops.");
+			System.out.println(playColor + " may place " + additionalTroops + " more additional troops.");
 			System.out.println("Type the territory to place troops  (To automatically place remaining troops, type 'autoPlace'):");	
 			String placeTerritory = cs1.Keyboard.readString();
 			if (placeTerritory.equals("autoPlace")){
@@ -302,7 +303,7 @@ public class Woo {
 			
 			//update continentOccupied
 			occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
-			occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+			occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
 			occupiedAfrica = game.occupyContinent("Africa");
 			occupiedAsia = game.occupyContinent("Asia");
 			occupiedEurope = game.occupyContinent("Europe");
@@ -384,7 +385,7 @@ public class Woo {
 				}
 				//update continentOccupied
 				occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
-				occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+				occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
 				occupiedAfrica = game.occupyContinent("Africa");
 				occupiedAsia = game.occupyContinent("Asia");
 				occupiedEurope = game.occupyContinent("Europe");
@@ -417,7 +418,7 @@ public class Woo {
 		endGame();
 	    int numPlay = 1;
 	    while (numPlay >= 0){
-		System.out.println("\nIt is " + playerTurn + "'s turn");
+		System.out.println("\nIt is " + playColor + "'s turn");
 		System.out.println("\nType the territory to send troops from");
 		String location = cs1.Keyboard.readString();
 		while (Territory.findLocation(location) == -1 ||
@@ -507,7 +508,7 @@ public class Woo {
 		
 		//update continentOccupied
 		occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
-		occupiedSorthAmerica = game.occupyContinent("SorthAmerica");
+		occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
 		occupiedAfrica = game.occupyContinent("Africa");
 		occupiedAsia = game.occupyContinent("Asia");
 		occupiedEurope = game.occupyContinent("Europe");
@@ -760,23 +761,23 @@ public class Woo {
 		}
 		
 		//update South America
-		if (!(occupiedSorthAmerica.equals("none"))){
-			if (occupiedSorthAmerica.equals("player1")){
+		if (!(occupiedSouthAmerica.equals("none"))){
+			if (occupiedSouthAmerica.equals("player1")){
 				line2 = line2.replace("(Player x2)", ANSI_BLUE + "(Player 01)" + ANSI_RESET); //player1
 			}
-			if (occupiedSorthAmerica.equals("player2")){
+			if (occupiedSouthAmerica.equals("player2")){
 				line2 = line2.replace("(Player x2)", ANSI_GREEN + "(Player 02)" + ANSI_RESET); //player2
 			}
-			if (occupiedSorthAmerica.equals("player3")){
+			if (occupiedSouthAmerica.equals("player3")){
 				line2 = line2.replace("(Player x2)", ANSI_RED + "(Player 03)" + ANSI_RESET); //player3
 			}
-			if (occupiedSorthAmerica.equals("player4")){
+			if (occupiedSouthAmerica.equals("player4")){
 				line2 = line2.replace("(Player x2)", ANSI_YELLOW + "(Player 04)" + ANSI_RESET); //player4
 			}
-			if (occupiedSorthAmerica.equals("player5")){
+			if (occupiedSouthAmerica.equals("player5")){
 				line2 = line2.replace("(Player x2)", ANSI_PURPLE + "(Player 05)" + ANSI_RESET); //player5
 			}
-			if (occupiedSorthAmerica.equals("player6")){
+			if (occupiedSouthAmerica.equals("player6")){
 				line2 = line2.replace("(Player x2)", ANSI_CYAN + "(Player 06)" + ANSI_RESET); //player6
 			}
 		}
@@ -1127,6 +1128,28 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
 			nullCounter += 1;
 		}
 		return nullCounter;
+	}
+	
+	public static String playerColor(String player){
+		if (player.equals("player1")){
+			return (ANSI_BLUE + "player1" + ANSI_RESET);
+		}
+		if (player.equals("player2")){
+			return (ANSI_GREEN + "player2" + ANSI_RESET);
+		}
+		if (player.equals("player3")){
+			return (ANSI_RED + "player3" + ANSI_RESET);
+		}
+		if (player.equals("player4")){
+			return (ANSI_YELLOW + "player4" + ANSI_RESET);
+		}
+		if (player.equals("player5")){
+			return (ANSI_PURPLE + "player5" + ANSI_RESET);
+		}
+		if (player.equals("player6")){
+			return (ANSI_CYAN + "player6" + ANSI_RESET);
+		}
+		return "playerNull";
 	}
 	
 	public static void endGame(){
