@@ -43,7 +43,7 @@ The steps below represents a player's turn. The players would continue taking tu
 	2. The amount of soldiers that you would like to move. It can move as much soldiers as you want but you must have at the very least one soldier to guard your territory.
 	3. The territory that you would like to move your troops to. It can only move troops to your own territory.
 
-Rules:
+<h2>Rules:<\h2>
 
 You can use the attack command as many times as you want, but you can only use a maximum of 3 troops during each attack. 
 You should also keep in mind that you will need to have at least 1 troop stay in your original territory so that you maintain ownership of that territory. 
