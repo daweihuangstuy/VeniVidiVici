@@ -10,23 +10,33 @@ pd 4
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- map with color
+
 wow we so BOSS bc...
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- during attack, you might pick a territory
+that is surrounded by your territories, so 
+you actually can't attack anyone and stuck
+at there.
+
 blah blah pesky bug...
 maybe some of these will move into the Obs.Ovrcm section...
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- how to add color in terminal
 wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
+- we changed table to map because this is 
+much more cooler and it is easier to follow
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- we learned that
 tales of wisdom gained...
 ||||||||||||||||||||||||||||||||||||||||||
 
@@ -139,11 +149,30 @@ Fabiola :: finished move feature to be tested with Woo.java
 and updated README with clearer instructions
 ==============================================================
 
-2017-01-18
+2017-01-19
 --------------------------------------------------------------
-Yuqi :: Worked on attack
+Yuqi :: Worked on attack 
 Dawei :: Worked on attack
-Fabiola :: finished move feature to be tested with Woo.java
-and updated README with clearer instructions
+Fabiola :: tested move
+==============================================================
+
+2017-01-20
+--------------------------------------------------------------
+Yuqi :: Worked on attack 
+Dawei :: Worked on placement, updated Territory
+Fabiola :: updated move
+==============================================================
+
+2017-01-21
+--------------------------------------------------------------
+Yuqi :: Finished isConnect
+Dawei :: Added autoPlace feature and endGame feature
+==============================================================
+
+2017-01-22
+--------------------------------------------------------------
+Yuqi :: Added exit, debuged attack
+Dawei :: Worked on occupied feature, updated README and other
+instructions
 ==============================================================
 
