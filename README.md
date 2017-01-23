@@ -28,6 +28,7 @@ Before the game starts, there is an initial placement period where you each take
 After the game begins and it is your turn, you have the option of using your troops to attack enemy territory, or moving your troops to a different territory. Follow the prompts that appear in the terminal window.
 
 The steps below represents a player's turn. The players would continue taking turns until a single player has occupied enough territories to win the game.
+
 	To place troops, type
 	1. The territory where you would like to place one troop
 	2. Repeat the first step until all your troops have been placed. To place troops at random, you can type "autoPlace" to automatically place the remainder of your troops.
