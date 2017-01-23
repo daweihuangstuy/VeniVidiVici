@@ -1,4 +1,4 @@
-<h1>RISK</h1>
+<h1>RISK (The Game of World Domination!!!)</h1>
 
 About the game:
 
