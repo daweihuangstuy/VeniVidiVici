@@ -10,9 +10,17 @@ RISK
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- import a map from other filex
-- map with color
+- import a map from other file
+- being able to update the map at regulat intervals
+- being able to store the game information by creating an instance of class Territory.
+- having four independent features. (initial placement, round placement, round attack, round move)
+- have the round features repeat once everytime someone were to move.
+- allow the player to move and attack an infinite amount of time.
+- include checks to notify the user if they had entered incorrect information. If so, the program
+would prompt them to reenter their info.
+- print the map in terminal with colors to indicate player occupation of territory
 - attack only the connected territories
+- being able to move only to your own territories
 - take turn between players to play
 - updating the status and color on map
 
@@ -24,13 +32,12 @@ UNRESOLVED ISSUES
 that is surrounded by your territories, so 
 you actually can't attack anyone and stuck
 at there.
-
-- this is not really a issue, but you cannot
-move your troops from 1 place to another even
-though it is connected by your territories.
-This means that it will take you more time to
-do the moving. That you have move them from one
-territory to another territory that is connected.
+- In the game risk, when moving troops you can
+only move troops among your own territories if it
+is connected by means of land or ocean bridges. We
+have tried to implement this feature but it failed
+so we decided to allow the player to move freely among
+their own territories.
 
 blah blah pesky bug...
 maybe some of these will move into the Obs.Ovrcm section...
@@ -66,6 +73,17 @@ to work well. That thinking it in mind is
 easy, but it is hard to tranfer our ideas
 into codes. So we were forced to give up
 some features.
+- it is best to constantly refer back to the
+flowchart and uml diagram when one is doing
+this project.
+- incremental development is very important 
+especially in the case of a large complex
+game like Risk since it is easier to catch
+mistakes going step by step then going for it
+all at once.
+- It is better to write a lot of helper method
+than to try to include it all in a huge method.
+The helper methods may be useful in the future.
 
 tales of wisdom gained...
 ||||||||||||||||||||||||||||||||||||||||||
@@ -174,7 +192,9 @@ to README file
 2017-01-18
 --------------------------------------------------------------
 Yuqi :: Worked on attack
-Dawei :: Worked on attack
+Dawei :: -Worked on the attack feature
+	 -fixed the terminal representation of the map after
+	 the attack is performed.
 Fabiola :: finished move feature to be tested with Woo.java
 and updated README with clearer instructions
 ==============================================================
@@ -182,27 +202,48 @@ and updated README with clearer instructions
 2017-01-19
 --------------------------------------------------------------
 Yuqi :: Worked on attack 
-Dawei :: Worked on attack
+Dawei :: -Worked on attack
+	 -modified the probability of attack to 50-50 for the 
+	 success of offense or defense troops.
 Fabiola :: tested move
 ==============================================================
 
 2017-01-20
 --------------------------------------------------------------
 Yuqi :: Worked on attack 
-Dawei :: Worked on placement, updated Territory
+Dawei :: -worked on the round placement feature. This feature
+	 would allow players to place additional troops at the
+	 start of their turn.
+	 -created isVictory method to continually check if any
+	 player has won the game when the set victory margin is
+	 reached.
+
+Worked on placement, updated Territory
 Fabiola :: updated move
 ==============================================================
 
 2017-01-21
 --------------------------------------------------------------
 Yuqi :: Finished isConnect
-Dawei :: Added autoPlace feature and endGame feature
+Dawei :: -Created the autoplace feature for initial placement and 
+	 round placement. The autoplace feature would allow the user
+	 to automatically place troops on the territories at random.
+	 -The initial autoPlace placement feature will randomly place
+	 the remainder of troops for all of the players. The round
+	 autoPlace feature, on the other hand, could only place your
+	 own troops for that turn.
+	 -rewrote the move feature. It would allow the user to move
+	 any troops among their occupied territories.
+	 -created an endGame feature that would end the game once
+	 a player has occupied the set percentage of territories.
 ==============================================================
 
 2017-01-22
 --------------------------------------------------------------
 Yuqi :: Added exit, debuged attack
-Dawei :: Worked on occupied feature, updated README, finished move
+Dawei :: -Worked on occupied feature, updated README, finished move
+	 -modified isVictory method to check for losers and likewise
+	 remove them from the game.
 Fabiola :: Made the final UML, flowchart
 ==============================================================
 
