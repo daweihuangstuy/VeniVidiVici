@@ -364,7 +364,7 @@ public class Woo {
 					
 					terriInfo = game.getTerritoryInfo();
 				troopPresent = game.troopPresent();
-				//update territories
+				// update territories
 				if (playerTurn.equals("player1")){
 				player1Occupied = game.terriOccupier(playerTurn);
 				}
@@ -414,6 +414,11 @@ public class Woo {
 		}
 		}
 	    
+		
+		
+		
+		
+		
 	    //attack feature
 		endGame();
 	    int numPlay = 1;
@@ -555,6 +560,138 @@ public class Woo {
 		numPlay -= 1;
 	    }
 		// renderMap();	    
+		
+		
+		
+		
+		
+		//Move Feature
+		String territorySelect;
+		String troopSelect;
+		String placeTerritory;
+		String End = "";
+		int moveNum = 0;
+		
+		while (End.equals("exit") == false){
+			//select a territory to move
+			System.out.println(playColor + " may move troops");
+			System.out.println("Please select a territory to move troops");
+			territorySelect = cs1.Keyboard.readString();
+			while (territoryGraph.validTerritory(territorySelect) == false || game.occupier(territorySelect).equals(playerTurn) == false ||
+			Integer.parseInt(game.territory[game.findLocation(territorySelect)][1]) <= 1){
+				while (territoryGraph.validTerritory(territorySelect) == false){
+					System.out.println("You had entered an invalid territory. Please try again");
+					territorySelect = cs1.Keyboard.readString();
+				}
+				while (territoryGraph.validTerritory(territorySelect) == false || game.occupier(territorySelect).equals(playerTurn) == false){
+					if (territoryGraph.validTerritory(territorySelect) == false){
+						break;
+					}
+					System.out.println("You had selected a territory that you do not occupy. Please try again");
+					territorySelect = cs1.Keyboard.readString();
+				} 
+				
+				while ( territoryGraph.validTerritory(territorySelect) == false || game.occupier(territorySelect).equals(playerTurn) == false || 
+				Integer.parseInt(game.territory[game.findLocation(territorySelect)][1]) <= 1){
+					if (territoryGraph.validTerritory(territorySelect) == false){
+						break;
+					}
+					if (game.occupier(territorySelect).equals(playerTurn) == false){
+						break;
+					}
+					System.out.println("You cannot move if there is only one troop on a territory. Please try again.");
+					territorySelect = cs1.Keyboard.readString();
+				}
+			}
+			
+			//select how much troops to move
+			System.out.println("Please select how much troops " + playColor + " would like to move");
+			troopSelect = cs1.Keyboard.readString();
+			while (Helper.checkString(troopSelect) == false || (Integer.parseInt(troopSelect) > (Integer.parseInt(game.territory[game.findLocation(territorySelect)][1]) - 1))){
+				while (Helper.checkString(troopSelect) == false){
+					System.out.println("You entered an invalid quantity. Please try again.");
+					troopSelect = cs1.Keyboard.readString();
+				}
+				while (Helper.checkString(troopSelect) == false || (Integer.parseInt(troopSelect) > (Integer.parseInt(game.territory[game.findLocation(territorySelect)][1]) - 1))){
+					if (Helper.checkString(troopSelect) == false){
+						break;
+					}
+					System.out.println("You must leave at least one troop on the territory when you move");
+					troopSelect = cs1.Keyboard.readString();
+				}
+			}
+			int newtroopSelect = Integer.parseInt(troopSelect);
+			//select where to move your troops
+			System.out.println("Please select the territory " + playColor + " would like to move to.");
+			placeTerritory = cs1.Keyboard.readString();
+			while (territoryGraph.validTerritory(placeTerritory) == false || game.occupier(placeTerritory).equals(playerTurn) == false){
+				while (territoryGraph.validTerritory(placeTerritory) == false){
+					System.out.println("You had entered an invalid territory. Please try again");
+					placeTerritory = cs1.Keyboard.readString();
+				}
+				while (territoryGraph.validTerritory(placeTerritory) == false || game.occupier(placeTerritory).equals(playerTurn) == false){
+					if (territoryGraph.validTerritory(placeTerritory) == false){
+						break;
+					}
+					System.out.println("You had selected a territory that you do not occupy. Please try again");
+					placeTerritory = cs1.Keyboard.readString();
+				}
+			}
+			
+			//update game storage
+			int initialTroop = Integer.parseInt(game.territory[game.findLocation(territorySelect)][1]);
+			game.territory[game.findLocation(territorySelect)][1] = Integer.toString(initialTroop - Integer.parseInt(troopSelect));
+			
+			int finalTroop = Integer.parseInt(game.territory[game.findLocation(placeTerritory)][1]);
+			game.territory[game.findLocation(placeTerritory)][1] = Integer.toString(finalTroop + Integer.parseInt(troopSelect));
+			
+			// update territories
+					if (playerTurn.equals("player1")){
+					player1Occupied = game.terriOccupier(playerTurn);
+					}
+					if (playerTurn.equals("player2")){
+					player2Occupied = game.terriOccupier(playerTurn);
+					}
+					if (playerTurn.equals("player3")){
+					player3Occupied = game.terriOccupier(playerTurn);
+					}
+					if (playerTurn.equals("player4")){
+					player4Occupied = game.terriOccupier(playerTurn);
+					}
+					if (playerTurn.equals("player5")){
+					player5Occupied = game.terriOccupier(playerTurn);
+					}
+					if (playerTurn.equals("player6")){
+					player6Occupied = game.terriOccupier(playerTurn);
+					}
+					//update continentOccupied
+					occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
+					occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
+					occupiedAfrica = game.occupyContinent("Africa");
+					occupiedAsia = game.occupyContinent("Asia");
+					occupiedEurope = game.occupyContinent("Europe");
+					occupiedAustralia = game.occupyContinent("Australia");
+					// update troopNumbers
+					player1TroopNum = game.troopNumber("player1");
+					player2TroopNum = game.troopNumber("player2");
+					player3TroopNum = game.troopNumber("player3");
+					player4TroopNum = game.troopNumber("player4");
+					player5TroopNum = game.troopNumber("player5");
+					player6TroopNum = game.troopNumber("player6");
+					// update territoryNumbers
+					player1TerritoryNum = game.territoryNumber("player1");
+					player2TerritoryNum = game.territoryNumber("player2");
+					player3TerritoryNum = game.territoryNumber("player3");
+					player4TerritoryNum = game.territoryNumber("player4");
+					player5TerritoryNum = game.territoryNumber("player5");
+					player6TerritoryNum = game.territoryNumber("player6");
+					renderMap();
+					
+					System.out.println("Would you like to continue the game? Enter 'exit' to end turn. Enter anything else to continue moving.");
+					End = cs1.Keyboard.readString();
+		}
+		
+		
 		endGame();
 	    rounds+=1;
 	}
@@ -955,6 +1092,7 @@ public class Woo {
 	}
 	return numWin;
     }
+	
     
     //move
     /*

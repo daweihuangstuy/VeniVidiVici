@@ -53,6 +53,7 @@ public class Territory{
 	return territory;
     }
     
+	// return the territory index of a given location
     public static int findLocation(String location){
 	for (int i = 0; i < territory.length; i++){
 	    if (territory[i][0].equals(location)){
@@ -62,6 +63,7 @@ public class Territory{
 	return -1;
     }
     
+	// returns an ArrayList of occupied territories with Troops
     public ArrayList<Integer> troopPresent (){
 	ArrayList<Integer> arr1 = new ArrayList<Integer>();
 	for (int i = 0; i < territory.length; i++){
@@ -72,6 +74,7 @@ public class Territory{
 	return arr1;
     }
     
+	// returns an ArrayList of territories occupied by a player
     public ArrayList<String> terriOccupier (String occupier){
 	ArrayList<String> arr2 = new ArrayList<String>();
 	for (int i = 0; i < territory.length; i++){
@@ -82,6 +85,7 @@ public class Territory{
 	return arr2;
     }
     
+	// returns the amount of troops a player has
     public static int troopNumber(String player){
 	int troopNum = 0;
 	for (int i = 0; i < territory.length; i++){
@@ -92,6 +96,7 @@ public class Territory{
 	return troopNum;
     }
     
+	// returns the number of territories a player has
     public static int territoryNumber(String player){
 	int territoryNum = 0;
 	for (int i = 0; i < territory.length; i++){
@@ -102,6 +107,7 @@ public class Territory{
 	return territoryNum;
     }
     
+	// returns the target
     public static String findOwner(String target){
 	for (int i = 0; i < territory.length; i++){
 	    if (territory[i][0].equals(target)){
@@ -111,6 +117,7 @@ public class Territory{
 	return "";
     }
     
+	// subtracts troops from a location
     public static void subtract(String target){
 	int loc = findLocation(target);
 	int troops = Integer.parseInt(territory[loc][1]);
@@ -124,6 +131,7 @@ public class Territory{
 	
     }
     
+	//updates information after an attack
     public static boolean updateStat(String target, String offense, int numWin){
 	int loc = findLocation(target);
 	String defense = occupier(target);
@@ -140,6 +148,7 @@ public class Territory{
 	return false;
     }
 	
+	// checks to see if a player is victorious
     public static boolean isVictory (String player, double winMargin){
 		if (territoryNumber(player) > (int)(winMargin * 42)){
 		    return true;
@@ -148,10 +157,13 @@ public class Territory{
 		    return false;
 		}
     }    
+	
+	// returns the current occupier of a territory
     public static String occupier(String terr){
 	return territory[findLocation(terr)][2];
     }
     
+	// returns the amount of troops that could be added by a player at the start of the game
     public static int calcAddTroops (String player){
 	int startTroops = 0;
 	boolean NorthAmerica = true; //A
@@ -239,6 +251,7 @@ public class Territory{
 		return startTroops;
     }
 
+	// returns an ArrayList of avaliable territories for autoPlace to randomly place
 	public static ArrayList<String> availTerr(String player){
 	ArrayList<String> tempArr = new ArrayList<String>();
 	for (int i = 0; i < territory.length; i++){
@@ -249,6 +262,7 @@ public class Territory{
 	return tempArr;
 }
 
+	// returns the player or no players that currently occupy a specified continent
 	public static String occupyContinent(String continent){
 		String defaultPlayer;
 		//NorthAmerica
@@ -317,5 +331,36 @@ public class Territory{
 			return defaultPlayer;
 		}
 		return "playerNull";
+	}
+	
+	//returns true if a player owns the given territory, false otherwise.
+	public static boolean playerOwned(String player12, String Terr){
+		return territory[findLocation(Terr)][2].equals(player12);
+	}
+	
+	// returns true if it is a valid Connection, false otherwise. (method exclusive to the move feature)
+	public static boolean validConnection(String player, String initTerritory, String finTerritory){
+		int iteratorCount = 0;
+		ArrayList<String> masterCon = new ArrayList<String>();
+		masterCon.add(initTerritory);
+		for(int i = 0; i < masterCon.size(); i++){
+			masterCon.addAll(territoryGraph.connectedTerr(masterCon.get(i)));
+				for(int a = 0; a < masterCon.size(); a++){
+				if (playerOwned(player, masterCon.get(a)) == false){
+					masterCon.remove(a);
+					a -= 1;
+				}
+			}
+			if (iteratorCount == 200){
+				break;
+			}
+			iteratorCount += 1;
+		}
+		for (int x = 0; x < masterCon.size(); x++){
+			if (masterCon.get(x).equals(finTerritory)){
+				return true;
+			}
+		}
+		return false;
 	}
 }

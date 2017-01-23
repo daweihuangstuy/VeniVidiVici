@@ -84,10 +84,11 @@ public class territoryGraph{
     public static ArrayList<String> F12 = new ArrayList<String>();
     public static ArrayList<String> F13 = new ArrayList<String>();
     public static ArrayList<String> F14 = new ArrayList<String>();
-    
+	
     public static void main(String[] args){
 	setUp();
 	System.out.println(getSize("A11"));
+	System.out.println("yooooooooo");
     }
 
     public static int getSize(String arr){
@@ -154,7 +155,7 @@ public class territoryGraph{
 	teriGraph.add(C11);
 	
 	//add territories adjacent to C12
-	C12.add("C11"); C12.add("C15"); C12.add("C13"); C12.add("14");
+	C12.add("C11"); C12.add("C15"); C12.add("C13"); C12.add("C14");
 	teriGraph.add(C12);
 	
 	//add territories adjacent to C13
@@ -246,7 +247,7 @@ public class territoryGraph{
 	teriGraph.add(E19);
 
 	//add territories adjacent to E21
-	E21.add("E13"); E21.add("E27");
+	E21.add("E13"); E21.add("E17");
 	teriGraph.add(E21);
 
 	//add territories adjacent to E22
@@ -267,7 +268,7 @@ public class territoryGraph{
 	teriGraph.add(F12);
 
 	//add territories adjacent to F13
-	F13.add("R11"); F13.add("F12"); F13.add("F14");
+	F13.add("F11"); F13.add("F12"); F13.add("F14");
 	teriGraph.add(F13);
 
 	//add territories adjacent to F14
@@ -422,4 +423,10 @@ public class territoryGraph{
 	}
 	return false;
     }
+	
+	public static ArrayList<String> connectedTerr(String terrObj){
+		setUp();
+		convertStrToObject(terrObj);
+		return targetObj;
+	}
 }

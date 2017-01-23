@@ -96,4 +96,15 @@ public class Helper{
 		}
 		return "error";
 	}
+	
+	public static boolean checkString(String number){
+		boolean normdefault = true;
+		try{
+			int newt = Integer.parseInt(number);
+		}
+		catch (Exception e){
+			normdefault = false;
+		}
+		return normdefault;
+	}
 }
