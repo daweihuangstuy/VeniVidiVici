@@ -1,31 +1,42 @@
+<h1>RISK
 
-
-
-Instructions:
-
+<h2>Instructions:
 
 First, open terminal and enlarge your terminal window to a size big enough to be able to view the entire world map
 (we suggest 1000) 
     	
 To begin the game, type
-
+```
    javac Woo.java
-
+```
 followed by
-
+```
    java Woo
+```
 
-After the game begins and it is your turn, you have the option of using your troops to attack enemy territory,
-or moving your troops to a different territory. Follow the prompts that appear in the terminal window.
+Enter your game information
+1. Enter start to begin entering the game information.
+2. Enter the amount of players that would participate in the game. There should be at least two and at most six.
+3. Enter the percentage of territory any individual player would have to win in order to be considered the victor of the game.
 
-To attack, type
+Before the game starts, there is an initial placement period where you each take turns placing troops on territories. You can only place one troop at a time on your own territories or an empty territory and not the territories of other players. The players alternate when placing troops. To speed up the process, you may type "autoPlace" to immediately place the remainder of everyone's troops at random.
 
-   
-   
-To move troops, type
+After the game begins and it is your turn, you have the option of using your troops to attack enemy territory, or moving your troops to a different territory. Follow the prompts that appear in the terminal window.
 
+The steps below represents a player's turn. The players would continue taking turns until a single player has occupied enough territories to win the game.
+	To place troops, type
+	1. The territory where you would like to place one troop
+	2. Repeat the first step until all your troops have been placed. To place troops at random, you can type "autoPlace" to automatically place the remainder of your troops.
 
+	To attack, type
+	1. The territory that you would like to mount your attack from
+	2. How much troops you are willing to commit to the attack (at most the amount of troops within that territory and at most 3)
+	3. The territory that you would like to attack. It can be an empty territory or an enemy territory. 
 
+	To move troops, type
+	1. The territory you would like to move your troops from. It can only be from a territory that you occupy.
+	2. The amount of soldiers that you would like to move. It can move as much soldiers as you want but you must have at the very least one soldier to guard your territory.
+	3. The territory that you would like to move your troops to. It can only move troops to your own territory.
 
 Rules:
 
