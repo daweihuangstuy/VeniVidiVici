@@ -4,7 +4,7 @@ Dawei Huang
 Fabiola Radosav
 pd 4
 ---------------------
-<Project>
+RISK
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
@@ -202,7 +202,7 @@ Dawei :: Added autoPlace feature and endGame feature
 2017-01-22
 --------------------------------------------------------------
 Yuqi :: Added exit, debuged attack
-Dawei :: Worked on occupied feature, updated README and other
-instructions
+Dawei :: Worked on occupied feature, updated README, finished move
+Fabiola :: Made the final UML, flowchart
 ==============================================================
 
