@@ -47,16 +47,24 @@ After the game begins and it is your turn, you have the option of using your tro
 	must have at the very least one soldier to guard your territory.
 	3. The territory that you would like to move your troops to. It can only move troops to your own territory.
 
-<h2>Rules:</h2>
+<h2>Rules for the Initial and Round Placement Feature:</h2>
+1. Players could only place troops on territories that they occupy or are not occupied. Player can NEVER place troops on enemy occupied territory.
+2. Players can only place one troop at a time for both the initial and round placement features.
+3. Players must alternate during the initial placement of troops but players do not alternate during the round placement of troops.
+4. Players can type "autoPlace" to automatically place their remaining troops for both initial and round placement at random. For the initial placement, typing "autoPlace" would randomly place the troops of enemies in enemy occupied territory as well.
 
-You can use the attack command as many times as you want, but you can only use a maximum of 3 troops during each attack. 
-You should also keep in mind that you will need to have at least 1 troop stay in your original territory so that you maintain ownership of that territory. 
-For each troop used to attack, the computer will roll a dice to determine the winner of the attack. 
-If the offense wins (the person who initiated the attack), the defense's total number of troops will decrease by one.
-If the defense wins, the offense's total number of troops will decrease by one.
-If you decide to attack an empty territory, or a territory with no troops occupying it, you will automatically gain ownership of that territory.
-You also have the option to move your troops when it is your turn. You can only move troops to a territory that
-you already occupy. 
-So, for example, you CANNOT move your troops to a territory occupied by the enemy army.
+<h2>Rules for the Attack Feature:</h2>
+1. You can use the attack command as many times as you want, but you can only use a maximum of 3 troops during each attack. 
+2. You should also keep in mind that you will need to have at least 1 troop stay in your original territory so that you maintain ownership of that territory. 
+3. For each troop used to attack, the computer will roll a dice to determine the winner of the attack. 
+4. If the offense wins (the person who initiated the attack), the defense's total number of troops will decrease by one.
+5. If the defense wins, the offense's total number of troops will decrease by one.
+6. If you decide to attack an empty territory, or a territory with no troops occupying it, you will automatically gain ownership of that territory.
+7. You also have the option to move your troops when it is your turn. You can only move troops to a territory that you already occupy. So, for example, you CANNOT move your troops to a territory occupied by the enemy army.
+
+<h2>Rules for the Move Feature:</h2>
+1. You can only move troops from your occupied territories to other occupied territories. You cannot move troops from enemy territories nor can you place your troops in enemy territories.
+2. You must leave at least one troop to guard your territory after you move the troops from that territory to another territory.
+3. You may move troops to occupy unoccupied territory.
 
 Whoever conquers the set percentage of territories the players agreed to at the start of the game will be declared the winner!
