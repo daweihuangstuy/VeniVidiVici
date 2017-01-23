@@ -135,15 +135,23 @@ public class Territory{
     public static boolean updateStat(String target, String offense, int numWin){
 	int loc = findLocation(target);
 	String defense = occupier(target);
-	if (territory[loc][1].equals("0")){
-	    territory[loc][2] = offense;
-	    territory[loc][1] = numWin + "";
-	    //Woo.update(
-	    Woo.removeTerritory(target, defense);
-	    Woo.subtractTerritory(defense);
-	    Woo.addTerritory(target, offense);
-	    Woo.removeTerritory(defense, target);
-	    return true;
+	if (! territory[loc][2].equals("no")){
+	    if (territory[loc][1].equals("0")){
+		territory[loc][2] = offense;
+		territory[loc][1] = numWin + "";
+		//Woo.update(
+		Woo.addTerritory(target, offense);
+		Woo.removeTerritory(defense, target);
+		return true;
+	    }
+	}
+	else{
+	    if (territory[loc][1].equals("0")){
+		territory[loc][2] = offense;
+		territory[loc][1] = numWin + "";
+		Woo.addTerritory(target, offense);
+		return true;
+	    }
 	}
 	return false;
     }

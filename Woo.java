@@ -12,7 +12,7 @@ public class Woo {
     static ArrayList<String> playerOrder = new ArrayList<String>();
     static String playerTurn;
     static ArrayList<Integer> troopPresent = new ArrayList<Integer>();
-	static double victoryMargin;
+    static double victoryMargin;
     
     //initial toops for placement
     public static int player1InitialTroop = -1;
@@ -23,15 +23,15 @@ public class Woo {
     public static int player6InitialTroop = -1;
     
     //player variables
-	
-	//playerOccupied Continents
-	static String occupiedNorthAmerica = "none";
-	static String occupiedSouthAmerica = "none";
-	static String occupiedAfrica = "none";
-	static String occupiedAsia = "none";
-	static String occupiedEurope = "none";
-	static String occupiedAustralia = "none";
-	
+    
+    //playerOccupied Continents
+    static String occupiedNorthAmerica = "none";
+    static String occupiedSouthAmerica = "none";
+    static String occupiedAfrica = "none";
+    static String occupiedAsia = "none";
+    static String occupiedEurope = "none";
+    static String occupiedAustralia = "none";
+    
     //player occupied territories
     static ArrayList<String> player1Occupied = new ArrayList<String>();
     static ArrayList<String> player2Occupied = new ArrayList<String>();
@@ -421,13 +421,14 @@ public class Woo {
 		
 	    //attack feature
 		endGame();
-	    int numPlay = 1;
-	    while (numPlay >= 0){
+	    boolean button = true;
+	    while (button == true){
 		System.out.println("\nIt is " + playColor + "'s turn");
 		System.out.println("\nType the territory to send troops from");
 		String location = cs1.Keyboard.readString();
-		while (Territory.findLocation(location) == -1 ||
-		       !game.territory[game.findLocation(location)][2].equals(playerTurn)){
+		while (game.findLocation(location) == -1 ||
+		       !game.territory[game.findLocation(location)][2].equals(playerTurn) ||
+		       game.territory[game.findLocation(location)][1].equals("1")){
 		       
 		       if (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
 			   System.out.println("\nSorry, this location is invalid, please try again");
@@ -435,6 +436,10 @@ public class Woo {
 		       }
 		       if (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
 			   System.out.println("\nSorry, this is not your territory, please try again");
+			   location = cs1.Keyboard.readString();
+		       }
+		       if (game.territory[game.findLocation(location)][1].equals("1")){
+			   System.out.println("\nSorry, you need at least 2 troops on this territory, please try again");
 			   location = cs1.Keyboard.readString();
 		       }
 		}
@@ -503,12 +508,19 @@ public class Woo {
 		    numWin = attack(attTroops,target,location, playerTurn, defense);
 		}
 		// updates
-		boolean conquer;
-		conquer = Territory.updateStat(target, playerTurn, numWin);
-		if (conquer){
-		    game.territory[game.findLocation(target)][2] = playerTurn;
-		    game.territory[game.findLocation(location)][1] = Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops + "";
-		}
+		//if (! Territory.territory[Territory.findLocation(target)][2].equals("no")){
+		    boolean conquer;
+		    conquer = Territory.updateStat(target, playerTurn, numWin);
+		    if (conquer){
+			game.territory[game.findLocation(target)][2] = playerTurn;
+			game.territory[game.findLocation(location)][1] = Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops + "";
+		    }
+		    //	}
+		    //if (Territory.territory[Territory.findLocation(target)][2].equals("no")){
+		    //game.territory[game.findLocation(target)][2] = playerTurn;
+		    //game.territory[game.findLocation(target)][1] = numWin + "";
+		    //game.territory[game.findLocation(location)][1] = Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops + "";
+		    //}
 		//update(playerTurn);
 		
 		//update continentOccupied
@@ -557,16 +569,21 @@ public class Woo {
 		System.out.println(player1Occupied );
 		System.out.println(player2Occupied );
 		renderMap(); //render map here
-		numPlay -= 1;
+
+		System.out.println("Do you want to continue on attacking? Type 'yes' to continue attack");
+		String sta = cs1.Keyboard.readString();
+		if (! sta.equals("yes")){
+		    button = false;
+		}
 	    }
-		// renderMap();	    
+	    // renderMap();	    
 		
 		
 		
 		
 		
 		//Move Feature
-		String territorySelect;
+	    String territorySelect;
 		String troopSelect;
 		String placeTerritory;
 		String End = "";
@@ -1073,24 +1090,30 @@ public class Woo {
       random num generator 4 - 6 indicates failed attack
      */
 
-    public static int attack(int attTroops, String territory, String location, String offense, String defense){
+    public static int attack(int attTroops, String target, String location, String offense, String defense){
     	int attStat; //status of attack, win or fail
 	int numWin = 0;
-    	for (int ctr = 0; ctr < attTroops; ctr++){
-    	    attStat = (int) (Math.random() * 6);
-    	    if (attStat >= 0){ //I (Dawei) changed this to guarentee victory for the attacker. MUST CHANGE IT BACK!!!
-		System.out.println("Offension win");
-		Territory.subtract(territory); // defense lose 1 troop (variable in Territory)
-		updateTroops(defense); // defense lose 1 troop (variable in Woo)
-		numWin++;
-    	    }
-    	    else{
-		System.out.println("Defense win");
-    	        Territory.subtract(location); // offense lose 1 troop (variable in Territory)
-		updateTroops(offense); // offense lose 1 troop (variable in Woo)
+	if (Territory.territory[Territory.findLocation(target)][2].equals("no")){
+	  System.out.println("Offension win");
+	  numWin = attTroops;
+	}
+	else{
+	    for (int ctr = 0; ctr < attTroops; ctr++){
+		attStat = (int) (Math.random() * 6);
+		if (attStat >= 0){ //I (Dawei) changed this to guarentee victory for the attacker. MUST CHANGE IT BACK!!!
+		    System.out.println("Offension win");
+		    Territory.subtract(target); // defense lose 1 troop (variable in Territory)
+		    updateTroops(defense); // defense lose 1 troop (variable in Woo)
+		    numWin++;
+		}
+		else{
+		    System.out.println("Defense win");
+		    Territory.subtract(location); // offense lose 1 troop (variable in Territory)
+		    updateTroops(offense); // offense lose 1 troop (variable in Woo)
+		}
 	    }
 	}
-	return numWin;
+	return numWin;	
     }
 	
     
