@@ -1113,7 +1113,7 @@ public class Woo {
 	else{
 	    for (int ctr = 0; ctr < attTroops; ctr++){
 		attStat = (int) (Math.random() * 6);
-		if (attStat >= 0){ //I (Dawei) changed this to guarentee victory for the attacker. MUST CHANGE IT BACK!!!
+		if (attStat >= 4){ //I (Dawei) changed this to guarentee victory for the attacker. MUST CHANGE IT BACK!!!
 		    System.out.println("Offension win");
 		    Territory.subtract(target); // defense lose 1 troop (variable in Territory)
 		    updateTroops(defense); // defense lose 1 troop (variable in Woo)
