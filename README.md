@@ -6,8 +6,7 @@ For our final project, we decided to do a terminal simulation of the classic gam
 
 <h2>Instructions:</h2>
 
-First, open terminal and enlarge your terminal window to a size big enough to be able to view the entire world map
-(we suggest 1000) 
+First, open terminal and enlarge your terminal window to a size big enough to be able to view the entire world map. Change the font size or the size of the display as much as necessary. For desktops, we reccomend the Lucida Console 9 point font and a display of at least 210 columns by 66 rows. If the cover does not fit in your terminal at the start of the game, resize your terminal, close it, and then reopen your terminal again.
     	
 To begin the game, type
 ```
