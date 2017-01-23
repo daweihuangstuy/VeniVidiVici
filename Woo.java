@@ -428,7 +428,8 @@ public class Woo {
 		String location = cs1.Keyboard.readString();
 		while (game.findLocation(location) == -1 ||
 		       !game.territory[game.findLocation(location)][2].equals(playerTurn) ||
-		       game.territory[game.findLocation(location)][1].equals("1")){
+		       game.territory[game.findLocation(location)][1].equals("1") ||
+		       territoryGraph.isSurround(location, playerTurn) == true){
 		       
 		       if (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
 			   System.out.println("\nSorry, this location is invalid, please try again");
@@ -440,6 +441,10 @@ public class Woo {
 		       }
 		       if (game.territory[game.findLocation(location)][1].equals("1")){
 			   System.out.println("\nSorry, you need at least 2 troops on this territory, please try again");
+			   location = cs1.Keyboard.readString();
+		       }
+		       if (territoryGraph.isSurround(location, playerTurn) == true){
+			   System.out.println("\nSorry, you can't pick a territory that is surrounded by your territories, please try again");
 			   location = cs1.Keyboard.readString();
 		       }
 		}

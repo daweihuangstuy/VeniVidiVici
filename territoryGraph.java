@@ -414,6 +414,16 @@ public class territoryGraph{
 	}
 	return false;
     }
+
+    public static boolean isSurround(String location, String target){
+	convertStrToObject(location);
+	for (int i = 0; i < targetObj.size(); i++){
+	    if (! Territory.territory[Territory.findLocation(targetObj.get(i))][2].equals(target)){
+		return false;
+	    }
+	}
+	return true;
+    }
     
     public boolean isIn(String target){
 	for (String x : Territories){
