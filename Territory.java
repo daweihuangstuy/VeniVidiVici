@@ -139,6 +139,7 @@ public class Territory{
 	    if (territory[loc][1].equals("0")){
 		territory[loc][2] = offense;
 		territory[loc][1] = numWin + "";
+		System.out.println(numWin);
 		//Woo.update(
 		Woo.addTerritory(target, offense);
 		Woo.removeTerritory(defense, target);

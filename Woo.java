@@ -523,6 +523,9 @@ public class Woo {
 		    //}
 		//update(playerTurn);
 		
+		terriInfo = game.getTerritoryInfo();
+		troopPresent = game.troopPresent();
+		
 		//update continentOccupied
 		occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
 		occupiedSouthAmerica = game.occupyContinent("SouthAmerica");
@@ -1247,6 +1250,28 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
 	    player6Occupied.remove(territory);
 	}
     }
+	
+	public static void addTroops(String player, String territory){
+	if (player.equals("player1")){
+	    player1Occupied.add(territory);
+	}
+	if (player.equals("player2")){
+	    player2Occupied.add(territory);
+	}
+	if (player.equals("player3")){
+	    player3Occupied.add(territory);
+	}
+	if (player.equals("player4")){
+	    player4Occupied.add(territory);
+	}
+	if (player.equals("player5")){
+	    player5Occupied.add(territory);
+	}
+	if (player.equals("player6")){
+	    player6Occupied.add(territory);
+	}	
+	}
+	
     public static void addTerritory(String player, String territory){
 	if (player.equals("player1")){
 	    player1Occupied.add(territory);
