@@ -351,37 +351,37 @@ public class Woo {
 			renderMap(); //render map
 			endGame();
 			
-		//autoPlace feature for round placement
-		if (autoPlace == true){
-			 while (additionalTroops > 0){
-				 endGame();
-					playerTurn = playerOrder.get(rounds % playerOrder.size());
-					int availNumber = (int)(Math.random() * Territory.availTerr(playerTurn).size());
-					int availToTerrNum = Territory.findLocation(Territory.availTerr(playerTurn).get(availNumber));
-					int initialTroopNum = Integer.parseInt(game.territory[availToTerrNum][1]);
-					game.territory[availToTerrNum][2] = playerTurn;
-					game.territory[availToTerrNum][1] = Integer.toString(initialTroopNum + 1);
-					
+			//autoPlace feature for round placement
+			if (autoPlace == true){
+			    while (additionalTroops > 0){
+				endGame();
+				playerTurn = playerOrder.get(rounds % playerOrder.size());
+				int availNumber = (int)(Math.random() * Territory.availTerr(playerTurn).size());
+				int availToTerrNum = Territory.findLocation(Territory.availTerr(playerTurn).get(availNumber));
+				int initialTroopNum = Integer.parseInt(game.territory[availToTerrNum][1]);
+				game.territory[availToTerrNum][2] = playerTurn;
+				game.territory[availToTerrNum][1] = Integer.toString(initialTroopNum + 1);
+				
 					terriInfo = game.getTerritoryInfo();
-				troopPresent = game.troopPresent();
-				// update territories
+					troopPresent = game.troopPresent();
+					// update territories
 				if (playerTurn.equals("player1")){
-				player1Occupied = game.terriOccupier(playerTurn);
+				    player1Occupied = game.terriOccupier(playerTurn);
 				}
 				if (playerTurn.equals("player2")){
-				player2Occupied = game.terriOccupier(playerTurn);
+				    player2Occupied = game.terriOccupier(playerTurn);
 				}
 				if (playerTurn.equals("player3")){
-				player3Occupied = game.terriOccupier(playerTurn);
+				    player3Occupied = game.terriOccupier(playerTurn);
 				}
 				if (playerTurn.equals("player4")){
-				player4Occupied = game.terriOccupier(playerTurn);
+				    player4Occupied = game.terriOccupier(playerTurn);
 				}
 				if (playerTurn.equals("player5")){
-				player5Occupied = game.terriOccupier(playerTurn);
+				    player5Occupied = game.terriOccupier(playerTurn);
 				}
 				if (playerTurn.equals("player6")){
-				player6Occupied = game.terriOccupier(playerTurn);
+				    player6Occupied = game.terriOccupier(playerTurn);
 				}
 				//update continentOccupied
 				occupiedNorthAmerica = game.occupyContinent("NorthAmerica");
@@ -405,15 +405,15 @@ public class Woo {
 				player5TerritoryNum = game.territoryNumber("player5");
 				player6TerritoryNum = game.territoryNumber("player6");
 				
-					additionalTroops -= 1;
-					endGame();
-				}
+				additionalTroops -= 1;
 				endGame();
-				autoPlace = false;
-				renderMap();
+			    }
+			    endGame();
+			    autoPlace = false;
+			    renderMap();
+			}
 		}
-		}
-	    
+		
 		
 		
 		
@@ -457,83 +457,83 @@ public class Woo {
 			   }
 			*/
 		    }
-		    System.out.println("\nType the territory that you want to attack");
+		    System.out.println("\nType the territory that you want to attack (or you can abort this attack by type 'exit')");
 		    String target = cs1.Keyboard.readString();
 		    
-		territoryGraph.setUp();
+		    territoryGraph.setUp();
 		
-		while (Territory.findLocation(target) == -1 ||
-		       game.territory[game.findLocation(target)][2].equals(playerTurn) ||
-		       territoryGraph.isConnect(location, target) == false ||
-		       territoryGraph.validTerritory(target) == false){ // check is these two territories connected
-		    if (Territory.findLocation(target) == -1 ||
-			territoryGraph.validTerritory(location) == false){
-			System.out.println("\nSorry, this location is invalid, please try again");
-			target = cs1.Keyboard.readString();
+		    while (Territory.findLocation(target) == -1 ||
+			   game.territory[game.findLocation(target)][2].equals(playerTurn) ||
+			   territoryGraph.isConnect(location, target) == false ||
+			   territoryGraph.validTerritory(target) == false){ 
+			if (Territory.findLocation(target) == -1 ||
+			    territoryGraph.validTerritory(location) == false){
+			    System.out.println("\nSorry, this location is invalid, please try again");
+			    target = cs1.Keyboard.readString();
+			}
+			if (game.territory[game.findLocation(target)][2].equals(playerTurn)){
+			    System.out.println("\nSorry, this is your territory, please try again");
+			    target = cs1.Keyboard.readString();
+			}
+			if (territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
+			    System.out.println("Sorry, these two territories is not connected, please try again");
+			    target = cs1.Keyboard.readString();
+			}
 		    }
-		    if (game.territory[game.findLocation(target)][2].equals(playerTurn)){
-			System.out.println("\nSorry, this is your territory, please try again");
-			target = cs1.Keyboard.readString();
-		    }
-		    if (territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
-			System.out.println("Sorry, these two territories is not connected, please try again");
-			target = cs1.Keyboard.readString();
-		    }
-		}
-		System.out.println("\nType the number of troops to use, you can use a maximum of 3");
-		int attTroops = cs1.Keyboard.readInt();
-		while (attTroops > 3 || // check is the at most 3 troops
-		       attTroops < 1 || // check is there at least 1 troop
-		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // check is there at least one troop to protect your territory
+		    System.out.println("\nType the number of troops to use, you can use a maximum of 3");
+		    int attTroops = cs1.Keyboard.readInt();
+		    while (attTroops > 3 || // check is the at most 3 troops
+			   attTroops < 1 || // check is there at least 1 troop
+			   Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // check is there at least one troop to protect your territory
 		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0 || // check if this territory have enough troops
-		       attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
-		    if (attTroops > 3){
-			System.out.println("Sorry, you can only have a maximum number of 3, please try again");
-			attTroops = cs1.Keyboard.readInt();
-		    }
-		    if (attTroops < 1){
-			System.out.println("Sorry, you need at least a minimum number of 1, please try again");
-			attTroops = cs1.Keyboard.readInt();
-		    }
-		    if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0){
-			System.out.println("Sorry, you need at least 1 troops to protect you current territory, please try again");
-			attTroops = cs1.Keyboard.readInt();
-		    }
-		    if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){
-			System.out.println("Sorry, you don't have enough troops in this territory, please try again");
-			attTroops = cs1.Keyboard.readInt();
-		    }
-		    if (attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
-			if (! game.territory[game.findLocation(target)][1].equals("0")){
-			    System.out.println("Sorry, the enemy don't have enough troops in this territory, please try again");
+			   attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
+			if (attTroops > 3){
+			    System.out.println("Sorry, you can only have a maximum number of 3, please try again");
 			    attTroops = cs1.Keyboard.readInt();
 			}
-			else{
-			    break;
+			if (attTroops < 1){
+			    System.out.println("Sorry, you need at least a minimum number of 1, please try again");
+			    attTroops = cs1.Keyboard.readInt();
 			}
+			if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0){
+			    System.out.println("Sorry, you need at least 1 troops to protect you current territory, please try again");
+			    attTroops = cs1.Keyboard.readInt();
+			}
+			if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){
+			    System.out.println("Sorry, you don't have enough troops in this territory, please try again");
+			    attTroops = cs1.Keyboard.readInt();
+			}
+			if (attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
+			    if (! game.territory[game.findLocation(target)][1].equals("0")){
+				System.out.println("Sorry, the enemy don't have enough troops in this territory, please try again");
+				attTroops = cs1.Keyboard.readInt();
+			    }
+			    else{
+				break;
+			    }
+			}
+		}
+		    int numWin = 0;
+		    String defense = Territory.findOwner(target);
+		    if (playerTurn.equals("player1")){
+			numWin = attack(attTroops,target,location, playerTurn, defense);
 		    }
-		}
-		int numWin = 0;
-		String defense = Territory.findOwner(target);
-		if (playerTurn.equals("player1")){
-		    numWin = attack(attTroops,target,location, playerTurn, defense);
-		}
-		if (playerTurn.equals("player2")){
-		    numWin = attack(attTroops,target,location, playerTurn, defense);
-		}
-		if (playerTurn.equals("player3")){
-		    numWin = attack(attTroops,target,location, playerTurn, defense);
-		}
-		if (playerTurn.equals("player4")){
-		    numWin = attack(attTroops,target,location, playerTurn, defense);
-		}
-		if (playerTurn.equals("player5")){
-		    numWin = attack(attTroops,target,location, playerTurn, defense);
-		}
-		if (playerTurn.equals("player6")){
-		    numWin = attack(attTroops,target,location, playerTurn, defense);
-		}
-		// updates
+		    if (playerTurn.equals("player2")){
+			numWin = attack(attTroops,target,location, playerTurn, defense);
+		    }
+		    if (playerTurn.equals("player3")){
+			numWin = attack(attTroops,target,location, playerTurn, defense);
+		    }
+		    if (playerTurn.equals("player4")){
+			numWin = attack(attTroops,target,location, playerTurn, defense);
+		    }
+		    if (playerTurn.equals("player5")){
+			numWin = attack(attTroops,target,location, playerTurn, defense);
+		    }
+		    if (playerTurn.equals("player6")){
+			numWin = attack(attTroops,target,location, playerTurn, defense);
+		    }
+		    // updates
 		//if (! Territory.territory[Territory.findLocation(target)][2].equals("no")){
 		    boolean conquer;
 		    conquer = Territory.updateStat(target, playerTurn, numWin);
