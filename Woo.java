@@ -469,7 +469,8 @@ public class Woo {
 		while (attTroops > 3 || // check is the at most 3 troops
 		       attTroops < 1 || // check is there at least 1 troop
 		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // check is there at least one troop to protect your territory
-		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){// check if this territory have enough troops
+		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0 || // check if this territory have enough troops
+		       attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
 			if (attTroops > 3){
 			System.out.println("Sorry, you can only have a maximum number of 3, please try again");
 			attTroops = cs1.Keyboard.readInt();
@@ -485,6 +486,15 @@ public class Woo {
 		    if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0){
 			System.out.println("Sorry, you don't have enough troops in this territory, please try again");
 			attTroops = cs1.Keyboard.readInt();
+		    }
+		    if (attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
+			if (! game.territory[game.findLocation(target)][1].equals("0")){
+			    System.out.println("Sorry, the enemy don't have enough troops in this territory, please try again");
+			    attTroops = cs1.Keyboard.readInt();
+			}
+			else{
+			    break;
+			}
 		    }
 		}
 		int numWin = 0;
