@@ -76,7 +76,7 @@ public class Woo {
 	Player2 player2 = new Player2();
 	startGame();
 	renderMap();
-	System.out.println("Each player must initially alternately place " + player1InitialTroop + " troops each\n");
+	System.out.println("Each player must initially alternately place " + player1InitialTroop + " troops each");
 	
 	//initial placement of troops
 	int rounds = 0;
@@ -84,12 +84,11 @@ public class Woo {
 	boolean autoPlace = false;
 	
 	while (playerOrder.get(rounds % playerOrder.size()) != ""){
-		endGame();
 	    playerTurn = playerOrder.get(rounds % playerOrder.size());
 		String playColor = playerColor(playerTurn);
 	    System.out.println("Order of Play: " + playerOrder.toString().substring(1,playerOrder.toString().length() - 1));
-	    System.out.println("\nIt is " + playColor + "'s turn");
-	    System.out.println(playerTurn + " has " + findTroopNum(playerTurn) + " troops left to place\n");
+	    System.out.println("\nIt is currently " + playColor + "'s turn\n");
+	    System.out.println(playColor + " has " + findTroopNum(playerTurn) + " troops left to place");
 	    System.out.println("Type the territory to place troops (To automatically place remaining troops, type 'autoPlace'): ");	
 	    String initTerritory = cs1.Keyboard.readString();
 		if (initTerritory.equals("autoPlace")){
@@ -114,7 +113,6 @@ public class Woo {
 	    }
 		
 		if (autoPlace == false){
-			endGame();
 			if(game.territory[game.findLocation(initTerritory)][2] == "no" ||
 			   game.territory[game.findLocation(initTerritory)][2] == playerTurn){
 			int locat = game.findLocation(initTerritory);
@@ -174,7 +172,6 @@ public class Woo {
 			if (initPlaceArmNum() == (playerOrder.size())){
 				break;
 			} 
-			endGame();
 		}
 		if (autoPlace == true){
 			break;
@@ -183,9 +180,7 @@ public class Woo {
 	
 	//autoPlace feature for initial placement
 	if (autoPlace == true){
-		endGame();
 		 while (!(initPlaceArmNum() == (playerOrder.size()))){
-				endGame();
 				playerTurn = playerOrder.get(rounds % playerOrder.size());
 				int availNumber = (int)(Math.random() * Territory.availTerr(playerTurn).size());
 				int availToTerrNum = Territory.findLocation(Territory.availTerr(playerTurn).get(availNumber));
@@ -238,9 +233,7 @@ public class Woo {
 				
 				subtractTroops(playerTurn);
 				rounds += 1;
-				endGame();
 			}
-			endGame();
 			autoPlace = false;
 			renderMap();
 	}
@@ -253,6 +246,8 @@ public class Woo {
 		playerTurn = playerOrder.get(rounds % playerOrder.size());
 		String playColor = playerColor(playerTurn);
 		int additionalTroops = Territory.calcAddTroops(playerTurn);
+		System.out.println("Round Placement");
+		System.out.println("\nIt is currently " + playColor + "'s turn\n");
 		while (additionalTroops > 0){
 			System.out.println(playColor + " may place " + additionalTroops + " more additional troops.");
 			System.out.println("Type the territory to place troops  (To automatically place remaining troops, type 'autoPlace'):");	
@@ -420,6 +415,8 @@ public class Woo {
 		
 		
 		//attack feature
+		System.out.println("Round Attack");
+		System.out.println("\nIt is currently " + playColor + "'s turn\n");
 		endGame();
 		System.out.println("Do you want to attack? (yes/no)");
 		String want = cs1.Keyboard.readString();
@@ -457,7 +454,7 @@ public class Woo {
 			   }
 			*/
 		    }
-		    System.out.println("\nType the territory that you want to attack (or you can abort this attack by type 'exit')");
+		    System.out.println("\nType the territory that you want to attack");
 		    String target = cs1.Keyboard.readString();
 		    
 		    territoryGraph.setUp();
@@ -595,17 +592,17 @@ public class Woo {
 		player5TerritoryNum = game.territoryNumber("player5");
 		player6TerritoryNum = game.territoryNumber("player6");
 		
-		System.out.println(player1Occupied );
-		System.out.println(player2Occupied );
 		renderMap(); //render map here
-
-		System.out.println("Do you want to continue on attacking? Type 'yes' to continue attack");
+		System.out.println("Round Attack");
+		System.out.println("\nIt is currently " + playColor + "'s turn\n");
+		System.out.println("Do you want to continue on attacking? ('yes'/'no')");
 		String sta = cs1.Keyboard.readString();
 		if (! sta.equals("yes")){
 		    button = false;
 		}
 	    }
-	    // renderMap();	    
+	    renderMap();
+		endGame();
 		
 		
 		
@@ -619,6 +616,14 @@ public class Woo {
 		int moveNum = 0;
 		
 		while (End.equals("exit") == false){
+			endGame();
+			System.out.println("Round Move");
+		System.out.println("\nIt is currently " + playColor + "'s turn\n");
+			System.out.println("Do you want to move your troops? Type 'yes' to move. Type anything else for no");
+			End = cs1.Keyboard.readString();
+			if (!(End.equals("yes"))){
+				break;
+			}
 			//select a territory to move
 			System.out.println(playColor + " may move troops");
 			System.out.println("Please select a territory to move troops");
@@ -732,11 +737,8 @@ public class Woo {
 					player5TerritoryNum = game.territoryNumber("player5");
 					player6TerritoryNum = game.territoryNumber("player6");
 					renderMap();
-					
-					System.out.println("Would you like to continue the game? Enter 'exit' to end turn. Enter anything else to continue moving.");
-					End = cs1.Keyboard.readString();
 		}
-		
+		renderMap();
 		
 		endGame();
 	    rounds+=1;
@@ -757,6 +759,7 @@ public class Woo {
 	}
 	
 	//Enter StartText
+	System.out.println("Please resize your terminal if necessary\n");
 	System.out.println("Type start to Begin:");	
 	String startText = cs1.Keyboard.readString();
 	if (!startText.equals("start")){
@@ -1129,7 +1132,7 @@ public class Woo {
 	else{
 	    for (int ctr = 0; ctr < attTroops; ctr++){
 		attStat = (int) (Math.random() * 6);
-		if (attStat >= 4){ 
+		if (attStat >= 3){ 
 		    System.out.println("Offension win");
 		    Territory.subtract(target); // defense lose 1 troop (variable in Territory)
 		    updateTroops(defense); // defense lose 1 troop (variable in Woo)
@@ -1395,6 +1398,38 @@ public static void move(ArrayList<String> occupied, int numTroops, String origin
 		if ((int)(victoryMargin * 42) < player6TerritoryNum){
 			System.out.println("\n\nplayer 1 has won the game");
 			System.exit(0);
+		}
+		
+		//check to see if any player lost
+		// check player1
+		if (player1TroopNum <= 0 && playerOrder.indexOf("player1") != -1){
+			System.out.println("player1 has lost the game");
+			playerOrder.remove("player1");
+		}
+		// check player2
+		if (player2TroopNum <= 0 && playerOrder.indexOf("player2") != -1){
+			System.out.println("player2 has lost the game");
+			playerOrder.remove("player2");
+		}
+		// check player3
+		if (player3TroopNum <= 0 && playerOrder.indexOf("player3") != -1){
+			System.out.println("player3 has lost the game");
+			playerOrder.remove("player3");
+		}
+		// check player4
+		if (player4TroopNum <= 0 && playerOrder.indexOf("player4") != -1){
+			System.out.println("player4 has lost the game");
+			playerOrder.remove("player4");
+		}
+		// check player5
+		if (player5TroopNum <= 0 && playerOrder.indexOf("player5") != -1){
+			System.out.println("player5 has lost the game");
+			playerOrder.remove("player5");
+		}
+		// check player6
+		if (player6TroopNum <= 0 && playerOrder.indexOf("player6") != -1){
+			System.out.println("player6 has lost the game");
+			playerOrder.remove("player6");
 		}
 	}
     
