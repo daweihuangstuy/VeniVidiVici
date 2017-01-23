@@ -419,44 +419,55 @@ public class Woo {
 		
 		
 		
-	    //attack feature
+		//attack feature
 		endGame();
-	    boolean button = true;
-	    while (button == true){
-		System.out.println("\nIt is " + playColor + "'s turn");
-		System.out.println("\nType the territory to send troops from");
-		String location = cs1.Keyboard.readString();
-		while (game.findLocation(location) == -1 ||
-		       !game.territory[game.findLocation(location)][2].equals(playerTurn) ||
-		       game.territory[game.findLocation(location)][1].equals("1") ||
-		       territoryGraph.isSurround(location, playerTurn) == true){
-		       
-		       if (Territory.findLocation(location) == -1){ // need another feature : this territory is not yours
-			   System.out.println("\nSorry, this location is invalid, please try again");
+		System.out.println("Do you want to attack? (yes/no)");
+		String want = cs1.Keyboard.readString();
+		boolean button = false;
+		if (want.equals("yes")){
+		    button = true;
+		}
+		while (button == true){
+		    System.out.println("\nIt is " + playColor + "'s turn");
+		    System.out.println("\nType the territory to send troops from");
+		    String location = cs1.Keyboard.readString();
+		    while (game.findLocation(location) == -1 ||
+			   !game.territory[game.findLocation(location)][2].equals(playerTurn) ||
+			   game.territory[game.findLocation(location)][1].equals("1") ||
+		       //territoryGraph.isSurround(location, playerTurn) == true ||
+			   territoryGraph.validTerritory(location) == false){
+			
+			if (Territory.findLocation(location) == -1 || 
+			    territoryGraph.validTerritory(location) == false){
+			    System.out.println("\nSorry, this location is invalid, please try again");
 			   location = cs1.Keyboard.readString();
-		       }
-		       if (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
-			   System.out.println("\nSorry, this is not your territory, please try again");
-			   location = cs1.Keyboard.readString();
-		       }
-		       if (game.territory[game.findLocation(location)][1].equals("1")){
+			}
+			if (! game.territory[game.findLocation(location)][2].equals(playerTurn)){
+			    System.out.println("\nSorry, this is not your territory, please try again");
+			    location = cs1.Keyboard.readString();
+			}
+			if (game.territory[game.findLocation(location)][1].equals("1")){
 			   System.out.println("\nSorry, you need at least 2 troops on this territory, please try again");
 			   location = cs1.Keyboard.readString();
-		       }
-		       if (territoryGraph.isSurround(location, playerTurn) == true){
+			}
+			/*
+			  if (territoryGraph.isSurround(location, playerTurn) == true){
 			   System.out.println("\nSorry, you can't pick a territory that is surrounded by your territories, please try again");
 			   location = cs1.Keyboard.readString();
-		       }
-		}
-		System.out.println("\nType the territory that you want to attack");
-		String target = cs1.Keyboard.readString();
-
+			   }
+			*/
+		    }
+		    System.out.println("\nType the territory that you want to attack");
+		    String target = cs1.Keyboard.readString();
+		    
 		territoryGraph.setUp();
 		
 		while (Territory.findLocation(target) == -1 ||
 		       game.territory[game.findLocation(target)][2].equals(playerTurn) ||
-		       territoryGraph.isConnect(location, target) == false){ // check is these two territories connected
-		    if (Territory.findLocation(target) == -1){
+		       territoryGraph.isConnect(location, target) == false ||
+		       territoryGraph.validTerritory(target) == false){ // check is these two territories connected
+		    if (Territory.findLocation(target) == -1 ||
+			territoryGraph.validTerritory(location) == false){
 			System.out.println("\nSorry, this location is invalid, please try again");
 			target = cs1.Keyboard.readString();
 		    }
@@ -476,13 +487,13 @@ public class Woo {
 		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0 || // check is there at least one troop to protect your territory
 		       Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops < 0 || // check if this territory have enough troops
 		       attTroops > Integer.parseInt(game.territory[game.findLocation(target)][1])){
-			if (attTroops > 3){
+		    if (attTroops > 3){
 			System.out.println("Sorry, you can only have a maximum number of 3, please try again");
 			attTroops = cs1.Keyboard.readInt();
 		    }
 		    if (attTroops < 1){
 			System.out.println("Sorry, you need at least a minimum number of 1, please try again");
-			   attTroops = cs1.Keyboard.readInt();
+			attTroops = cs1.Keyboard.readInt();
 		    }
 		    if (Integer.parseInt(game.territory[game.findLocation(location)][1]) - attTroops == 0){
 			System.out.println("Sorry, you need at least 1 troops to protect you current territory, please try again");
@@ -1118,7 +1129,7 @@ public class Woo {
 	else{
 	    for (int ctr = 0; ctr < attTroops; ctr++){
 		attStat = (int) (Math.random() * 6);
-		if (attStat >= 4){ //I (Dawei) changed this to guarentee victory for the attacker. MUST CHANGE IT BACK!!!
+		if (attStat >= 4){ 
 		    System.out.println("Offension win");
 		    Territory.subtract(target); // defense lose 1 troop (variable in Territory)
 		    updateTroops(defense); // defense lose 1 troop (variable in Woo)
