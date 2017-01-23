@@ -10,23 +10,63 @@ pd 4
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- import a map from other filex
+- map with color
+- attack only the connected territories
+- take turn between players to play
+- updating the status and color on map
+
 wow we so BOSS bc...
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- during attack, you might pick a territory
+that is surrounded by your territories, so 
+you actually can't attack anyone and stuck
+at there.
+
+- this is not really a issue, but you cannot
+move your troops from 1 place to another even
+though it is connected by your territories.
+This means that it will take you more time to
+do the moving. That you have move them from one
+territory to another territory that is connected.
+
 blah blah pesky bug...
 maybe some of these will move into the Obs.Ovrcm section...
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- how to add color in terminal
+- how to import a map into terminal
+
 wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
+- we changed table to map because this is 
+much more cooler and it is easier to follow
+
+- we changed the saving place of territories
+from classes to a single 2-D array because
+this is much more efficient
+
+- we didn't follow the way of attack exactly
+from the wikipedia because it is just too
+much work and it didn't worth the time.
+
+- we have to give up on inSurround because 
+this didn't worth the time, even though you
+might get stuck becaus of that
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- we learned that everything is not going
+to work well. That thinking it in mind is
+easy, but it is hard to tranfer our ideas
+into codes. So we were forced to give up
+some features.
+
 tales of wisdom gained...
 ||||||||||||||||||||||||||||||||||||||||||
 
@@ -139,11 +179,30 @@ Fabiola :: finished move feature to be tested with Woo.java
 and updated README with clearer instructions
 ==============================================================
 
-2017-01-18
+2017-01-19
 --------------------------------------------------------------
-Yuqi :: Worked on attack
+Yuqi :: Worked on attack 
 Dawei :: Worked on attack
-Fabiola :: finished move feature to be tested with Woo.java
-and updated README with clearer instructions
+Fabiola :: tested move
+==============================================================
+
+2017-01-20
+--------------------------------------------------------------
+Yuqi :: Worked on attack 
+Dawei :: Worked on placement, updated Territory
+Fabiola :: updated move
+==============================================================
+
+2017-01-21
+--------------------------------------------------------------
+Yuqi :: Finished isConnect
+Dawei :: Added autoPlace feature and endGame feature
+==============================================================
+
+2017-01-22
+--------------------------------------------------------------
+Yuqi :: Added exit, debuged attack
+Dawei :: Worked on occupied feature, updated README and other
+instructions
 ==============================================================
 
