@@ -60,12 +60,18 @@ Dawei :: -Created a cover for the game
 		 -Created input feature that requires users to type "start"
 		 in order to begin playing the game.
 		 -Added method that would print the game map to the terminal.
+		 -Create renderMap method that takes in the state variables
+		 and use the variables to produce a color map.
 ==============================================================
 
 2017-01-10
 --------------------------------------------------------------
-Dawei :: Added color to the map in order to indicate the territories
-of different players.
+Dawei :: -Added color to the map in order to indicate the territories
+		 of different players. 
+		 -Changed the color of the display once it updates.
+		 -Created player turn rotation to allow turns for up to 6 players
+		 -Created initial placement method to allow each player to 
+		 take turns placing troops on the world map.
 
 Yuqi & Fabiola :: Did the todo.txt
 
@@ -75,14 +81,21 @@ Dawei :: Uploaded project proposal. Added more tasks to the todolist
 2017-01-11
 --------------------------------------------------------------
 Yuqi :: Added devlog1
-Dawei :: copied git.ignore to the root of git repo
+Dawei :: -copied git.ignore to the root of git repo
+		 -created a while loop that terminates only when a player has won
+		 the game.
+		 -created a victory method that analyzes the game at key checkpoints and
+		 checks to see if a player has won or not.
 Fabiola :: Worked on Player class
 ==============================================================
 
 2017-01-12
 --------------------------------------------------------------
 Yuqi :: Worked on Territory class and subclasses
-Dawei :: Worked on Woo.java, Player 1 and Player 2 class
+Dawei :: -Worked on Woo.java, Player 1 and Player 2 class
+		 -Created the round placement feature that will alteratively
+		 allow players to place additional troops to their territories
+		 at the start of their round.
 Fabiola :: Worked on Player class and finalized UML diagram
 ==============================================================
 
@@ -101,7 +114,7 @@ Dawei :: finished initial placement feature
 2017-01-15
 --------------------------------------------------------------
 Yuqi :: continued to work on attack feature
-Dawei :: completed placement feature on Woo.java
+Dawei :: completed round placement feature on Woo.java
 ==============================================================
 
 2017-01-16
@@ -116,6 +129,14 @@ Yuqi :: Worked on Woo.java and map issues and wrote README
 Dawei :: Worked on Woo.java and map issues
 Fabiola :: continued to work on move feature and made changes
 to README file
+==============================================================
+
+2017-01-18
+--------------------------------------------------------------
+Yuqi :: Worked on attack
+Dawei :: Worked on attack
+Fabiola :: finished move feature to be tested with Woo.java
+and updated README with clearer instructions
 ==============================================================
 
 2017-01-18
