@@ -32,20 +32,34 @@ UNRESOLVED ISSUES
 that is surrounded by your territories, so 
 you actually can't attack anyone and stuck
 at there.
+- mistakes with the graph connections that we
+did not catch. For example, the program may claim
+that you cannot attack a territory because it is not
+adjacent but it actually is.
 - In the game risk, when moving troops you can
 only move troops among your own territories if it
 is connected by means of land or ocean bridges. We
 have tried to implement this feature but it failed
 so we decided to allow the player to move freely among
 their own territories.
+- Problems with the attack feature that we did not notice
+or did not address. It has the tendency to fail at times but it
+is rare.
+- We did not have to to remove the placehold symbols from the map.
+But is should still function the same otherwise with them in 
+the terminal.
 
 blah blah pesky bug...
 maybe some of these will move into the Obs.Ovrcm section...
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- how to add color in terminal
+- how to add color in terminal. We used the ANSI color
+code to change terminal colors continuously.
 - how to import a map into terminal
+- we learned bow to open a file from terminal 
+and access its contents. We did this to print the
+game cover and the game map.
 
 wow! oo!...
 
@@ -53,18 +67,20 @@ MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - we changed table to map because this is 
 much more cooler and it is easier to follow
-
 - we changed the saving place of territories
 from classes to a single 2-D array because
 this is much more efficient
-
 - we didn't follow the way of attack exactly
 from the wikipedia because it is just too
-much work and it didn't worth the time.
-
+much work.
 - we have to give up on inSurround because 
 this didn't worth the time, even though you
-might get stuck becaus of that
+might get stuck because of that. The inSurround
+feature checks to see if there are any territories
+that you occupy surrounding the territory that you
+designated as the site of an attack launch.
+-We had to give on trying to implement an AI 
+system because it was far too complex.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -151,9 +167,13 @@ Fabiola :: Worked on Player class
 --------------------------------------------------------------
 Yuqi :: Worked on Territory class and subclasses
 Dawei :: -Worked on Woo.java, Player 1 and Player 2 class
-		 -Created the round placement feature that will alteratively
-		 allow players to place additional troops to their territories
-		 at the start of their round.
+	 -Created the round placement feature that will alteratively
+	 allow players to place additional troops to their territories
+	 at the start of their round.
+	 -created territoryGraph and had it contain the relationships 
+	 between territories. For example, which terrories is a give
+	 territory connected to, an ArrayList of all the territories,
+	 and an ArrayList of the corresponding code to that territory.
 Fabiola :: Worked on Player class and finalized UML diagram
 ==============================================================
 
@@ -166,18 +186,22 @@ initial commit feature
 
 2017-01-14
 --------------------------------------------------------------
-Dawei :: finished initial placement feature
+Dawei :: -finished initial placement feature. This feature would allow the players
+  	 to alterately place troops on the map at the start of the game.
 ==============================================================
 
 2017-01-15
 --------------------------------------------------------------
 Yuqi :: continued to work on attack feature
-Dawei :: completed round placement feature on Woo.java
+Dawei :: -completed round placement feature on Woo.java
+	 -tried to implement an AI feature to allow the player
+	 to play with the computer
 ==============================================================
 
 2017-01-16
 --------------------------------------------------------------
 Yuqi :: worked on attack feature and updated some features
+Dawei :: -scrapped the AI feature because it was simply too complex.
 Fabiola :: Worked on move feature
 ==============================================================
 
@@ -233,7 +257,10 @@ Dawei :: -Created the autoplace feature for initial placement and
 	 autoPlace feature, on the other hand, could only place your
 	 own troops for that turn.
 	 -rewrote the move feature. It would allow the user to move
-	 any troops among their occupied territories.
+	 any troops among their occupied territories. Tried to implement
+	 the restriction that a player can only move their troops within
+	 territories that can be reached by traveling through their own
+	 occupied territory or through an ocean bridge.
 	 -created an endGame feature that would end the game once
 	 a player has occupied the set percentage of territories.
 ==============================================================
@@ -244,6 +271,9 @@ Yuqi :: Added exit, debuged attack
 Dawei :: -Worked on occupied feature, updated README, finished move
 	 -modified isVictory method to check for losers and likewise
 	 remove them from the game.
+	 -Preped the program for the final commit. Made sure the ascethetics
+	 were appealing. Updated the instructions so that it would make more
+	 sense.
 Fabiola :: Made the final UML, flowchart
 ==============================================================
 
