@@ -1,10 +1,10 @@
-<h1>RISK
+<h1>RISK</h1>
 
 About the game:
 
-	Our final project is a terminal simulation of the classic game “risk”. This is a multiplayer world-domination conquest game that can support the participation of 2 - 6 players. The number of troops that each player will receive at the start of the game depends on the number of players at the start of the game. Everyone receives 20 troops if there are 6 players, 25 troops if there are 5 players, 30 troops for 4 players, and so on. There is a total of 42 territories distributed over seven continents. The player can view troop numbers in enemy territory and know which territories are occupied by enemy armies. On the map we have created, each territory will have an unique lable. Once a player has occupied a territory, the color of the lable will change to correspond with the player's color. Since the game can sometimes last too long, at the initial set up of the game, players can decide to only play up to the point where a certain percentage of the total territories is occupied by one player, and that player would be declared the winner.
+Our final project is a terminal simulation of the classic game “risk”. This is a multiplayer world-domination conquest game that can support the participation of 2 - 6 players. The number of troops that each player will receive at the start of the game depends on the number of players at the start of the game. Everyone receives 20 troops if there are 6 players, 25 troops if there are 5 players, 30 troops for 4 players, and so on. There is a total of 42 territories distributed over seven continents. The player can view troop numbers in enemy territory and know which territories are occupied by enemy armies. On the map we have created, each territory will have an unique lable. Once a player has occupied a territory, the color of the lable will change to correspond with the player's color. Since the game can sometimes last too long, at the initial set up of the game, players can decide to only play up to the point where a certain percentage of the total territories is occupied by one player, and that player would be declared the winner.
 
-<h2>Instructions:
+<h2>Instructions:</h2>
 
 First, open terminal and enlarge your terminal window to a size big enough to be able to view the entire world map
 (we suggest 1000) 
