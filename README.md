@@ -67,4 +67,4 @@ After the game begins and it is your turn, you have the option of using your tro
 2. You must leave at least one troop to guard your territory after you move the troops from that territory to another territory.
 3. You may move troops to occupy unoccupied territory.
 
-<h3>Whoever conquers the set percentage of territories the players agreed to at the start of the game will be declared the winner!</h3>
+<h3>Whoever conquers the set percentage of territories the players agreed to at the start of the game no matter at which point in the game will be declared the winner!</h3>
